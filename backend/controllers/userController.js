@@ -49,7 +49,7 @@ exports.postRegister = [
           });
 
           res.status(201).json({ message: "User registered", user });
-        } catch (err){
+        } catch (error){
             res.status(400).json({ error: error.message });
         }
     }
