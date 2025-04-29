@@ -6,6 +6,10 @@ const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken');
 
 //validate user
+
+const alphaErr = "must only contain letters & numbers.";
+const lengthErr = "must be between 1 and 10 characters.";
+
 const validateUser = [
     body("username").trim().notEmpty()
        .isAlphanumeric().withMessage(`Username ${alphaErr}`)
