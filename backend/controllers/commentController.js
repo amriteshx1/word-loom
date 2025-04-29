@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 
 // Get all comments for a post
 exports.getAllComments = async (req, res) => {
@@ -30,7 +31,12 @@ exports.getAllComments = async (req, res) => {
 exports.addComment = async (req, res) => {
   try {
     const { postId } = req.params;
-    const { content, authorId } = req.body;
+    const { content} = req.body;
+
+    // Decode the JWT from the Authorization header
+        const token = req.headers.authorization.split(' ')[1]; // Assuming "Bearer <token>"
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET); // Use your JWT secret
+        const authorId = decodedToken.id; 
 
     const comment = await prisma.comment.create({
       data: { content, postId: parseInt(postId), authorId }
