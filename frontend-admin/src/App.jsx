@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import Posts from "./pages/posts";
 import Comments from "./pages/comments";
 import Support from "./pages/support";
+import Blog from "./pages/newblog";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="posts" element={<Posts />} />
             <Route path="comments" element={<Comments />} />
             <Route path="support" element={<Support />} />
+            <Route path="newBlog" element={<Blog />} />
         </Route>
 
       </Routes>

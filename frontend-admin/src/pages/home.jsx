@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import searchimg from '../assets/search.png';
 import notificationimg from '../assets/notification.png';
 import profileimg from "../assets/profile.png";
@@ -10,6 +11,7 @@ import member from "../assets/member.png";
 function Home(){
     const [user, setUser] = useState(null);
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     if (token) {
         const decodedToken = jwtDecode(token); 
@@ -72,7 +74,7 @@ function Home(){
                         </div>
     
                         <div className='h-full w-[40%] flex justify-end items-center'>
-                            <button type='submit' className='w-[40%] bg-gray-700 text-gray-200 p-[1vh] rounded-xl border-gray-700 border-2 cursor-pointer hover:bg-gray-600'>New Blog +</button>
+                            <button type='button' onClick={() => navigate("/dashboard/newBlog")} className='w-[40%] bg-gray-700 text-gray-200 p-[1vh] rounded-xl border-gray-700 border-2 cursor-pointer hover:bg-gray-600'>New Blog +</button>
                         </div>
                     
                     </div>
