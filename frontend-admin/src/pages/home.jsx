@@ -82,8 +82,10 @@ function Home(){
                 </div>
 
                 <div className='h-[70vh] w-full flex flex-col justify-around items-center p-[3vh] bg-gray-300'>
+                    <div className="w-[100%] flex flex-col justify-center items-center">
                     <p className="text-[2vw] text-gray-700 font-bold">Account Overview</p>
-                    <hr className="w-[50%] border-2 border-gray-700" />
+                    <hr className="w-[40%] border-2 border-gray-700" />
+                    </div>
                     <p className="text-[1.5vw] text-gray-700"><span className="font-medium">User email: </span>{user?.email || "abc@gmail.com"}</p>
 
                     <div className="h-[50%] w-full flex justify-between items-center">
