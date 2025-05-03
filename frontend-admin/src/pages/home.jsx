@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import searchimg from '../assets/search.png';
 import notificationimg from '../assets/notification.png';
 import profileimg from "../assets/profile.png";
+import allpost from "../assets/allposts.png";
+import allcomment from "../assets/allcomments.png";
+import member from "../assets/member.png";
 
 function Home(){
     const [user, setUser] = useState(null);
@@ -19,7 +22,7 @@ function Home(){
       useEffect(() => {
         const fetchUser = async () => {
             try {
-              const userId = localStorage.getItem('userId');
+              const userId = localStorage.getItem("userId");
               const response = await fetch(`http://localhost:3000/api/users/${userId}`);
           
               if (!response.ok) {
@@ -35,6 +38,15 @@ function Home(){
     
         fetchUser();
       }, []);
+
+      const formattedDate = user?.createdAt
+        ? new Date(user.createdAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        : "Loading...";
+
 
 
     return(
@@ -67,12 +79,38 @@ function Home(){
 
                 </div>
 
-                <div className='min-h-[70vh] w-full flex flex-col justify-start items-start gap-[2vh] p-[3vh] bg-gray-300'>
-                    <p>{user?.email || "abc@gmail.com"}</p>
+                <div className='h-[70vh] w-full flex flex-col justify-around items-center p-[3vh] bg-gray-300'>
+                    <p className="text-[2vw] text-gray-700 font-bold">Account Overview</p>
+                    <hr className="w-[50%] border-2 border-gray-700" />
+                    <p className="text-[1.5vw] text-gray-700"><span className="font-medium">User email: </span>{user?.email || "abc@gmail.com"}</p>
+
+                    <div className="h-[50%] w-full flex justify-between items-center">
+                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-gray-700 rounded-xl text-gray-200">
+                            <div className="h-[40%] w-[35%] flex flex-col justify-center items-center gap-[0.5vh]">
+                            <p className="text-[2vw]">Blogs:</p>
+                            <p className="text-[2.5vw]">{user?.posts?.length || 0}</p>
+                            </div>
+                            <img src={allpost} alt="total-blog logo" className="h-[50%] object-cover" />
+                        </div>
+
+                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-gray-700 rounded-xl text-gray-200">
+                           <div className="h-[40%] w-[35%] flex flex-col justify-center items-center gap-[0.5vh]">
+                            <p className="text-[2vw]">Comments:</p>
+                            <p className="text-[2.5vw]">{user?.comments?.length || 0}</p>
+                            </div>
+                            <img src={allcomment} alt="comment-logo" className="h-[50%] object-cover" />
+                        </div>
+
+                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-gray-700 rounded-xl text-gray-200">
+                            <div className="h-[40%] w-[50%] flex flex-col justify-center items-center gap-[0.5vh]">
+                            <p className="text-[2vw]">Joined:</p>
+                            <p className="text-[1.8vw]">{formattedDate}</p>
+                            </div>
+                            <img src={member} alt="user-logo" className="h-[50%] object-cover"/>
+                        </div>
+                    </div>
 
                 </div>
-                
-
 
          </>
     )
