@@ -11,7 +11,7 @@ router.get('/:id', authenticateToken, postController.getPostbyId);
 router.post('/', authenticateToken, postController.createPost);
 router.put('/:id', authenticateToken, authorizePostOwner, postController.updatePost);
 router.delete("/:id", authenticateToken, authorizePostOwner, postController.deletePost);
-router.patch('/:id/publish', authenticateToken, postController.publishPost);
+router.patch('/:id/togglePublish', authenticateToken, postController.togglePublishPost);
 //get posts created by the specific user/author
 router.get('/myposts/:id', authenticateToken, postController.getUserPosts);
 

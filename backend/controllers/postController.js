@@ -81,20 +81,32 @@ exports.deletePost = async (req, res) => {
 };
 
 // Publish/unpublish a post
-exports.publishPost = async (req, res) => {
+exports.togglePublishPost = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const post = await prisma.post.update({
+    const post = await prisma.post.findUnique({
       where: { id: parseInt(id) },
-      data: { published: true }
     });
 
-    res.json({ message: "Post published", post });
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const updatedPost = await prisma.post.update({
+      where: { id: parseInt(id) },
+      data: { published: !post.published },
+    });
+
+    res.json({
+      message: updatedPost.published ? "Post published" : "Post unpublished",
+      post: updatedPost,
+    });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 // Get posts by logged-in user
 exports.getUserPosts = async (req, res) => {
