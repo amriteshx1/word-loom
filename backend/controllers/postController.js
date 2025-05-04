@@ -95,3 +95,19 @@ exports.publishPost = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// Get posts by logged-in user
+exports.getUserPosts = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+    const userPosts = await prisma.post.findMany({
+      where: { authorId: id },
+      include: { comments: true }
+    });
+
+    res.json(userPosts);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};

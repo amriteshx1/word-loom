@@ -12,6 +12,8 @@ router.post('/', authenticateToken, postController.createPost);
 router.put('/:id', authenticateToken, authorizePostOwner, postController.updatePost);
 router.delete("/:id", authenticateToken, authorizePostOwner, postController.deletePost);
 router.patch('/:id/publish', authenticateToken, postController.publishPost);
+//get posts created by the specific user/author
+router.get('/myposts/:id', authenticateToken, postController.getUserPosts);
 
 router.get('/:postId/comments', commentController.getAllComments);
 router.post('/:postId/comments', authenticateToken, commentController.addComment);
