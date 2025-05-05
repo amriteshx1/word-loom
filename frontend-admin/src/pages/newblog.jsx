@@ -1,18 +1,45 @@
-import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 
 function Blog(){
+    const { postId } = useParams();
+    const navigate = useNavigate();
+    
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [isEditing, setIsEditing] = useState(false);
+
+    useEffect(() => {
+      if (postId) {
+        setIsEditing(true);
+        const token = localStorage.getItem("token");
+        fetch(`http://localhost:3000/api/posts/${postId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            setTitle(data.title);
+            setContent(data.content);
+          })
+          .catch(err => console.error("Failed to load post:", err));
+      }
+    }, [postId]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:3000/api/posts", {
-                method: "POST",
+            const url = isEditing ? `http://localhost:3000/api/posts/${postId}` : "http://localhost:3000/api/posts";
+            const method = isEditing ? "PUT" : "POST";
+
+            const res = await fetch(url, {
+                method,
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
                 body: JSON.stringify({ title, content }),
               });
@@ -22,23 +49,24 @@ function Blog(){
               }
 
               const data = await res.json();
-              console.log("Post created:", data.post); // Display the created post data
+              console.log("Post created:", data.post);
         
-              alert(`Post created successfully! ID: ${data.post.id}`); 
+              if (res.ok) {
+                navigate("/dashboard/posts");
+              }
+
               setTitle("");
               setContent("");
         } catch (err) {
             alert("Server error");
             console.error(err);
         }
-        console.log("Title:", title);
-        console.log("Content:", content);
       };
 
     return(
         <div className="h-screen w-full flex flex-col justify-around items-center  bg-gray-200 p-[3vh]">
             <div className="w-[100%] flex flex-col justify-center items-center">
-            <p className="text-[2.3vw] text-gray-700 font-bold">Craft Your Blog!</p>
+            <p className="text-[2.3vw] text-gray-700 font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
             <hr className="w-[40%] border-2 border-gray-700" />
             </div>
 
@@ -59,7 +87,7 @@ function Blog(){
                     onEditorChange={(newValue) => setContent(newValue)}
                 />
 
-                <button type="submit" className="h-[5vh] w-[15%] bg-white p-[6px] rounded-xl text-[1.2vw] text-gray-700 font-medium cursor-pointer">Submit</button>
+                <button type="submit" className="h-[5vh] w-[15%] bg-white p-[6px] rounded-xl text-[1.2vw] text-gray-700 font-medium cursor-pointer">{isEditing ? "Update" : "Submit"}</button>
 
 
             </form>
