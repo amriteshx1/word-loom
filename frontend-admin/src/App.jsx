@@ -21,6 +21,7 @@ function App() {
             <Route path="comments" element={<Comments />} />
             <Route path="support" element={<Support />} />
             <Route path="newBlog" element={<Blog />} />
+            <Route path="edit/:postId" element={<Blog />} />
         </Route>
 
       </Routes>
