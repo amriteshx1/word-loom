@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Posts(){
     const [posts, setPosts] = useState([]);
-
+    const navigate = useNavigate();
 
     const fetchPosts = async () => {
         try {
@@ -74,7 +76,10 @@ function Posts(){
                     </div>
                     
                     <div className="h-full w-[25%] flex justify-between items-center">
-                        <button type="button">Edit</button>
+                        <Link to={`/dashboard/edit/${item.id}`} className="h-[80%] w-[35%] flex justify-center items-center">
+                            <button className="h-full w-full bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
+                        </Link>
+
                         <button type="button" onClick={() => togglePublish(item.id)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">{item.published ? "Unpublish" : "Publish"}</button>
                     </div>
                     
