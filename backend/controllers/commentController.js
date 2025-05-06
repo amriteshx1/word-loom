@@ -51,7 +51,7 @@ exports.addComment = async (req, res) => {
 // Edit a comment
 exports.editComment = async (req, res) => {
   try {
-    const { postId, id } = req.params;
+    const { id } = req.params;
     const { content } = req.body;
 
     const comment = await prisma.comment.update({
