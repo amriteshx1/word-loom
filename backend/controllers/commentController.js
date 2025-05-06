@@ -77,3 +77,30 @@ exports.deleteComment = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+//get all comments on posts by specific authors
+exports.getAllCommentsByAuthor = async (req, res) => {
+  try {
+    const { authorId } = req.params;
+
+    const comments = await prisma.comment.findMany({
+      where: {
+        post: {
+          authorId: parseInt(authorId),
+        },
+      },
+      select: {
+        id: true,
+        content: true,
+        postId: true,
+        author: { select: { username: true } },
+        post: { select: { title: true } },
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    res.json(comments);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
