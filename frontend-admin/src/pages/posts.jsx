@@ -64,7 +64,7 @@ function Posts(){
             
             <div className="w-[100%] flex flex-col justify-center items-center">
             <p className="text-[2.3vw] text-gray-700 font-bold">Your Blogs!</p>
-            <hr className="w-[40%] border-2 border-gray-700" />
+            <hr className="w-[30%] border-2 border-gray-700" />
             </div>
 
 

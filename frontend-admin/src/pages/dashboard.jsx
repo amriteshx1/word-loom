@@ -25,7 +25,7 @@ function Dashboard(){
 
                     <NavLink to="/dashboard/posts" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>
                         <img src={post} alt="post-logo" className='h-[90%] object-cover' />
-                        <p className='text-[1.3vw]'>Posts</p>
+                        <p className='text-[1.3vw]'>Blogs</p>
                     </NavLink>
                     
                     <NavLink to="/dashboard/comments" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>

@@ -33,7 +33,7 @@ function Login(){
 
     return(
         <div className="main-container">
-            <div className='h-screen w-[50%] flex flex-col justify-around items-center p-[2vh] gap-[3vh]'>
+            <div className='h-screen w-[50%] flex flex-col justify-around items-center p-[2vh] gap-[3vh] bg-white'>
 
                 <div className='h-[45%] w-full flex flex-col justify-end items-center gap-[0.7vh]'>
                     <p className='text-[5.3vw] text-gray-700'>Wordloom</p>
@@ -46,7 +46,7 @@ function Login(){
                 
             </div>
 
-            <div className='h-screen w-[50%] flex justify-center items-center p-[2vh] bg-gray-700'>
+            <div className='h-screen w-[50%] flex justify-center items-center p-[2vh] bg-gray-700 rounded-l-[115px]'>
                 
                 <form className='h-[80%] w-[60%] flex flex-col justify-center items-center gap-[1.5vh]' onSubmit={handleLogin}>
                     
