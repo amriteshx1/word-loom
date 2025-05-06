@@ -1,4 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import home from '../assets/home.png';
 import post from '../assets/post.png';
 import comment from '../assets/comment.png';
@@ -7,6 +8,17 @@ import dashboard from '../assets/dashboard.png';
 import support from '../assets/support.png';
 
 function Dashboard(){
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        const confirmLogout = window.confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+          navigate("/");
+        }
+    };
+
     return(
         <div className="main-container grid grid-cols-[1fr_4fr] justify-items-center items-center">
 
@@ -39,9 +51,9 @@ function Dashboard(){
                     </NavLink>
                 </div>
 
-                <div className='h-[3vh] w-[60%] flex justify-start items-center gap-[10px]'>
+                <div onClick={handleLogout} className='h-[3vh] w-[60%] flex justify-start items-center gap-[10px] cursor-pointer text-gray-200 hover:text-gray-400'>
                     <img src={logout} alt="log-out logo" className='h-[90%] object-cover' />
-                    <p className='text-[1.3vw] text-gray-200'>Sign out</p>
+                    <p className='text-[1.3vw]'>Sign out</p>
                 </div>
                 
             </div>
@@ -52,6 +64,6 @@ function Dashboard(){
     
         </div>
     )
-}
+};
 
 export default Dashboard;
