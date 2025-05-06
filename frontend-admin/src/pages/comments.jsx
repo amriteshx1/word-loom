@@ -1,6 +1,4 @@
 import React, { use, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 function Comments(){
     const [comments, setComments] = useState([]);
@@ -41,6 +39,24 @@ function Comments(){
         }
       }
 
+      const handleEdit = async (id, currentContent) => {
+        const updatedContent = window.prompt("Edit the comment:", currentContent);
+    
+        if (!updatedContent) return;
+    
+        const token = localStorage.getItem("token");
+    
+        const res = await fetch(`http://localhost:3000/api/posts/comments/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+            body: JSON.stringify({ content: updatedContent }),
+        });
+    
+        if (res.ok) {
+            setComments(comments.map(c => c.id === id ? { ...c, content: updatedContent } : c));
+        }
+    };
+
 
     return(
         <>
@@ -65,10 +81,7 @@ function Comments(){
                     </div>
                     
                     <div className="h-[5vh] w-[25%] flex justify-between items-center">
-                        <Link to={`/dashboard/edit/${item.id}`} className="h-[80%] w-[35%] flex justify-center items-center">
-                            <button className="h-full w-full bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
-                        </Link>
-
+                        <button type="button" onClick={() => handleEdit(item.id, item.content)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
                         <button type="button" onClick={() => handleDelete(item.id)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Delete</button>
                     </div>
                     
