@@ -24,7 +24,22 @@ function Comments(){
         };
         fetchComments();
       }, []);
-      
+
+      const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this comment?");
+    
+        if (!confirmDelete) return;
+
+         const token = localStorage.getItem("token");
+
+         const res = await fetch(`http://localhost:3000/api/posts/comments/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
+         })
+         if (res.ok) {
+            setComments(comments.filter(c => c.id !== id));
+        }
+      }
 
 
     return(
@@ -49,12 +64,12 @@ function Comments(){
 
                     </div>
                     
-                    <div className="h-[5vh] w-[30%] flex justify-between items-center">
+                    <div className="h-[5vh] w-[25%] flex justify-between items-center">
                         <Link to={`/dashboard/edit/${item.id}`} className="h-[80%] w-[35%] flex justify-center items-center">
                             <button className="h-full w-full bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
                         </Link>
 
-                        <button type="button"  className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Delete</button>
+                        <button type="button" onClick={() => handleDelete(item.id)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Delete</button>
                     </div>
                     
                     
