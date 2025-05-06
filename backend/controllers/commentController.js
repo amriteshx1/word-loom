@@ -68,7 +68,7 @@ exports.editComment = async (req, res) => {
 // Delete a comment
 exports.deleteComment = async (req, res) => {
   try {
-    const { postId, id } = req.params;
+    const { id } = req.params;
 
     await prisma.comment.delete({ where: { id: parseInt(id) } });
 

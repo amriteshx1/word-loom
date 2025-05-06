@@ -18,7 +18,7 @@ router.get('/myposts/:id', authenticateToken, postController.getUserPosts);
 router.get('/:postId/comments', commentController.getAllComments);
 router.post('/:postId/comments', authenticateToken, commentController.addComment);
 router.put('/:postId/comments/:id', authenticateToken, authorizeCommentOwner, commentController.editComment);
-router.delete("/:postId/comments/:id", authenticateToken, authorizeCommentOwner, commentController.deleteComment);
+router.delete("/comments/:id", authenticateToken, commentController.deleteComment);
 router.get('/author/:authorId/comments', authenticateToken, commentController.getAllCommentsByAuthor);
 
 module.exports = router;
