@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@layer components{
+
+    .main-container{
+        @apply h-screen w-screen flex justify-between items-center font-[Raleway] bg-white;
+    }
+
+    .inner-main-container{
+        @apply h-screen w-screen flex flex-col justify-around items-center p-[5vh] gap-[2vh];
+    }
+}
