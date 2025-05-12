@@ -29,6 +29,22 @@ function Homepage(){
                 <img src={homeimg} alt="home img" className='h-[60vh] object-cover' />
 
             </div>
+
+            <div className='h-[10vh] w-[40%] flex flex-col justify-end items-center'>
+                <hr className='w-full border-solid border-neutral-700 border-[0.5]' />
+                <div className='h-[50%] w-full flex justify-center items-center gap-[2vw] text-neutral-700 font-normal'>
+                    <p className='text-[0.8vw]'>Help</p>
+                    <p className='text-[0.8vw]'>About</p>
+                    <p className='text-[0.8vw]'>Careers</p>
+                    <p className='text-[0.8vw]'>Blog</p>
+                    <p className='text-[0.8vw]'>Privacy</p>
+                    <p className='text-[0.8vw]'>Rules</p>
+                    <p className='text-[0.8vw]'>Terms</p>
+
+                </div>
+
+
+            </div>
             
         </div>
     )
