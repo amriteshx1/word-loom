@@ -1,6 +1,10 @@
+import { useState } from 'react';
+import Signup from './signup';
 import homeimg from '../assets/homeimg.png';
 
 function Homepage(){
+    const [showSignup, setShowSignup] = useState(false);
+
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
 
@@ -13,7 +17,9 @@ function Homepage(){
                     <p className='text-[1.1vw] font-medium'>Our Story</p>
                     <p className='text-[1.1vw] font-medium'>Membership</p>
                     <p className='text-[1.1vw] font-medium'>Sign in</p>
-                    <button className='text-[1vw] font-medium  p-[1vh] pr-[2vh] pl-[2vh] rounded-4xl bg-zinc-100 text-neutral-700 cursor-pointer hover:bg-zinc-200'>Get started</button>
+                    <button
+                    onClick={() => setShowSignup(true)}
+                    className='text-[1vw] font-medium  p-[1vh] pr-[2vh] pl-[2vh] rounded-4xl bg-zinc-100 text-neutral-700 cursor-pointer hover:bg-zinc-200'>Get started</button>
                 </div>
 
             </div>
@@ -45,6 +51,8 @@ function Homepage(){
 
 
             </div>
+
+            <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} />
             
         </div>
     )
