@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Signup({isOpen, onClose}){
+export default function Signup({isOpen, onClose, heading = "Join Wordloom."}){
     if(!isOpen) return null;
 
     const handleOverlayClick = (e) => {
@@ -18,7 +18,7 @@ export default function Signup({isOpen, onClose}){
                 <button onClick={onClose} className=" absolute top-0 right-0 p-[1vh] pr-[2.5vh] cursor-pointer text-[1.5vw] text-gray-500 hover:text-gray-700">
                   x
                 </button>
-                <h2 className="text-[1.9vw] text-neutral-900 font-medium mb-[6vh]">Join Wordloom.</h2>
+                <h2 className="text-[1.8vw] text-neutral-900 font-medium mb-[6vh]">{heading}</h2>
 
                 <form className="flex flex-col justify-center items-center w-[60%] gap-[1.5vh]">
                     <div className="flex flex-col justify-center items-start gap-[0.2vh] w-full">
