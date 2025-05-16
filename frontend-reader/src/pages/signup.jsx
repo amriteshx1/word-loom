@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Signup({isOpen, onClose, heading = "Join Wordloom."}){
+export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onSwitchToSignin}){
     if(!isOpen) return null;
 
     const handleOverlayClick = (e) => {
@@ -41,7 +41,11 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom."}){
                         <input type="password" id="confirmPassword" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
                     </div>
 
-                    <p className="text-[1vw] text-neutral-900">Already have an account? <span className="text-[1vw] text-neutral-950 font-medium cursor-pointer">Sign in</span></p>
+                    <p className="text-[1vw] text-neutral-900">Already have an account? <span 
+                    onClick={() => {
+                         onClose(); 
+                         onSwitchToSignin();
+                        }} className="text-[1vw] text-neutral-950 font-medium cursor-pointer hover:underline">Sign in</span></p>
 
                   <button className="bg-neutral-700 w-[50%] text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer">
                     Sign up

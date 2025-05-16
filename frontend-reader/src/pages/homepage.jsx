@@ -67,7 +67,7 @@ function Homepage(){
 
             </div>
 
-            <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} heading={signupHeading} />
+            <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} heading={signupHeading} onSwitchToSignin={() => setShowSignin(true)} />
             
             <Signin isOpen={showSignin} onClose={() => setShowSignin(false)} />
             
