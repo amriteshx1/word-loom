@@ -6,6 +6,8 @@ import homeimg from '../assets/homeimg.png';
 function Homepage(){
     const [showSignup, setShowSignup] = useState(false);
     const [showSignin, setShowSignin] = useState(false);
+    const [signupHeading, setSignupHeading] = useState("Join Wordloom.");
+
 
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
@@ -18,10 +20,16 @@ function Homepage(){
                 <div className='w-[40%] flex justify-around items-center'>
                     <p className='text-[1.1vw] font-medium'>Our Story</p>
                     <p className='text-[1.1vw] font-medium'>Membership</p>
-                    <p className='text-[1.1vw] font-medium'>Write</p>
+                    <button
+                    onClick={() => {
+                      setSignupHeading("Create an account to start writing.");
+                      setShowSignup(true);}}
+                     className='text-[1.1vw] font-medium cursor-pointer hover:text-zinc-200'>Write</button>
                     <button onClick={() => setShowSignin(true)} className='text-[1.1vw] font-medium cursor-pointer hover:text-zinc-200'>Sign in</button>
                     <button
-                    onClick={() => setShowSignup(true)}
+                    onClick={() => {
+                        setSignupHeading("Join Wordloom.");
+                        setShowSignup(true);}}
                     className='text-[1vw] font-medium  p-[1vh] pr-[2vh] pl-[2vh] rounded-4xl bg-zinc-100 text-neutral-700 cursor-pointer hover:bg-zinc-200'>Get started</button>
                 </div>
 
@@ -33,7 +41,9 @@ function Homepage(){
                 <p className='text-[6vw] font-bold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>Weave thoughts <br /> into words</p>
                 <p className='text-[1.8vw] font-medium bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>A space to write, reflect, and connect with meaning!</p>
                 <button 
-                onClick={() => setShowSignup(true)}
+                onClick={() => {
+                    setSignupHeading("Join Wordloom.");
+                    setShowSignup(true);}}
                 className='text-[1.4vw] font-medium bg-neutral-700 w-[13vw] p-[1vh] rounded-4xl text-zinc-100 cursor-pointer hover:bg-neutral-800'>Start reading</button>
                 </div>
 
@@ -57,7 +67,7 @@ function Homepage(){
 
             </div>
 
-            <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} />
+            <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} heading={signupHeading} />
             
             <Signin isOpen={showSignin} onClose={() => setShowSignin(false)} />
             
