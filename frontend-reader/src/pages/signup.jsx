@@ -1,6 +1,11 @@
-import React from "react";
+import { useState } from "react";
 
 export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onSwitchToSignin}){
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
     if(!isOpen) return null;
 
     const handleOverlayClick = (e) => {
@@ -8,6 +13,13 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
       onClose();
     }
    };
+
+   const handleSubmit = (e) => {
+        e.preventDefault();
+        //logic soon
+        console.log({ username, email, password, confirmPassword });
+        onClose();
+    };
 
     return(
         <div 
@@ -20,25 +32,37 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
                 </button>
                 <h2 className="text-[1.8vw] text-neutral-900 font-medium mb-[6vh]">{heading}</h2>
 
-                <form className="flex flex-col justify-center items-center w-[60%] gap-[1.5vh]">
+                <form className="flex flex-col justify-center items-center w-[60%] gap-[1.5vh]" onSubmit={handleSubmit}>
                     <div className="flex flex-col justify-center items-start gap-[0.2vh] w-full">
                         <label htmlFor="username" className="text-[1.1vw] text-neutral-900">Username</label>
-                        <input type="text" id="username" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]" />
+                        <input type="text" id="username" required 
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]" />
                     </div>
 
                     <div className="flex flex-col justify-center items-start gap-[0.2vh] w-full">
                         <label htmlFor="email" className="text-[1.1vw] text-neutral-900">Email</label>
-                        <input type="email" id="email" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
+                        <input type="email" id="email" required 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
                     </div>
 
                     <div className="flex flex-col justify-center items-start gap-[0.2vh] w-full">
                         <label htmlFor="password" className="text-[1.1vw] text-neutral-900">Password</label>
-                        <input type="password" id="password" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
+                        <input type="password" id="password" required 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
                     </div>
 
                     <div className="flex flex-col justify-center items-start gap-[0.2vh] w-full">
                         <label htmlFor="confirmPassword" className="text-[1.1vw] text-neutral-900">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
+                        <input type="password" id="confirmPassword" required 
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
                     </div>
 
                     <p className="text-[1vw] text-neutral-900">Already have an account? <span 
@@ -47,7 +71,7 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
                          onSwitchToSignin();
                         }} className="text-[1vw] text-neutral-950 font-medium cursor-pointer hover:underline">Sign in</span></p>
 
-                  <button className="bg-neutral-700 w-[50%] text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer">
+                  <button type="submit" className="bg-neutral-700 w-[50%] text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer">
                     Sign up
                   </button>
                 </form>
