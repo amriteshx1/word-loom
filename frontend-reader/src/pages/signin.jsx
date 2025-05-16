@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Signin({isOpen, onClose}){
+export default function Signin({isOpen, onClose, onSwitchToSignUp}){
     if(!isOpen) return null;
 
     const handleOverlayClick = (e) => {
@@ -32,7 +32,11 @@ export default function Signin({isOpen, onClose}){
                         <input type="password" id="password" required className="h-[5vh] w-full border-2 border-neutral-700 rounded-xl p-[1vh]"/>
                     </div>
 
-                    <p className="text-[1vw] text-neutral-900">No account? <span className="text-[1vw] text-neutral-950 font-medium cursor-pointer">Create one</span></p>
+                    <p className="text-[1vw] text-neutral-900">No account? <span
+                    onClick={() => {
+                      onClose();
+                      onSwitchToSignUp();
+                    }} className="text-[1vw] text-neutral-950 font-medium cursor-pointer hover:underline">Create one</span></p>
 
                   <button className="bg-neutral-700 w-[50%] text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer">
                     Sign in
