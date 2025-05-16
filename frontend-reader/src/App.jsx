@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/homepage";
+import Feed from "./pages/feed";
 
 function App(){
   return(
@@ -7,6 +8,7 @@ function App(){
       <Routes>
 
         <Route path="/" element={<Homepage />} />
+        <Route path="/feed" element={<Feed />} />
 
       </Routes>
     </Router>
