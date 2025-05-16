@@ -14,11 +14,29 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
     }
    };
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async(e) => {
         e.preventDefault();
-        //logic soon
-        console.log({ username, email, password, confirmPassword });
-        onClose();
+        
+        try {
+            const res = await fetch("http://localhost:3000/api/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password, confirmPassword }),
+          });
+
+          const data = await res.json();
+           if (res.ok) {
+            console.log(data);
+            onClose();
+            onSwitchToSignin();
+          } else {
+           console.error("❌ Validation Errors:", data.errors);
+          }
+            
+        } catch  (err) {
+          alert("Server error");
+          console.error(err);
+        }
     };
 
     return(
