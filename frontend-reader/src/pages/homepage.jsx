@@ -11,13 +11,14 @@ function Homepage(){
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
 
             <div className='h-[10vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
-                <div className='w-[65%] flex justify-start items-center'>
+                <div className='w-[60%] flex justify-start items-center'>
                     <p className='text-[2vw] font-medium'>Wordloom.</p>
                 </div>
 
-                <div className='w-[35%] flex justify-around items-center'>
+                <div className='w-[40%] flex justify-around items-center'>
                     <p className='text-[1.1vw] font-medium'>Our Story</p>
                     <p className='text-[1.1vw] font-medium'>Membership</p>
+                    <p className='text-[1.1vw] font-medium'>Write</p>
                     <button onClick={() => setShowSignin(true)} className='text-[1.1vw] font-medium cursor-pointer hover:text-zinc-200'>Sign in</button>
                     <button
                     onClick={() => setShowSignup(true)}
