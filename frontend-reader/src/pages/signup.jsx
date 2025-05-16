@@ -3,10 +3,16 @@ import React from "react";
 export default function Signup({isOpen, onClose}){
     if(!isOpen) return null;
 
+    const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+   };
 
     return(
         <div 
         className="fixed inset-0 bg-white/93 flex justify-center items-center z-50"
+        onClick={handleOverlayClick}
         >
             <div className="bg-white p-6 rounded-xl h-[90%] w-[90%] max-h-[85vh] max-w-[40vw] shadow-lg flex flex-col justify-center items-center relative">
                 <button onClick={onClose} className=" absolute top-0 right-0 p-[1vh] pr-[2.5vh] cursor-pointer text-[1.5vw] text-gray-500 hover:text-gray-700">
