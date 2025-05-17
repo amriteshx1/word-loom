@@ -43,7 +43,7 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
         className="fixed inset-0 bg-white/93 flex justify-center items-center z-50"
         onClick={handleOverlayClick}
         >
-             <div className="bg-white p-6 rounded-xl h-[90%] w-[90%] max-h-[85vh] max-w-[40vw] shadow-lg flex flex-col justify-center items-center relative">
+             <div className="bg-white p-6 rounded-xl h-[90%] w-[90%] max-h-[85vh] max-w-[40vw] shadow-lg flex flex-col justify-center items-center relative motion-preset-slide-up motion-duration-500">
                 <button onClick={onClose} className=" absolute top-0 right-0 p-[1vh] pr-[2.5vh] cursor-pointer text-[1.5vw] text-gray-500 hover:text-gray-700">
                   x
                 </button>
