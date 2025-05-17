@@ -33,27 +33,35 @@ export default function Feed(){
         fetchPosts();
     }, []);
     
+    const handlePost = (id) => {
+      navigate(`/feed/post/${id}`)
+    }
 
     return(
-        <div>
-        <h1>Hiii u are at feed!</h1>
-
-        {posts.map(post => (
-            <div key={post.id} className="p-4 rounded-xl bg-white shadow mb-6">
-              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-              <div className="text-sm text-neutral-500 mb-4">
-                By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
-              </div>
-              <div
-                className="prose max-w-none text-neutral-800"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+        <div className="main-container flex-col pr-[10vh] pl-[10vh]">
+            <div className='h-[10vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
+                <div className='w-[60%] flex justify-start items-center'>
+                    <p className='text-[2vw] font-medium'>Wordloom.</p>
+                </div>
             </div>
-        ))}
-
-        <div onClick={handleLogout}>
-            <p>Sign Out</p>
-        </div>
+    
+            {posts.map(post => (
+                <div key={post.id} className="h-[25vh] w-[50vw] p-4 rounded-xl bg-white shadow-md mb-6">
+                  <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-2 text-neutral-800 hover:underline cursor-pointer">{post.title}</h2>
+                  <div className="text-sm text-neutral-500 mb-4">
+                    By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
+                  </div>
+                  <div
+                    className="prose max-w-none font-medium text-neutral-700 line-clamp-2"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
+                </div>
+            ))}
+    
+            <div onClick={handleLogout}>
+                <p className='text-neutral-800 text-[1.2vw] cursor-pointer hover:text-neutral-600 '>Sign Out</p>
+                
+            </div>
         </div>
     )
 }
