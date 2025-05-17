@@ -37,6 +37,20 @@ export default function Feed(){
     return(
         <div>
         <h1>Hiii u are at feed!</h1>
+
+        {posts.map(post => (
+            <div key={post.id} className="p-4 rounded-xl bg-white shadow mb-6">
+              <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+              <div className="text-sm text-neutral-500 mb-4">
+                By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
+              </div>
+              <div
+                className="prose max-w-none text-neutral-800"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            </div>
+        ))}
+
         <div onClick={handleLogout}>
             <p>Sign Out</p>
         </div>
