@@ -39,9 +39,9 @@ export default function Feed(){
 
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
-            <div className='h-[10vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
+            <div className='h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
                 <div className='w-[60%] flex justify-start items-center'>
-                    <p className='text-[2vw] font-medium'>Wordloom.</p>
+                    <p className='text-[1.7vw] font-medium'>Wordloom.</p>
                 </div>
             </div>
     
