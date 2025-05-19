@@ -39,12 +39,19 @@ export default function Post(){
 
     return(
         <div>
-            <h1>{id}</h1>
+        
             {post ? (
-          <h2>{post.title}</h2>
-        ) : (
-          <p>Loading...</p>
-        )}
+              <>
+                <h2>{post.title}</h2>
+                <div
+                    className="prose max-w-none font-medium text-neutral-700 mt-[5vh]"
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  />
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+
         </div>
     )
 }
