@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BellRing } from '../components/bellring';
+import { User } from '../components/profile';
+import write from '../assets/write.png';
 
 export default function Feed(){
     const [posts, setPosts] = useState([])
@@ -40,8 +43,20 @@ export default function Feed(){
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
             <div className='h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
-                <div className='w-[60%] flex justify-start items-center'>
+                <div className='w-[50%] flex justify-start items-center gap-[3vw]'>
                     <p className='text-[1.7vw] font-medium'>Wordloom.</p>
+                    <input type="text" className='h-[4vh] w-[50%] bg-white rounded-2xl text-neutral-700 p-[1.5vh] border-2 border-neutral-700 text-[1vw] font-normal' placeholder='Search blogs....'/>
+                </div>
+
+                <div className='w-[50%] flex justify-end items-center gap-[2vw]'>
+                  <div className='w-auto flex justify-center items-center gap-1'>
+                    <img src={write} alt="write-blog-logo" className='h-[2.8vh]'/>
+                    <p className='text-[1.1vw] text-white font-medium hover:text-neutral-200 cursor-pointer'>Write</p>
+                  </div>
+            
+                   <BellRing style={{height: '2.7vh'}} />
+                   <User style={{height: '3vh'}} />
+
                 </div>
             </div>
     
