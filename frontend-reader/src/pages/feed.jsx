@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { BellRing } from '../components/bellring';
 import { User } from '../components/profile';
 import write from '../assets/write.png';
+import { Rocket } from '../components/trending';
+import { Flame } from '../components/featured';
 
 export default function Feed(){
     const [posts, setPosts] = useState([])
@@ -59,9 +61,12 @@ export default function Feed(){
 
                 </div>
             </div>
-    
-            {posts.map(post => (
-                <div key={post.id} className="h-[25vh] w-[50vw] p-4 rounded-xl bg-white shadow-md mb-6">
+
+            <div className='h-[91vh] w-[100%] flex justify-between items-center pt-[5vh]'>
+
+              <div className='h-full w-[60%] flex flex-col justify-start items-center p-[5vh] gap-[5vh]'>
+                {posts.map(post => (
+                <div key={post.id} className="h-[20vh] w-full p-4 rounded-xl bg-white shadow-md">
                   <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-2 text-neutral-800 hover:underline cursor-pointer">{post.title}</h2>
                   <div className="text-sm text-neutral-500 mb-4">
                     By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
@@ -71,7 +76,34 @@ export default function Feed(){
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
                 </div>
-            ))}
+              ))}
+              </div>
+
+              <div className='h-full w-[30%] flex flex-col justify-between items-center'>
+                <div className='h-[45%] w-full flex flex-col justify-start items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                  <div className='flex'>
+                    <p className='text-[1.2vw] text-white font-medium'>Trending</p>
+                    <Rocket style={{height: '2.2vh'}} />
+                  </div>
+                  
+
+                </div>
+
+                <div className='h-[45%] w-full flex flex-col justify-start items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                  <div className='flex'>
+                    <p className='text[1.2vw] text-white font-medium'>Featured</p>
+                    <Flame style={{height: '2.2vh'}} />
+
+                  </div>
+
+                </div>
+
+              </div>
+              
+
+            </div>
+    
+        
     
             <div onClick={handleLogout}>
                 <p className='text-neutral-800 text-[1.2vw] cursor-pointer hover:text-neutral-600 '>Sign Out</p>
