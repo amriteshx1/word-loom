@@ -25,6 +25,7 @@ function Blog(){
           .then(data => {
             setTitle(data.title);
             setContent(data.content);
+            setThumbnail(data.thumbnail);
           })
           .catch(err => console.error("Failed to load post:", err));
       }
@@ -35,9 +36,9 @@ function Blog(){
         e.preventDefault();
 
         try {
-            let imageUrl = "";
+            let imageUrl = thumbnail;
 
-            if (thumbnail) {
+            if (thumbnail instanceof File) {
                 const formData = new FormData();
                 formData.append("file", thumbnail);
                 formData.append("upload_preset", "blog_image_uploads");
@@ -48,8 +49,10 @@ function Blog(){
                 });
               
                 const cloudData = await cloudRes.json();
+                 if (!cloudData.secure_url) {
+                     throw new Error("Image upload failed");
+              }
                 imageUrl = cloudData.secure_url;
-                console.log(imageUrl);
               }
 
             const token = localStorage.getItem("token");
@@ -59,7 +62,7 @@ function Blog(){
             const res = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
-                body: JSON.stringify({ title, content }),
+                body: JSON.stringify({ title, content, thumbnail: imageUrl }),
               });
 
               if (!res.ok) {
@@ -75,6 +78,7 @@ function Blog(){
 
               setTitle("");
               setContent("");
+              setThumbnail(null);
         } catch (err) {
             alert("Server error");
             console.error(err);
