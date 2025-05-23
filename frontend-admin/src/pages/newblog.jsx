@@ -10,6 +10,7 @@ function Blog(){
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isEditing, setIsEditing] = useState(false);
+    const [thumbnail, setThumbnail] = useState(null);
 
     useEffect(() => {
       if (postId) {
@@ -34,6 +35,23 @@ function Blog(){
         e.preventDefault();
 
         try {
+            let imageUrl = "";
+
+            if (thumbnail) {
+                const formData = new FormData();
+                formData.append("file", thumbnail);
+                formData.append("upload_preset", "blog_image_uploads");
+              
+                const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dlfopktoi/image/upload", {
+                  method: "POST",
+                  body: formData,
+                });
+              
+                const cloudData = await cloudRes.json();
+                imageUrl = cloudData.secure_url;
+                console.log(imageUrl);
+              }
+
             const token = localStorage.getItem("token");
             const url = isEditing ? `http://localhost:3000/api/posts/${postId}` : "http://localhost:3000/api/posts";
             const method = isEditing ? "PUT" : "POST";
@@ -72,6 +90,7 @@ function Blog(){
 
             <form onSubmit={handleSubmit} className="h-[80%] w-[90%] flex flex-col justify-around items-center gap-[2vh] border-3 border-gray-700 rounded-xl bg-gray-700">
                 <input type="text" placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="h-[6vh] w-[40%] p-[7px] rounded-xl bg-white text-[1.1vw] text-gray-700 font-medium" />
+                <input type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className=" rounded-xl p-[2px] bg-white text-[1.1vw] text-gray-700" />
 
                 <Editor
                     apiKey='u5fbml5dtavsjnyloaai6j180opwm6mz7aet9a60t19vu0c5'
