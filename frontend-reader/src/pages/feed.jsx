@@ -42,6 +42,15 @@ export default function Feed(){
       navigate(`/feed/post/${id}`)
     }
 
+    const handleWrite = () => {
+      const adminAlert = window.confirm("Switching to the admin side in a new tab.\nYou may need to log in again - just to keep things safe! 💫");
+
+      if(adminAlert){
+        window.open("http://localhost:5174", "_blank");
+      }
+
+    }
+
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
             <div className='h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
@@ -53,7 +62,7 @@ export default function Feed(){
                 <div className='w-[50%] flex justify-end items-center gap-[2vw]'>
                   <div className='w-auto flex justify-center items-center gap-1'>
                     <img src={write} alt="write-blog-logo" className='h-[2.8vh]'/>
-                    <p className='text-[1.1vw] text-white font-medium hover:text-neutral-200 cursor-pointer'>Write</p>
+                    <button onClick={handleWrite} className='text-[1.1vw] text-white font-medium hover:text-neutral-200 cursor-pointer'>Write</button>
                   </div>
             
                    <BellRing style={{height: '2.7vh'}} />
