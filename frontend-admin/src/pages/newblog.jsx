@@ -86,22 +86,26 @@ function Blog(){
       };
 
     return(
-        <div className="h-screen w-full flex flex-col justify-around items-center  bg-gray-200 p-[3vh]">
+        <div className="h-screen w-full flex flex-col justify-between items-center  bg-gray-200 p-[2vh]">
             <div className="w-[100%] flex flex-col justify-center items-center">
             <p className="text-[2.3vw] text-gray-700 font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
             <hr className="w-[40%] border-2 border-gray-700" />
             </div>
 
-            <form onSubmit={handleSubmit} className="h-[80%] w-[90%] flex flex-col justify-around items-center gap-[2vh] border-3 border-gray-700 rounded-xl bg-gray-700">
+            <form onSubmit={handleSubmit} className="h-[90%] w-[100%] flex flex-col justify-around items-center gap-[2vh] border-3 border-gray-700 rounded-xl bg-gray-700 p-[1vh]">
                 <input type="text" placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="h-[6vh] w-[40%] p-[7px] rounded-xl bg-white text-[1.1vw] text-gray-700 font-medium" />
-                <input type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className=" rounded-xl p-[2px] bg-white text-[1.1vw] text-gray-700" />
-
+                <div className="flex justify-center items-center gap-[1vw] h-[6vh] w-[100%]">
+                  <label htmlFor="thumbnail" className="text-[1.1vw] text-white font-medium">Upload thumbnail:</label>
+                  <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className="file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-gray-700" />
+                </div>
+                
                 <Editor
                     apiKey='u5fbml5dtavsjnyloaai6j180opwm6mz7aet9a60t19vu0c5'
                     value={content}
                     init={{
-                      height: 400,
+                      height: 500,
                       menubar: false,
+                      width: '100%',
                       plugins: [
                         'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
                       ],
