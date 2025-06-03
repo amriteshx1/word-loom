@@ -5,6 +5,10 @@ const commentController = require('../controllers/commentController');
 const { authenticateToken } = require('../middlewares/authMiddleware');
 const { authorizePostOwner } = require('../middlewares/authorize');
 const { authorizeCommentOwner } = require('../middlewares/authorize');
+const gemini = require('../middlewares/gemini');
+
+//gemini
+router.post('/tone/gemini/transform', gemini.upgradeTone);
 
 router.get('/', authenticateToken, postController.getAllPosts);
 router.get('/:id', authenticateToken, postController.getPostbyId);
