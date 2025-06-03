@@ -87,6 +87,36 @@ function Blog(){
         }
       };
 
+      //tone-transformation section
+
+      const optimizeContent = async () => {
+        if (tone === "Keep it as it is") return;
+      
+        setLoadingTone(true);
+      
+        try {
+          const res = await fetch("http://localhost:3000/api/posts/tone/gemini/transform", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content, tone }),
+          });
+      
+          const data = await res.json();
+      
+          if (res.ok) {
+            setContent(data.transformed); // Update editor with new content
+          } else {
+            alert("Failed to optimize content.");
+          }
+        } catch (err) {
+          console.error("AI Error:", err);
+          alert("Server error while transforming content.");
+        } finally {
+          setLoadingTone(false);
+        }
+      };
+
+
     return(
         <div className="h-screen w-full flex flex-col justify-between items-center  bg-gray-200 p-[2vh]">
             <div className="w-[100%] flex flex-col justify-center items-center">
