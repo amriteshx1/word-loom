@@ -11,6 +11,8 @@ function Blog(){
     const [content, setContent] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [thumbnail, setThumbnail] = useState(null);
+    const [tone, setTone] = useState("Keep it as it is");
+    const [loadingTone, setLoadingTone] = useState(false);
 
     useEffect(() => {
       if (postId) {
@@ -113,6 +115,35 @@ function Blog(){
                     }}
                     onEditorChange={(newValue) => setContent(newValue)}
                 />
+
+                <div className="flex justify-center items-center gap-[1vh]">
+                  <label htmlFor="tone" className="text-[1.1vw] text-white font-medium">Upgrade Writing-Tone: </label>
+                  <select
+                    name="tone"
+                    id="tone"
+                    className="p-[0.5vh] bg-white text-[1vw] font-medium text-gray-700 rounded-xl cursor-pointer"
+                    value={tone}
+                    onChange={(e) => setTone(e.target.value)}
+                  >
+                    <option value="Keep it as it is">No change</option>
+                    <option value="Formal">Formal</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Poetic">Poetic</option>
+                    <option value="Witty">Witty</option>
+                    <option value="Comical">Comical</option>
+                  </select>
+                  
+                  <button
+                    type="button"
+                    className="px-[1vh] py-[0.5vh] bg-white text-[1vw] font-medium text-gray-700 rounded-xl cursor-pointer"
+                    onClick={optimizeContent}
+                    disabled={loadingTone}
+                  >
+                    {loadingTone ? "Optimizing..." : "Optimize using AI ✨"}
+                  </button>
+
+                </div>
+
 
                 <button type="submit" className="h-[5vh] w-[15%] bg-white p-[6px] rounded-xl text-[1.2vw] text-gray-700 font-medium cursor-pointer">{isEditing ? "Update" : "Submit"}</button>
 
