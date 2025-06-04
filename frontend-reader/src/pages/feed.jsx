@@ -75,7 +75,8 @@ export default function Feed(){
 
               <div className='h-full w-[60%] flex flex-col justify-start items-center gap-[5vh] overflow-y-scroll'>
                 {posts.map(post => (
-                <div key={post.id} className="h-[25vh] w-full p-4 rounded-xl bg-white shadow-md">
+                <div key={post.id} className="h-[25vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                  <div className='h-full w-[70%] flex flex-col justify-center items-start'>
                   <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-800 hover:underline cursor-pointer">{post.title}</h2>
                   <div className="text-sm text-neutral-500 mb-2">
                     By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
@@ -84,6 +85,12 @@ export default function Feed(){
                     className="prose max-w-none font-medium text-neutral-700 line-clamp-2"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
+                </div>
+
+                <div className='h-full w-[25%] flex justify-center items-center'>
+                  <img src={post.thumbnail} alt="blog-thumbnail" className='h-[85%] object-cover rounded-xl'/>
+                </div>
+
                 </div>
               ))}
               </div>
