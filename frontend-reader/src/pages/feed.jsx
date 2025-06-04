@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BellRing } from '../components/bellring';
 import { User } from '../components/profile';
@@ -8,7 +8,19 @@ import { Flame } from '../components/featured';
 
 export default function Feed(){
     const [posts, setPosts] = useState([])
+    const [open, setOpen] = useState(false);
+    const menuRef = useRef(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+          setOpen(false);
+        }
+      }
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     const handleLogout = () => {
         const confirmLogout = window.confirm("Are you sure you want to log out?");
@@ -66,7 +78,31 @@ export default function Feed(){
                   </div>
             
                    <BellRing style={{height: '2.7vh'}} />
-                   <User style={{height: '3vh'}} />
+                   <div className='relative flex flex-col text-left' ref={menuRef}>
+                    <div onClick={() => setOpen(!open)} className="cursor-pointer">
+                      <User style={{height: '3vh'}} />
+                    </div>
+
+                   {open && (
+                        <div className="absolute h-[12vh] right-0 flex flex-col justify-center items-center mt-[5vh] mr-[1.5vh] w-[10vw] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-lg z-50">
+                            <button
+                                className=" h-[50%] w-full px-6 py-2 text-left text-gray-700 rounded-tl-4xl cursor-pointer hover:bg-gray-100"
+                                onClick={() => {
+                                    handleWrite();
+                                    setOpen(false);
+                                }}
+                            >
+                                Admin Portal
+                            </button>
+                            <button
+                                className=" h-[50%] w-full px-6 py-2 text-left text-red-600  rounded-br-4xl cursor-pointer hover:bg-gray-100"
+                                onClick={handleLogout}
+                            >
+                                Sign Out
+                            </button>
+                        </div>
+                    )}
+                    </div>
 
                 </div>
             </div>
@@ -119,12 +155,6 @@ export default function Feed(){
 
             </div>
     
-        
-    
-            {/* <div onClick={handleLogout}>
-                <p className='text-neutral-800 text-[1.2vw] cursor-pointer hover:text-neutral-600 '>Sign Out</p>
-                
-            </div> */}
         </div>
     )
 }
