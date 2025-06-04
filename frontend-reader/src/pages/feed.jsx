@@ -5,6 +5,8 @@ import { User } from '../components/profile';
 import write from '../assets/write.png';
 import { Rocket } from '../components/trending';
 import { Flame } from '../components/featured';
+import { HeartHandshake } from '../components/blogLike';
+import comments from '../assets/comments.png';
 
 export default function Feed(){
     const [posts, setPosts] = useState([])
@@ -111,16 +113,26 @@ export default function Feed(){
 
               <div className='h-full w-[60%] flex flex-col justify-start items-center gap-[5vh] overflow-y-scroll'>
                 {posts.map(post => (
-                <div key={post.id} className="h-[25vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
-                  <div className='h-full w-[70%] flex flex-col justify-center items-start'>
+                <div key={post.id} className="h-[28vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                  <div className='h-full w-[70%] flex flex-col justify-around items-start'>
                   <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-800 hover:underline cursor-pointer">{post.title}</h2>
-                  <div className="text-sm text-neutral-500 mb-2">
-                    By {post.author.username} • {new Date(post.createdAt).toLocaleDateString()}
+                  <div className="text-[1vw] text-neutral-600 mb-2">
+                    By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
                   </div>
                   <div
                     className="prose max-w-none font-medium text-neutral-700 line-clamp-2"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
+                  <div className='flex justify-start items-center gap-[3vw]'>
+                    <HeartHandshake style={{height: '2.5vh'}} />
+                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
+
+                  </div>
+                  
                 </div>
 
                 <div className='h-full w-[25%] flex justify-center items-center'>
