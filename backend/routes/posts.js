@@ -19,6 +19,9 @@ router.patch('/:id/togglePublish', authenticateToken, postController.togglePubli
 //get posts created by the specific user/author
 router.get('/myposts/:id', authenticateToken, postController.getUserPosts);
 
+//increase post likes
+router.patch('/:id/like', authenticateToken, postController.increaseLike);
+
 router.get('/:postId/comments', commentController.getAllComments);
 router.post('/:postId/comments', authenticateToken, commentController.addComment);
 router.put('/comments/:id', authenticateToken, commentController.editComment);
