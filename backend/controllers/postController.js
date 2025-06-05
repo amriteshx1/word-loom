@@ -6,7 +6,12 @@ const jwt = require('jsonwebtoken');
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await prisma.post.findMany({
-      include: { author: true, comments: true }
+      include: {
+        author: true,
+        _count: {
+            select: { comments: true }
+        }
+      }
     });
     res.json(posts);
   } catch (error) {

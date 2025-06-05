@@ -149,15 +149,19 @@ export default function Feed(){
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
 
-                  <div className='flex justify-start items-center mt-[1vh] gap-[3vw]'>
-                    <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.5vw] cursor-pointer transition-transform duration-150 ${
+                  <div className='flex justify-start items-center mt-[1vh] gap-[2vw]'>
+                    <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
                       clickedId === post.id ? 'scale-90' : ''}`}>
 
                       <HeartHandshake style={{height: '2.5vh'}} />
                       <span className="text-neutral-700 font-medium">{post.likes}</span>
                     </div>
-
-                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
+                    
+                    <div className='flex items-center gap-[0.3vw] cursor-pointer'>
+                      <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
+                      <span className="text-neutral-700 font-medium">{post._count.comments}</span>
+                    </div>
+                    
                   </div>
                   
                 </div>
