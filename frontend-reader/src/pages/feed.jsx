@@ -65,6 +65,25 @@ export default function Feed(){
 
     }
 
+    //increase blog likes
+
+    const increaseLike = async (id) => {
+
+      const token = localStorage.getItem("token");
+      await fetch(`http://localhost:3000/api/posts/${id}/like`, {
+       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    setPosts(prev =>
+      prev.map(p =>
+        p.id === id ? { ...p, likes: p.likes + 1 } : p
+      )
+    );
+    }
+
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
             <div className='h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
@@ -127,16 +146,20 @@ export default function Feed(){
                     className="prose max-w-none font-medium text-neutral-700 line-clamp-2"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
-                  <div className='flex justify-start items-center gap-[3vw]'>
-                    <HeartHandshake style={{height: '2.5vh'}} />
-                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
 
+                  <div className='flex justify-start items-center mt-[1vh] gap-[3vw]'>
+                    <div onClick={() => increaseLike(post.id)} className='flex items-center gap-[0.5vh] cursor-pointer'>
+                      <HeartHandshake style={{height: '2.5vh'}} />
+                      <span className="text-neutral-700 font-medium">{post.likes}</span>
+                    </div>
+
+                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
                   </div>
                   
                 </div>
 
                 <div className='h-full w-[25%] flex justify-center items-center'>
-                  <img src={post.thumbnail} alt="blog-thumbnail" className='h-[85%] object-cover rounded-xl'/>
+                  <img src={post.thumbnail} alt="blog-thumbnail" className='h-[80%] object-cover rounded-xl'/>
                 </div>
 
                 </div>
