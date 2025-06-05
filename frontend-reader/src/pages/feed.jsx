@@ -86,6 +86,12 @@ export default function Feed(){
     );
     }
 
+    //trending blogs
+    const trendingPosts = [...posts]
+    .sort((a, b) => b.likes - a.likes)
+    .slice(0, 4);
+
+
     return(
         <div className="main-container flex-col pr-[10vh] pl-[10vh]">
             <div className='h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
@@ -175,10 +181,18 @@ export default function Feed(){
               </div>
 
               <div className='h-full w-[30%] flex flex-col justify-between items-center pb-[5vh]'>
-                <div className='h-[45%] w-full flex flex-col justify-start items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                <div className='h-[45%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
                   <div className='flex'>
                     <p className='text-[1.2vw] text-white font-medium'>Trending</p>
                     <Rocket style={{height: '2.2vh'}} />
+                  </div>
+                  
+                  <div className='flex h-[80%] justify-between flex-col'>
+                  {trendingPosts.map((post) => (
+                   <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
+                   <p className="text-white text-[1vw] hover:underline">✨ {post.title}</p>
+                   </div>
+                  ))};
                   </div>
                   
 
