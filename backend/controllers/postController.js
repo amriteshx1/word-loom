@@ -122,3 +122,22 @@ exports.getUserPosts = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+//increase blog-post likes
+exports.increaseLike = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await prisma.post.update({
+      where: { id: Number(id) },
+      data: {
+        likes: { increment: 1 }
+      },
+    });
+
+    res.status(200).json(post);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error updating likes" });
+  }
+};
