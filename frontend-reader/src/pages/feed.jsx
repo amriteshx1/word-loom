@@ -11,6 +11,7 @@ import comments from '../assets/comments.png';
 export default function Feed(){
     const [posts, setPosts] = useState([])
     const [open, setOpen] = useState(false);
+    const [clickedId, setClickedId] = useState(null);
     const menuRef = useRef(null);
     const navigate = useNavigate();
 
@@ -66,8 +67,9 @@ export default function Feed(){
     }
 
     //increase blog likes
-
     const increaseLike = async (id) => {
+      setClickedId(id);
+      setTimeout(() => setClickedId(null), 120); 
 
       const token = localStorage.getItem("token");
       await fetch(`http://localhost:3000/api/posts/${id}/like`, {
@@ -148,7 +150,9 @@ export default function Feed(){
                   />
 
                   <div className='flex justify-start items-center mt-[1vh] gap-[3vw]'>
-                    <div onClick={() => increaseLike(post.id)} className='flex items-center gap-[0.5vh] cursor-pointer'>
+                    <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.5vw] cursor-pointer transition-transform duration-150 ${
+                      clickedId === post.id ? 'scale-90' : ''}`}>
+
                       <HeartHandshake style={{height: '2.5vh'}} />
                       <span className="text-neutral-700 font-medium">{post.likes}</span>
                     </div>
