@@ -28,6 +28,7 @@ model Post{
   author      User       @relation(fields: [authorId], references: [id])
   comments    Comment[]
   thumbnail   String?
+  likes       Int        @default(0)
 }
 
 model Comment{
