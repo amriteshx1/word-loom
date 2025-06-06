@@ -39,10 +39,10 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="main-container flex-col pr-[10vh] pl-[10vh]">
+    <div className="main-container flex-col pr-[10vh] pl-[10vh] overflow-y-scroll">
       <div className="h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl">
         <div className="w-[50%] flex justify-start items-center gap-[3vw]">
-          <p className="text-[1.7vw] font-medium">Wordloom.</p>
+          <p onClick={() => navigate("/feed")} className="text-[1.7vw] font-medium hover:cursor-pointer">Wordloom.</p>
           <input
             type="text"
             className="h-[4vh] w-[50%] bg-white rounded-2xl text-neutral-700 p-[1.5vh] border-2 border-neutral-700 text-[1vw] font-normal"

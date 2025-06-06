@@ -117,7 +117,7 @@ export default function Feed(){
                 {posts.map(post => (
                 <div key={post.id} className="h-[28vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
-                  <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</h2>
+                  <p onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
                   <div className="text-[1vw] text-neutral-600 mb-2">
                     By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
