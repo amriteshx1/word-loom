@@ -6,6 +6,7 @@ import comments from '../assets/comments.png';
 
 export default function Post(){
   const [post, setPost] = useState(null);
+  const [clickedId, setClickedId] = useState(null);
   const {id} = useParams();
 
   useEffect(() => {
@@ -36,6 +37,25 @@ export default function Post(){
   fetchPosts();
   }, [id]);
 
+  //increase blog likes
+    const increaseLike = async (id) => {
+      setClickedId(id);
+      setTimeout(() => setClickedId(null), 120); 
+
+      const token = localStorage.getItem("token");
+      await fetch(`http://localhost:3000/api/posts/${id}/like`, {
+       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    setPost(prevPost => ({
+      ...prevPost,
+      likes: prevPost.likes + 1
+    }));
+    }
+
     return(
         <div className="h-[91vh] w-[50%] flex flex-col justify-start items-center gap-[5vh]">
         
@@ -53,7 +73,8 @@ export default function Post(){
                 <div className="flex flex-col w-full justify-center items-center gap-[1vw]">
                 <hr className="w-full border-neutral-200 " />
                 <div className="w-full flex justify-start items-center gap-[3vw]">
-                  <div className="flex items-center gap-[0.3vw] cursor-pointer">
+                  <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
+                      clickedId === post.id ? 'scale-90' : ''}`}>
                     <HeartHandshake style={{height: '2.5vh'}} />
                     <span className="text-neutral-700 font-medium">{post.likes}</span>
                   </div>
@@ -78,7 +99,8 @@ export default function Post(){
               <div className="flex flex-col w-full justify-center items-center gap-[1vw]">
                 <hr className="w-full border-neutral-200 " />
                 <div className="w-full flex justify-start items-center gap-[3vw]">
-                  <div className="flex items-center gap-[0.3vw] cursor-pointer">
+                  <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
+                    clickedId === post.id ? 'scale-90' : ''}`}>
                     <HeartHandshake style={{height: '2.5vh'}} />
                     <span className="text-neutral-700 font-medium">{post.likes}</span>
                   </div>
