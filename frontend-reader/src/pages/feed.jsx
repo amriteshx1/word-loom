@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 import { BellRing } from '../components/bellring';
 import { User } from '../components/profile';
 import write from '../assets/write.png';
@@ -14,6 +15,16 @@ export default function Feed(){
     const [clickedId, setClickedId] = useState(null);
     const menuRef = useRef(null);
     const navigate = useNavigate();
+
+    //setting user-id
+    const token = localStorage.getItem("token");
+    if (token) {
+        const decodedToken = jwtDecode(token); 
+        const userId = decodedToken.id;
+        localStorage.setItem("userId", userId);
+      } else {
+        console.log("No token found!");
+      }
 
     useEffect(() => {
       function handleClickOutside(event) {
