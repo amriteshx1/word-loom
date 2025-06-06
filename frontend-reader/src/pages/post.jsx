@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { HeartHandshake } from '../components/blogLike';
 import comments from '../assets/comments.png';
+import { User } from "../components/profile";
 
 export default function Post(){
   const [post, setPost] = useState(null);
   const [clickedId, setClickedId] = useState(null);
+  const [newComment, setNewComment] = useState("");
   const {id} = useParams();
 
   useEffect(() => {
@@ -55,6 +57,26 @@ export default function Post(){
       likes: prevPost.likes + 1
     }));
     }
+
+    //post new comment
+    const handleAddComment = async () => {
+     if (!newComment.trim()) return;
+    
+     const token = localStorage.getItem("token");
+     const res = await fetch(`http://localhost:3000/api/posts/${id}/comments`, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+         "Authorization": `Bearer ${token}`,
+       },
+       body: JSON.stringify({ content: newComment }),
+     });
+    
+     const data = await res.json();
+     console.log(data);
+     setNewComment("");
+    };
+
 
     return(
         <div className="h-[91vh] w-[50%] flex flex-col justify-start items-center gap-[5vh]">
@@ -112,6 +134,14 @@ export default function Post(){
                 </div>
                 <hr className="w-full border-neutral-200 " />
                 </div>
+
+                <p className="text-[1.5vw] text-neutral-700 font-medium self-start">Responses ({post._count.comments})</p>
+
+                <div className="w-full flex justify-between items-center">
+                  <textarea className="w-[80%] border border-neutral-300 rounded-2xl p-[1vh]" rows={2} placeholder="What are your thoughts?" value={newComment} onChange={(e) => setNewComment(e.target.value)}></textarea>
+                  <button onClick={handleAddComment} className="px-[2vh] py-[1vh] bg-neutral-700 text-white rounded-2xl hover:bg-neutral-800 cursor-pointer">Respond</button>
+                </div>
+                
 
               </>
 
