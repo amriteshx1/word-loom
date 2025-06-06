@@ -12,6 +12,7 @@ import comments from '../assets/comments.png';
 export default function Feed(){
     const [posts, setPosts] = useState([])
     const [open, setOpen] = useState(false);
+    const [user, setUser] = useState(null);
     const [clickedId, setClickedId] = useState(null);
     const menuRef = useRef(null);
     const navigate = useNavigate();
@@ -25,6 +26,27 @@ export default function Feed(){
       } else {
         console.log("No token found!");
       }
+
+    //getting user-info
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+              const userId = localStorage.getItem("userId");
+              const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+          
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+          
+              const data = await response.json();
+              setUser(data);
+            } catch (error) {
+              console.error("Error fetching user:", error);
+            }
+          };
+    
+        fetchUser();
+      }, []);
 
     useEffect(() => {
       function handleClickOutside(event) {
@@ -153,11 +175,23 @@ export default function Feed(){
 
             <div className='h-[91vh] w-full flex justify-between items-center pt-[5vh]'>
 
-              <div className='h-full w-[60%] flex flex-col justify-start items-center gap-[5vh] overflow-y-scroll'>
+              <div className='h-full w-[60%] flex flex-col justify-start items-center overflow-y-scroll'>
+
+                <div className='h-[12%] w-full flex flex-col justify-start gap-1 items-start px-4'>
+                  <p className='text-[2.3vw] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>: ̗̀➛ ❝ Yo {user?.username || "User"}, what’s cookin’?</p>
+                  <hr className='w-full border-neutral-200' />
+                </div>
+
+                <div className='h-[10%] w-full flex flex-col justify-end items-start mt-[7vh] gap-1 px-4'>
+                  <p className='text-2xl font-semibold text-neutral-700'>Let's flow :</p>
+                  <hr className='w-[15%] border-neutral-200' />
+                </div>
+
+                <div className='h-[88%] w-full flex flex-col justify-start items-center gap-[5vh]'>
                 {posts.map(post => (
                 <div key={post.id} className="h-[28vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
-                  <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-800 hover:underline cursor-pointer">{post.title}</h2>
+                  <h2 onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</h2>
                   <div className="text-[1vw] text-neutral-600 mb-2">
                     By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -182,7 +216,6 @@ export default function Feed(){
                       <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
                       <span className="text-neutral-700 font-medium">{post._count.comments}</span>
                     </div>
-                    
                   </div>
                   
                 </div>
@@ -193,6 +226,7 @@ export default function Feed(){
 
                 </div>
               ))}
+              </div>
               </div>
 
               <div className='h-full w-[30%] flex flex-col justify-between items-center pb-[5vh]'>
