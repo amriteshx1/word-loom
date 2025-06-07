@@ -78,6 +78,13 @@ export default function Post(){
      console.log(data);
      setComments((prev) => [...prev, data.comment]);
      setNewComment("");
+     setPost((prevPost) => ({
+    ...prevPost,
+    _count: {
+      ...prevPost._count,
+      comments: prevPost._count.comments + 1,
+    },
+    }));
     };
 
 
