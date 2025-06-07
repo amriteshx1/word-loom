@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { HeartHandshake } from '../components/blogLike';
 import commentLogo from '../assets/comments.png';
 import commentUser from '../assets/commentUser.png';
+import { formatDistanceToNow } from 'date-fns';
+import { ChevronsRight } from "../components/more";
+import {useNavigate } from "react-router-dom";
 
 export default function Post(){
   const [post, setPost] = useState(null);
@@ -11,6 +14,7 @@ export default function Post(){
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const {id} = useParams();
+  const navigate = useNavigate();
 
  useEffect(() => {
   if (!id) return;
@@ -156,15 +160,25 @@ export default function Post(){
                   {comments.map((comment) => (
                     <div key={comment.id} className="flex flex-col justify-start items-start w-full gap-[1vh]">
                       <div className="flex justify-start items-center gap-[1vh]">
-                        <img src={commentUser} alt="user-comment logo" className="h-[3vh]" />
-                        <p className="text-[1.1vw] text-neutral-900 font-medium">{comment.author.username}</p>
+                        <img src={commentUser} alt="user-comment logo" className="h-[5.2vh]" />
+                        <div className="flex flex-col justify-start items-start">
+                          <p className="text-[1vw] text-neutral-900 font-medium">{comment.author.username}</p>
+                          <p className="text-[0.8vw] text-neutral-500">{formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}</p>
+                        </div>
                       </div>
                   
-                      <p className="text-[1vw] text-neutral-700">{comment.content}</p>
+                      <p className="text-[1vw] text-neutral-700 font-medium">{comment.content}</p>
 
                     </div>
                   ) )}
 
+                </div>
+
+                <div className="flex justify-center items-center">
+                  <div onClick={() => navigate("/feed")} className="flex px-[2vh] py-[1vh] bg-neutral-700 mb-[5vh] text-white rounded-2xl cursor-pointer hover:bg-neutral-800">
+                    <p className="text-[1.1vw]">Read more</p>
+                    <ChevronsRight style={{height: '2.7vh'}} />
+                  </div>
                 </div>
 
               </>
