@@ -10,8 +10,28 @@ export default function Feed(){
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState(null);
     const [clickedId, setClickedId] = useState(null);
-    const menuRef = useRef(null);
+    const [greeting, setGreeting] = useState("");
     const navigate = useNavigate();
+
+    const greetings = [
+      (name) => `Yo ${name}, what’s cookin’?`,
+      (name) => `What’s good, ${name}? Let’s go!`,
+      (name) => `${name}, in the zone today?`,
+      (name) => `Let’s vibe, ${name} 🎧`,
+      (name) => `Feed’s waiting, ${name} 📝`,
+      (name) => `Be bold. Be loud. Be ${name}.`,
+      (name) => `Just you and the words, ${name}.`,
+      (name) => `${name}, this is your space.`,
+    ];
+
+     // Set greeting when user loads
+    useEffect(() => {
+        if (user?.username) {
+          const random = Math.floor(Math.random() * greetings.length);
+          const selectedGreeting = greetings[random](user.username);
+          setGreeting(selectedGreeting);
+        }
+    }, [user]);
 
     //setting user-id
     const token = localStorage.getItem("token");
@@ -104,18 +124,18 @@ export default function Feed(){
               <div className='h-full w-[60%] flex flex-col justify-start items-center overflow-y-scroll'>
 
                 <div className='h-[12%] w-full flex flex-col justify-start gap-1 items-start px-4'>
-                  <p className='text-[2.3vw] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>: ̗̀➛ ❝ Yo {user?.username || "User"}, what’s cookin’?</p>
+                  <p className='text-[2.3vw] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>❝ {greeting || "Welcome back!"}</p>
                   <hr className='w-full border-neutral-200' />
                 </div>
 
                 <div className='h-[10%] w-full flex flex-col justify-end items-start mt-[7vh] gap-1 px-4'>
-                  <p className='text-2xl font-semibold text-neutral-700'>Let's flow :</p>
-                  <hr className='w-[15%] border-neutral-200' />
+                  <p className='text-xl font-semibold text-neutral-700'>For You :</p>
+                  <hr className='w-[10%] border-neutral-200' />
                 </div>
 
                 <div className='h-[88%] w-full flex flex-col justify-start items-center gap-[5vh]'>
                 {posts.map(post => (
-                <div key={post.id} className="h-[28vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                <div key={post.id} className="h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
                   <p onClick={() => handlePost(post.id)} className="text-2xl font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
                   <div className="text-[1vw] text-neutral-600 mb-2">
