@@ -10,21 +10,54 @@ import member from "../assets/member.png";
 
 function Home(){
     const [user, setUser] = useState(null);
+    const [receivedCommentsCount, setReceivedCommentsCount] = useState(0);
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
-    if (token) {
+    useEffect(() => {
+      if (token) {
         const decodedToken = jwtDecode(token); 
         const userId = decodedToken.id;
         localStorage.setItem("userId", userId);
       } else {
         console.log("No token found!");
       }
+    }, []);
+
+
+    useEffect(() => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return;
+    
+      const fetchComments = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch(`http://localhost:3000/api/posts/author/${userId}/comments`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+          });
+    
+          if (!res.ok) throw new Error("Failed to fetch comments");
+    
+          const data = await res.json();
+          setReceivedCommentsCount(data?.length || 0);
+        } catch (err) {
+          console.error("Error fetching comments:", err);
+        }
+      };
+    
+      fetchComments();
+    }, []);
+
 
       useEffect(() => {
+        const userId = localStorage.getItem("userId");
+        if(!userId) return;
+
         const fetchUser = async () => {
             try {
-              const userId = localStorage.getItem("userId");
               const response = await fetch(`http://localhost:3000/api/users/${userId}`);
           
               if (!response.ok) {
@@ -100,7 +133,7 @@ function Home(){
                         <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-gray-700 rounded-xl text-gray-200">
                            <div className="h-[40%] w-[35%] flex flex-col justify-center items-center gap-[0.5vh]">
                             <p className="text-[2vw]">Comments:</p>
-                            <p className="text-[2.5vw]">{user?.comments?.length || 0}</p>
+                            <p className="text-[2.5vw]">{receivedCommentsCount}</p>
                             </div>
                             <img src={allcomment} alt="comment-logo" className="h-[50%] object-cover" />
                         </div>
