@@ -2,42 +2,44 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { HeartHandshake } from '../components/blogLike';
-import comments from '../assets/comments.png';
+import commentLogo from '../assets/comments.png';
 import { User } from "../components/profile";
 
 export default function Post(){
   const [post, setPost] = useState(null);
   const [clickedId, setClickedId] = useState(null);
+  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const {id} = useParams();
 
-  useEffect(() => {
+ useEffect(() => {
   if (!id) return;
 
-  const fetchPosts = async () => {
+  const fetchPostAndComments = async () => {
     try {
       const token = localStorage.getItem("token");
+      const headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      };
 
-      const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      const [postRes, commentsRes] = await Promise.all([
+        fetch(`http://localhost:3000/api/posts/${id}`, { headers }),
+        fetch(`http://localhost:3000/api/posts/${id}/comments`, { headers }),
+      ]);
 
-      if (!res.ok) throw new Error("Failed to fetch posts");
-
-      const data = await res.json();
-      console.log(data);
-      setPost(data);
+      const postData = await postRes.json();
+      const commentsData = await commentsRes.json();
+      setPost(postData);
+      setComments(commentsData);
     } catch (err) {
-      console.error("Error fetching post:", err);
+      console.error("Error fetching data:", err);
     }
   };
 
-  fetchPosts();
-  }, [id]);
+  fetchPostAndComments();
+}, [id]);
+
 
   //increase blog likes
     const increaseLike = async (id) => {
@@ -102,7 +104,7 @@ export default function Post(){
                   </div>
 
                   <div className='flex items-center gap-[0.3vw] cursor-pointer'>
-                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
+                    <img src={commentLogo} alt="comment-logo" className='h-[2.5vh] object-cover' />
                     <span className="text-neutral-700 font-medium">{post._count.comments}</span>
                   </div>
                 </div>
@@ -128,7 +130,7 @@ export default function Post(){
                   </div>
 
                   <div className='flex items-center gap-[0.3vw] cursor-pointer'>
-                    <img src={comments} alt="comment-logo" className='h-[2.5vh] object-cover' />
+                    <img src={commentLogo} alt="comment-logo" className='h-[2.5vh] object-cover' />
                     <span className="text-neutral-700 font-medium">{post._count.comments}</span>
                   </div>
                 </div>
