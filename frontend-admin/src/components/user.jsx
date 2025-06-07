@@ -28,7 +28,7 @@ const User = ({
   width = 28,
   height = 28,
   strokeWidth = 2,
-  stroke = "#171717",
+  stroke = "#ffffff",
   style,
   ...props
 }) => {
@@ -39,7 +39,7 @@ const User = ({
       style={{
         cursor: "pointer",
         userSelect: "none",
-        padding: "8px",
+        padding: "3px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
