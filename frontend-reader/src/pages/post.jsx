@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { HeartHandshake } from '../components/blogLike';
 import commentLogo from '../assets/comments.png';
-import { User } from "../components/profile";
+import commentUser from '../assets/commentUser.png';
 
 export default function Post(){
   const [post, setPost] = useState(null);
@@ -76,6 +76,7 @@ export default function Post(){
     
      const data = await res.json();
      console.log(data);
+     setComments((prev) => [...prev, data.comment]);
      setNewComment("");
     };
 
@@ -144,6 +145,20 @@ export default function Post(){
                   <button onClick={handleAddComment} className="px-[2vh] py-[1vh] bg-neutral-700 text-white rounded-2xl hover:bg-neutral-800 cursor-pointer">Respond</button>
                 </div>
                 
+                <div className="flex flex-col w-full justify-start items-center gap-[5vh]">
+                  {comments.map((comment) => (
+                    <div key={comment.id} className="flex flex-col justify-start items-start w-full gap-[1vh]">
+                      <div className="flex justify-start items-center gap-[1vh]">
+                        <img src={commentUser} alt="user-comment logo" className="h-[3vh]" />
+                        <p className="text-[1.1vw] text-neutral-900 font-medium">{comment.author.username}</p>
+                      </div>
+                  
+                      <p className="text-[1vw] text-neutral-700">{comment.content}</p>
+
+                    </div>
+                  ) )}
+
+                </div>
 
               </>
 
