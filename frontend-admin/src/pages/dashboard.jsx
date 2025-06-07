@@ -22,7 +22,7 @@ function Dashboard(){
     return(
         <div className="main-container grid grid-cols-[1fr_4fr] justify-items-center items-center">
 
-            <div className="h-screen w-full flex flex-col justify-between items-center p-[4vh] bg-gray-700">
+            <div className="h-screen w-full flex flex-col justify-between items-center p-[4vh] bg-neutral-900">
                 
             <div className='h-[7vh] w-full flex justify-start items-center gap-[10px]'>
                     <img src={dashboard} alt="dashboard logo" className='h-[90%] object-cover' />
@@ -30,35 +30,35 @@ function Dashboard(){
                 </div>
 
                 <div className='h-[70%] w-[60%] flex flex-col justify-start items-start gap-[4vh]'>
-                    <NavLink to="/dashboard" end className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>
+                    <NavLink to="/dashboard" end className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-neutral-400" : "text-white"}` }>
                         <img src={home} alt="home-logo" className='h-[90%] object-cover'/>
                         <p className='text-[1.3vw]'>Home</p>
                     </NavLink>
 
-                    <NavLink to="/dashboard/posts" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>
+                    <NavLink to="/dashboard/posts" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-neutral-400" : "text-white"}` }>
                         <img src={post} alt="post-logo" className='h-[90%] object-cover' />
                         <p className='text-[1.3vw]'>Blogs</p>
                     </NavLink>
                     
-                    <NavLink to="/dashboard/comments" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>
+                    <NavLink to="/dashboard/comments" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-neutral-400" : "text-white"}` }>
                         <img src={comment} alt="comment-logo" className='h-[90%] object-cover'/>
                         <p className='text-[1.3vw]'>Comments</p>
                     </NavLink>
 
-                    <NavLink to="/dashboard/support" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-gray-400" : "text-gray-200"}` }>
+                    <NavLink to="/dashboard/support" className={({ isActive }) => `h-[3vh] w-full flex justify-start items-center gap-[10px] ${isActive ? "text-neutral-400" : "text-white"}` }>
                         <img src={support} alt="support-logo" className='h-[90%] object-cover'/>
                         <p className='text-[1.3vw]'>Support</p>
                     </NavLink>
                 </div>
 
-                <div onClick={handleLogout} className='h-[3vh] w-[60%] flex justify-start items-center gap-[10px] cursor-pointer text-gray-200 hover:text-gray-400'>
+                <div onClick={handleLogout} className='h-[3vh] w-[60%] flex justify-start items-center gap-[10px] cursor-pointer text-white hover:text-neutral-400'>
                     <img src={logout} alt="log-out logo" className='h-[90%] object-cover' />
                     <p className='text-[1.3vw]'>Sign out</p>
                 </div>
                 
             </div>
 
-            <div className="min-h-screen w-full flex flex-col justify-start items-center">
+            <div className="h-screen w-full overflow-y-auto flex flex-col justify-start items-center">
                <Outlet />
             </div>
     
