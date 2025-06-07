@@ -33,15 +33,28 @@ exports.addComment = async (req, res) => {
     const { postId } = req.params;
     const { content} = req.body;
 
-    // Decode the JWT from the Authorization header
-        const token = req.headers.authorization.split(' ')[1]; // Assuming "Bearer <token>"
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET); // Use your JWT secret
-        const authorId = decodedToken.id; 
+    const token = req.headers.authorization.split(' ')[1]; 
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET); 
+    const authorId = decodedToken.id; 
 
     const comment = await prisma.comment.create({
-      data: { content, postId: parseInt(postId), authorId }
+      data: {
+        content,
+        postId: parseInt(postId),
+        authorId
+      },
+      select: {
+        id: true,
+        content: true,
+        createdAt: true,
+        author: {
+          select: {
+            id: true,
+            username: true,
+          }
+        }
+      }
     });
-
     res.status(201).json({ message: "Comment added", comment });
   } catch (error) {
     res.status(400).json({ error: error.message });
