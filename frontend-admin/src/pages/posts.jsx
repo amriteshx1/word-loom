@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { HeartHandshake } from "../components/likes";
+import blogComment from "../assets/blogComment.png";
 
 function Posts(){
     const [posts, setPosts] = useState([]);
@@ -60,33 +62,35 @@ function Posts(){
 
     return(
         <>
-        <div className="min-h-screen w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-gray-100">
+        <div className="min-h-screen w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
             
-            <div className="w-[100%] flex flex-col justify-center items-center">
-            <p className="text-[2.3vw] text-gray-700 font-bold">Your Blogs!</p>
-            <hr className="w-[30%] border-2 border-gray-700" />
+            <div className="w-[100%] flex flex-col justify-center items-center p-[2vh]">
+            <p className="text-[2.3vw] text-white font-bold">Your Blogs!</p>
+            <hr className="w-[30%] border-2 border-white" />
             </div>
 
 
             {posts && posts.length > 0 ? (
-                posts.map((item, index) => <div key={item.id} className="h-[7vh] w-full flex justify-between items-center p-[1vh] bg-gray-700 rounded-xl text-gray-200">
-                    <div className="h-full w-[50%] flex justify-between items-center">
-                        <p className="text-[1.2vw]"><span className="font-bold">Title: </span>{item.title}</p>
-                        <p className="text-[1.2vw]"><span className="font-bold">Id: </span>{item.id}</p>
+                posts.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex justify-between items-center bg-neutral-900 rounded-xl text-white">
+                    <div className="h-full w-[75%] flex justify-between items-center text-white">
+                        <p className="text-[1.2vw] w-[66%]"><span className="font-bold">Title: </span>{item?.title || "The abc of xyz being 123"}</p>
+                        <p className="text-[1.2vw] w-[10%]"><span className="font-bold">Id: </span>{item?.id || "0"}</p>
+                        <p className="flex justify-center items-center text-[1.2vw] w-[10%]"><HeartHandshake style={{height: '2.3vh'}} />: {item?.likes || "0"}</p>
+                        <p className="w-[10%] flex justify-center items-center text-[1.2vw]"><img src={blogComment} alt="blogComment-logo" className="object-cover h-[2.3vh]" />: {item?.comments?.length || "0"}</p>
                     </div>
                     
-                    <div className="h-full w-[25%] flex justify-between items-center">
-                        <Link to={`/dashboard/edit/${item.id}`} className="h-[80%] w-[35%] flex justify-center items-center">
-                            <button className="h-full w-full bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
+                    <div className="h-full w-[20%] flex justify-between items-center">
+                        <Link to={`/dashboard/edit/${item.id}`} className="flex justify-center items-center">
+                            <button className="px-[3.5vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">Edit</button>
                         </Link>
 
-                        <button type="button" onClick={() => togglePublish(item.id)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">{item.published ? "Unpublish" : "Publish"}</button>
+                        <button type="button" onClick={() => togglePublish(item.id)} className="px-[2.5vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">{item.published ? "Unpublish" : "Publish"}</button>
                     </div>
                     
                     
                     </div>)
             ) : (
-                <p>You don't have any posts.</p>
+                <p className="text-[1.2vw] text-white font-medium">You don't have any posts.</p>
             )}
         </div>
         </>
