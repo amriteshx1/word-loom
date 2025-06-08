@@ -60,35 +60,35 @@ function Comments(){
 
     return(
         <>
-        <div className="min-h-screen w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-gray-100">
+        <div className="min-h-full w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
 
-            <div className="w-[100%] flex flex-col justify-center items-center">
-            <p className="text-[2.3vw] text-gray-700 font-bold">Comments!</p>
-            <hr className="w-[30%] border-2 border-gray-700" />
+            <div className="w-[100%] flex flex-col justify-center items-center p-[2vh]">
+            <p className="text-[2.3vw] text-white font-bold">Comments!</p>
+            <hr className="w-[30%] border-2 border-white" />
             </div>
 
             {comments && comments.length > 0 ? (
-                comments.map((item, index) => <div key={item.id} className="min-h-[5vh] w-full flex justify-between items-center p-[1vh] bg-gray-700 rounded-xl text-gray-200">
-                    <div className="min-h-[5vh] w-[65%] flex justify-between items-center">
-                        <div className="min-h-[5vh] w-[65%] flex justify-start items-center whitespace-normal">
+                comments.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex justify-between items-center bg-neutral-900 rounded-xl text-white">
+                    <div className="h-full w-[75%] flex justify-between items-center">
+                        <div className="h-full w-[65%] flex justify-start items-center whitespace-normal">
                         <p className="text-[1.2vw]"><span className="font-bold">{item.author.username}: </span>{item.content}</p>
                         </div>
 
-                        <div className="min-h-[5vh] w-[30%] flex justify-start items-center">
-                        <p className="text-[1.2vw]"><span className="font-bold">Blog: </span>{item.post.title}</p>
+                        <div className="w-[25%] flex justify-start items-center">
+                        <p className="text-[1.2vw]"><span className="font-bold">Blog Id: </span>{item.postId}</p>
                         </div>
 
                     </div>
                     
-                    <div className="h-[5vh] w-[25%] flex justify-between items-center">
-                        <button type="button" onClick={() => handleEdit(item.id, item.content)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Edit</button>
-                        <button type="button" onClick={() => handleDelete(item.id)} className="h-[80%] w-[35%] bg-gray-200 text-gray-700 rounded-xl font-bold cursor-pointer">Delete</button>
+                    <div className="h-full w-[20%] flex justify-between items-center">
+                        <button type="button" onClick={() => handleEdit(item.id, item.content)} className="px-[4vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">Edit</button>
+                        <button type="button" onClick={() => handleDelete(item.id)} className="px-[3vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">Delete</button>
                     </div>
                     
                     
                     </div>)
             ) : (
-                <p>You don't have any comments yet.</p>
+                <p className="text-[1.2vw] text-white font-medium">You don't have any comments yet.</p>
             )}
 
 
