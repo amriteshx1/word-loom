@@ -62,7 +62,7 @@ function Posts(){
 
     return(
         <>
-        <div className="min-h-screen w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
+        <div className="min-h-full w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
             
             <div className="w-[100%] flex flex-col justify-center items-center p-[2vh]">
             <p className="text-[2.3vw] text-white font-bold">Your Blogs!</p>
@@ -90,7 +90,7 @@ function Posts(){
                     
                     </div>)
             ) : (
-                <p className="text-[1.2vw] text-white font-medium">You don't have any posts.</p>
+                <p className="text-[1.2vw] text-white font-medium">You don't have any blogs yet.</p>
             )}
         </div>
         </>

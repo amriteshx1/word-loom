@@ -58,7 +58,7 @@ function Dashboard(){
                 
             </div>
 
-            <div className="h-screen w-full overflow-y-auto flex flex-col justify-start items-center">
+            <div className="h-screen w-full overflow-y-auto flex flex-col justify-start items-center bg-neutral-800">
                <Outlet />
             </div>
     
