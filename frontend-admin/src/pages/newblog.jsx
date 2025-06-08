@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-
+import ai from '../assets/ai.png';
 
 function Blog(){
     const { postId } = useParams();
@@ -13,6 +13,7 @@ function Blog(){
     const [thumbnail, setThumbnail] = useState(null);
     const [tone, setTone] = useState("Keep it as it is");
     const [loadingTone, setLoadingTone] = useState(false);
+    const [loadingSubmit, setLoadingSubmit] = useState(false);
 
     useEffect(() => {
       if (postId) {
@@ -36,6 +37,17 @@ function Blog(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const wordCount = content
+          .replace(/<[^>]*>/g, "")
+          .trim()
+          .split(/\s+/).length;
+      
+        if (wordCount < 120) {
+          alert("Please write at least 120 words for your blog post.");
+          return;
+        }
+
+        setLoadingSubmit(true);
 
         try {
             let imageUrl = thumbnail;
@@ -84,6 +96,8 @@ function Blog(){
         } catch (err) {
             alert("Server error");
             console.error(err);
+        } finally {
+          setLoadingSubmit(false);
         }
       };
 
@@ -118,24 +132,24 @@ function Blog(){
 
 
     return(
-        <div className="h-screen w-full flex flex-col justify-between items-center  bg-gray-200 p-[2vh]">
-            <div className="w-[100%] flex flex-col justify-center items-center">
-            <p className="text-[2.3vw] text-gray-700 font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
-            <hr className="w-[40%] border-2 border-gray-700" />
+        <div className="h-[150vh] w-full flex flex-col justify-between items-center gap-[5vh] bg-neutral-800 p-[2vh]">
+            <div className="h-[10vh] w-[100%] flex flex-col justify-center items-center">
+            <p className="text-[2.3vw] text-white font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
+            <hr className="w-[40%] border-2 border-white" />
             </div>
 
-            <form onSubmit={handleSubmit} className="h-[90%] w-[100%] flex flex-col justify-around items-center gap-[2vh] border-3 border-gray-700 rounded-xl bg-gray-700 p-[1vh]">
-                <input type="text" placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="h-[6vh] w-[40%] p-[7px] rounded-xl bg-white text-[1.1vw] text-gray-700 font-medium" />
+            <form onSubmit={handleSubmit} className="h-[130vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
+                <input type="text" maxLength={70} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="h-[6vh] w-[40%] p-[7px] rounded-xl bg-white text-[1.1vw] text-neutral-900 font-medium focus:outline-none" />
                 <div className="flex justify-center items-center gap-[1vw] h-[6vh] w-[100%]">
                   <label htmlFor="thumbnail" className="text-[1.1vw] text-white font-medium">Upload thumbnail:</label>
-                  <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className="file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-gray-700" />
+                  <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className="text-white file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-neutral-900 file:font-medium" />
                 </div>
                 
                 <Editor
                     apiKey='u5fbml5dtavsjnyloaai6j180opwm6mz7aet9a60t19vu0c5'
                     value={content}
                     init={{
-                      height: 500,
+                      height: 700,
                       menubar: false,
                       width: '100%',
                       plugins: [
@@ -151,7 +165,7 @@ function Blog(){
                   <select
                     name="tone"
                     id="tone"
-                    className="p-[0.5vh] bg-white text-[1vw] font-medium text-gray-700 rounded-xl cursor-pointer"
+                    className="px-[1vh] py-[0.6vh] bg-white text-[1vw] font-medium text-neutral-900 rounded-xl cursor-pointer focus:outline-none"
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
                   >
@@ -165,17 +179,47 @@ function Blog(){
                   
                   <button
                     type="button"
-                    className="px-[1vh] py-[0.5vh] bg-white text-[1vw] font-medium text-gray-700 rounded-xl cursor-pointer"
+                    className="flex justify-center items-center gap-1 px-[2vh] py-[0.4vh] bg-white text-[1vw] font-medium text-neutral-900 rounded-xl cursor-pointer hover:bg-neutral-200"
                     onClick={optimizeContent}
                     disabled={loadingTone}
                   >
-                    {loadingTone ? "Optimizing..." : "Optimize using AI ✨"}
+                    {loadingTone ? "Optimizing..." : "Optimize using AI"}<img src={ai} alt="ai-powered logo" className='h-[17px] motion-grayscale-loop-100'/>
                   </button>
 
                 </div>
 
 
-                <button type="submit" className="h-[5vh] w-[15%] bg-white p-[6px] rounded-xl text-[1.2vw] text-gray-700 font-medium cursor-pointer">{isEditing ? "Update" : "Submit"}</button>
+                <button 
+                type="submit" 
+                disabled={loadingSubmit}
+                className="px-[7vh] py-[0.75vh] bg-white p-[6px] rounded-xl text-[1.2vw] text-neutral-900 font-semibold cursor-pointer hover:bg-neutral-200">
+                {loadingSubmit ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 text-neutral-900"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                  </>
+                ) : (
+                  isEditing ? "Update" : "Submit"
+                )}
+                </button>
 
 
             </form>
