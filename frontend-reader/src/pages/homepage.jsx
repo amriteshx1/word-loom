@@ -11,27 +11,27 @@ function Homepage(){
 
 
     return(
-        <div className="main-container flex-col pr-[10vh] pl-[10vh] overflow-hidden">
+        <div className="main-container flex-col lg:px-[10vh] sm:px-[2vh] px-[1vh] overflow-hidden">
 
-            <div className='h-[10vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl motion-preset-slide-down motion-duration-500'>
-                <div className='w-[60%] flex justify-start items-center'>
-                    <p className='text-[2vw] font-medium'>Wordloom.</p>
+            <div className='lg:h-[10vh] h-[9vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl motion-preset-slide-down motion-duration-500'>
+                <div className='lg:w-[60%] w-[40%] flex justify-start items-center'>
+                    <p className='lg:text-[2vw] sm:text-[2.4vh] text-[3vh] font-medium'>Wordloom.</p>
                 </div>
 
-                <div className='w-[40%] flex justify-around items-center'>
-                    <p className='text-[1.1vw] font-medium'>Our Story</p>
-                    <p className='text-[1.1vw] font-medium'>Membership</p>
+                <div className='lg:w-[40%] w-[60%] flex sm:justify-around justify-end items-center'>
+                    <p className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium'>Our Story</p>
+                    <p className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium'>Membership</p>
                     <button
                     onClick={() => {
                       setSignupHeading("Create an account to start writing.");
                       setShowSignup(true);}}
-                     className='text-[1.1vw] flex justify-center items-center gap-[2px] font-medium cursor-pointer hover:text-zinc-200'>Write <img src={ai} alt="ai-powered logo" className='h-[20px] motion-grayscale-loop-100'/></button>
-                    <button onClick={() => setShowSignin(true)} className='text-[1.1vw] font-medium cursor-pointer hover:text-zinc-200'>Sign in</button>
+                     className='hidden lg:text-[1.1vw] text-[1.2vh] sm:flex justify-center items-center gap-[2px] font-medium cursor-pointer hover:text-zinc-200'>Write <img src={ai} alt="ai-powered logo" className='h-[20px] motion-grayscale-loop-100'/></button>
+                    <button onClick={() => setShowSignin(true)} className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium cursor-pointer hover:text-zinc-200'>Sign in</button>
                     <button
                     onClick={() => {
                         setSignupHeading("Join Wordloom.");
                         setShowSignup(true);}}
-                    className='text-[1vw] font-medium  p-[1vh] pr-[2vh] pl-[2vh] rounded-4xl bg-zinc-100 text-neutral-700 cursor-pointer hover:bg-zinc-200'>Get started</button>
+                    className='lg:text-[1vw] sm:text-[1.2vh] text-[1.5vh] font-medium  lg:p-[1vh] lg:px-[2vh] sm:p-[0.5vh] sm:px-[0.9vh] p-[0.8vh] px-[1.5vh] rounded-4xl bg-zinc-100 text-neutral-700 cursor-pointer hover:bg-zinc-200'>Get started</button>
                 </div>
 
             </div>
