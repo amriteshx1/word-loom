@@ -11,7 +11,7 @@ function Homepage(){
 
 
     return(
-        <div className="main-container flex-col lg:px-[10vh] sm:px-[2vh] px-[1vh] overflow-hidden">
+        <div className="main-container flex-col lg:px-[10vh] px-[2vh] overflow-hidden">
 
             <div className='lg:h-[10vh] h-[9vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl motion-preset-slide-down motion-duration-500'>
                 <div className='lg:w-[60%] w-[40%] flex justify-start items-center'>
@@ -36,19 +36,19 @@ function Homepage(){
 
             </div>
 
-            <div className='h-[60vh] w-full flex justify-between items-center'>
+            <div className='h-[60vh] w-full flex lg:justify-between justify-start items-center'>
 
                 <div className='h-full w-full flex flex-col justify-center items-start gap-[25px] motion-preset-slide-right motion-duration-500 motion-delay-500'>
-                <p className='text-[6vw] font-bold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>Weave thoughts <br /> into words</p>
-                <p className='text-[1.8vw] font-medium bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>A space to write, reflect, and connect with meaning!</p>
+                <p className='lg:text-[6vw] text-[7vh] font-bold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>Weave thoughts <br /> into words</p>
+                <p className='lg:text-[1.8vw] text-[2.2vh] font-medium bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>A space to write, reflect, and connect with meaning!</p>
                 <button 
                 onClick={() => {
                     setSignupHeading("Join Wordloom.");
                     setShowSignup(true);}}
-                className='text-[1.4vw] font-medium bg-neutral-700 w-[13vw] p-[1vh] rounded-4xl text-zinc-100 cursor-pointer hover:bg-neutral-800 motion-preset-seesaw-sm motion-delay-2000'>Start reading</button>
+                className='lg:text-[1.4vw] text-[1.7vh] font-medium bg-neutral-700 lg:w-[13vw] w-[17vh] p-[1vh] rounded-4xl text-zinc-100 cursor-pointer hover:bg-neutral-800 lg:motion-preset-seesaw-sm lg:motion-delay-2000'>Start reading</button>
                 </div>
 
-                <img src={homeimg} alt="home img" className='h-[60vh] object-cover motion-preset-slide-left motion-duration-500 motion-delay-500' />
+                <img src={homeimg} alt="home img" className='hidden lg:block h-[60vh] object-cover motion-preset-slide-left motion-duration-500 motion-delay-500' />
 
             </div>
 
