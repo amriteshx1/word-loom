@@ -32,36 +32,36 @@ function Login(){
       };
 
     return(
-        <div className="main-container">
-            <div className='h-screen w-[50%] flex flex-col justify-center items-center p-[2vh] bg-white'>
+        <div className="main-container lg:flex-row flex-col">
+            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex flex-col justify-center items-center p-[2vh] bg-white'>
 
-                <div className='h-[40%] w-full flex flex-col justify-end items-center'>
-                    <p className='text-[6vw] text-neutral-900 font-medium '>Wordloom</p>
-                    <p className='text-[2.5vw] text-neutral-800 font-medium'>Admin Privilages</p>
-                    <p className='text-[1.1vw] text-neutral-700 font-medium'>© All rights reserved</p>
+                <div className='lg:h-[40%] h-[90%] w-full flex flex-col justify-end items-center'>
+                    <p className='lg:text-[6vw] text-[6vh] text-neutral-900 font-medium '>Wordloom</p>
+                    <p className='lg:text-[2.5vw] text-[2.8vh] text-neutral-800 font-medium'>Admin Privilages</p>
+                    <p className='lg:text-[1.1vw] text-[1.3vh] text-neutral-700 font-medium'>© All rights reserved</p>
                 </div>
-                <div className='h-[60%] w-full flex justify-center items-start gap-[2vh]'>
-                    <img src={loginpageimg} alt="dummy-admin-image" className='h-[100%]  object-cover'/>
+                <div className='flex h-[60%] w-full justify-center items-start gap-[2vh]'>
+                    <img src={loginpageimg} alt="dummy-admin-image" className='lg:h-[100%] h-[90%] object-cover'/>
                 </div>
                 
             </div>
 
-            <div className='h-screen w-[50%] flex justify-center items-center p-[2vh] bg-neutral-900 rounded-l-[115px]'>
+            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex justify-center items-center p-[2vh] bg-neutral-900 lg:rounded-l-[115px] lg:rounded-tr-none sm:rounded-tl-[115px] sm:rounded-tr-[115px] rounded-tl-[70px] rounded-tr-[70px]'>
                 
                 <form className='h-[80%] w-[60%] flex flex-col justify-center items-center gap-[1.5vh]' onSubmit={handleLogin}>
                     
-                    <p className='text-[2.3vw] text-white'>Sign In!</p>
+                    <p className='lg:text-[2.3vw] text-[2.5vh] text-white'>Sign In!</p>
                     <div className='w-full flex flex-col justify-center items-start gap-1.5'>
-                        <label htmlFor="email" className='text-[1.3vw] text-white'>Email:</label>
-                        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className='w-full p-1.5 border-2 border-gray-200 rounded-xl bg-white text-[1.2vw] text-neutral-900 font-medium focus:outline-none'/>
+                        <label htmlFor="email" className='lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] text-white'>Email:</label>
+                        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className='w-full p-1.5 border-2 border-gray-200 rounded-xl bg-white lg:text-[1.2vw] sm:text-[1.3vh] text-[1.4vh] text-neutral-900 font-medium focus:outline-none'/>
                     </div>
                     
                     <div className='w-full flex flex-col justify-center items-start gap-1.5'>
-                        <label htmlFor="password" className='text-[1.3vw] text-white'>Password:</label>
-                        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required className='w-full p-1.5 border-2 border-gray-200 rounded-xl bg-white text-neutral-900 font-medium text-[1.2vw] focus:outline-none'/>
+                        <label htmlFor="password" className='lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] text-white'>Password:</label>
+                        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required className='w-full p-1.5 border-2 border-gray-200 rounded-xl bg-white text-neutral-900 font-medium lg:text-[1.2vw] sm:text-[1.3vh] text-[1.4vh] focus:outline-none'/>
                     </div>
             
-                    <button type="submit" className=" bg-white text-neutral-900 border-2 border-white rounded-xl hover:bg-neutral-200 w-[30%] text-[1.3vw] font-medium p-1 mt-[2vh] cursor-pointer">Login</button>
+                    <button type="submit" className=" bg-white text-neutral-900 border-2 border-white rounded-xl hover:bg-neutral-200 w-[30%] lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] font-medium p-1 mt-[2vh] cursor-pointer">Login</button>
                 </form>
 
             </div>
