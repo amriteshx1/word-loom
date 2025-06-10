@@ -52,16 +52,16 @@ function Homepage(){
 
             </div>
 
-            <div className='h-[10vh] lg:w-[40%] sm:w-[45%] w-[55%] flex flex-col justify-end items-center motion-preset-slide-up motion-duration-500 motion-delay-1000'>
+            <div className='h-[10vh] sm:w-[40%] w-[50%] flex flex-col justify-end items-center motion-preset-slide-up motion-duration-500 motion-delay-1000'>
                 <hr className='w-full border-solid border-neutral-700 border-[0.5]' />
                 <div className='h-[50%] w-full flex justify-center items-center gap-[2vw] text-neutral-700 font-normal'>
-                    <p className='lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Help</p>
-                    <p className='lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>About</p>
-                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Careers</p>
-                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Blog</p>
-                    <p className='lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Privacy</p>
-                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Rules</p>
-                    <p className='lg:text-[0.8vw] text-[1.5vh] cursor-pointer hover:text-neutral-500'>Terms</p>
+                    <p className='lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Help</p>
+                    <p className='lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>About</p>
+                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Careers</p>
+                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Blog</p>
+                    <p className='lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Privacy</p>
+                    <p className='hidden lg:block lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Rules</p>
+                    <p className='lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Terms</p>
 
                 </div>
 
