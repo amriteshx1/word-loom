@@ -39,38 +39,38 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="main-container flex-col pr-[10vh] pl-[10vh] overflow-y-scroll">
-      <div className="h-[9vh] w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl">
-        <div className="w-[50%] flex justify-start items-center gap-[3vw]">
-          <p onClick={() => navigate("/feed")} className="text-[1.7vw] font-medium hover:cursor-pointer">Wordloom.</p>
+    <div className="main-container flex-col lg:px-[10vh] sm:px-[2vh] px-[1vh] overflow-y-scroll">
+      <div className="lg:h-[9vh] h-[8vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl">
+        <div className="w-[50%] flex justify-start items-center lg:gap-[3vw] gap-[3vh]">
+          <p onClick={() => navigate("/feed")} className="lg:text-[1.7vw] text-[2.2vh] font-medium hover:cursor-pointer">Wordloom.</p>
           <input
             type="text"
-            className="h-[4vh] w-[50%] bg-white rounded-2xl text-neutral-700 p-[1.5vh] border-2 border-neutral-700 text-[1vw] font-normal"
+            className="lg:h-[4vh] h-[2.5vh] w-[50%] bg-white rounded-2xl text-neutral-700 lg:p-[1.5vh] p-[1vh] border-2 border-neutral-700 lg:text-[1vw] text-[1.1vh] font-normal"
             placeholder="Search blogs...."
           />
         </div>
 
-        <div className="w-[50%] flex justify-end items-center gap-[2vw]">
-          <div className="w-auto flex justify-center items-center gap-1">
-            <img src={write} alt="write-blog-logo" className="h-[2.8vh]" />
+        <div className="w-[50%] flex justify-end items-center lg:gap-[2vw] gap-[1.5vh]">
+          <div className="w-auto flex justify-center items-center lg:gap-1 gap-2">
+            <img src={write} alt="write-blog-logo" className="lg:h-[2.8vh] h-[1.9vh]" />
             <button
               onClick={handleWrite}
-              className="text-[1.1vw] text-white font-medium hover:text-neutral-200 cursor-pointer"
+              className="lg:text-[1.1vw] text-[1.4vh] text-white font-medium hover:text-neutral-200 cursor-pointer"
             >
               Write
             </button>
           </div>
 
-          <BellRing style={{ height: "2.7vh" }} />
+          <BellRing className="lg:h-[2.7vh] h-[1.9vh]" />
           <div className="relative flex flex-col text-left" ref={menuRef}>
             <div onClick={() => setOpen(!open)} className="cursor-pointer">
-              <User style={{ height: "3vh" }} />
+              <User className="lg:h-[3vh] h-[2vh]" />
             </div>
 
             {open && (
-              <div className="absolute h-[12vh] right-0 flex flex-col justify-center items-center mt-[5vh] mr-[1.5vh] w-[10vw] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-lg z-50">
+              <div className="absolute lg:h-[12vh] h-[8vh] right-0 flex flex-col justify-center items-center lg:mt-[5vh] mt-[4vh] mr-[1.5vh] lg:w-[10vw] w-[12vh] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-lg z-50">
                 <button
-                  className=" h-[50%] w-full px-6 py-2 text-left text-gray-700 rounded-tl-4xl cursor-pointer hover:bg-gray-100"
+                  className=" h-[50%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left text-gray-700 rounded-tl-4xl cursor-pointer hover:bg-gray-100"
                   onClick={() => {
                     handleWrite();
                     setOpen(false);
@@ -79,7 +79,7 @@ export default function Layout() {
                   Admin Portal
                 </button>
                 <button
-                  className=" h-[50%] w-full px-6 py-2 text-left text-red-600  rounded-br-4xl cursor-pointer hover:bg-gray-100"
+                  className=" h-[50%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left text-red-600  rounded-br-4xl cursor-pointer hover:bg-gray-100"
                   onClick={handleLogout}
                 >
                   Sign Out
