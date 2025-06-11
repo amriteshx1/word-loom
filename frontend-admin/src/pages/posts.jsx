@@ -65,32 +65,32 @@ function Posts(){
         <div className="min-h-full w-full flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
             
             <div className="w-[100%] flex flex-col justify-center items-center p-[2vh]">
-            <p className="text-[2.3vw] text-white font-bold">Your Blogs!</p>
-            <hr className="w-[30%] border-2 border-white" />
+            <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">Your Blogs!</p>
+            <hr className="lg:w-[30%] w-[50%] border-2 border-white" />
             </div>
 
 
             {posts && posts.length > 0 ? (
-                posts.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex justify-between items-center bg-neutral-900 rounded-xl text-white">
-                    <div className="h-full w-[75%] flex justify-between items-center text-white">
-                        <p className="text-[1.2vw] w-[66%]"><span className="font-bold">Title: </span>{item?.title || "The abc of xyz being 123"}</p>
-                        <p className="text-[1.2vw] w-[10%]"><span className="font-bold">Id: </span>{item?.id || "0"}</p>
-                        <p className="flex justify-center items-center text-[1.2vw] w-[10%]"><HeartHandshake style={{height: '2.3vh'}} />: {item?.likes || "0"}</p>
-                        <p className="w-[10%] flex justify-center items-center text-[1.2vw]"><img src={blogComment} alt="blogComment-logo" className="object-cover h-[2.3vh]" />: {item?.comments?.length || "0"}</p>
+                posts.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex lg:flex-row flex-col lg:justify-between justify-center lg:gap-0 gap-[2vh] items-center bg-neutral-900 rounded-xl text-white">
+                    <div className="h-full lg:w-[75%] w-full flex justify-between items-center text-white">
+                        <p className="lg:text-[1.2vw] text-[1.5vh] lg:w-[66%] w-[50%]"><span className="font-bold">Title: </span>{item?.title || "The abc of xyz being 123"}</p>
+                        <p className="lg:text-[1.2vw] text-[1.5vh] lg:w-[10%] w-[15%]"><span className="font-bold">Id: </span>{item?.id || "0"}</p>
+                        <p className="flex justify-center items-center lg:text-[1.2vw] text-[1.5vh] lg:w-[10%] w-[15%]"><HeartHandshake className="lg:h-[2.3vh] h-[1.8vh]" />: {item?.likes || "0"}</p>
+                        <p className="lg:w-[10%] w-[15%] flex justify-center items-center lg:text-[1.2vw] text-[1.5vh]"><img src={blogComment} alt="blogComment-logo" className="object-cover lg:h-[2.3vh] h-[1.8vh]" />: {item?.comments?.length || "0"}</p>
                     </div>
                     
-                    <div className="h-full w-[20%] flex justify-between items-center">
+                    <div className="h-full lg:w-[20%] w-full flex lg:justify-between justify-center lg:gap-0 gap-[2vh] items-center">
                         <Link to={`/dashboard/edit/${item.id}`} className="flex justify-center items-center">
-                            <button className="px-[3.5vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">Edit</button>
+                            <button className="lg:px-[3.5vh] px-[1.5vh] lg:py-[0.5vh] py-[0.3vh] bg-white lg:text-[1vw] text-[1.4vh] text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">Edit</button>
                         </Link>
 
-                        <button type="button" onClick={() => togglePublish(item.id)} className="px-[2.5vh] py-[0.5vh] bg-white text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">{item.published ? "Unpublish" : "Publish"}</button>
+                        <button type="button" onClick={() => togglePublish(item.id)} className="lg:px-[2.5vh] px-[1.5vh] lg:py-[0.5vh] py-[0.3vh] bg-white lg:text-[1vw] text-[1.4vh] text-neutral-900 rounded-xl font-bold cursor-pointer hover:bg-neutral-200">{item.published ? "Unpublish" : "Publish"}</button>
                     </div>
                     
                     
                     </div>)
             ) : (
-                <p className="text-[1.2vw] text-white font-medium">You don't have any blogs yet.</p>
+                <p className="lg:text-[1.2vw] text-[1.3vh] text-white font-medium">You don't have any blogs yet.</p>
             )}
         </div>
         </>
