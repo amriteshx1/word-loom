@@ -23,7 +23,7 @@ function Dashboard(){
     };
 
     return(
-        <div className="main-container grid lg:grid-cols-[1fr_4fr] lg:grid-rows-none grid-rows-[7vh_1fr]">
+        <div className="main-container !justify-normal !items-stretch grid lg:grid-cols-[1fr_4fr] lg:grid-rows-none grid-rows-[7vh_1fr]">
 
             <div className="hidden lg:flex h-screen w-full flex-col justify-between items-center p-[4vh] bg-neutral-900">
                 
