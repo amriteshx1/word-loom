@@ -132,16 +132,26 @@ function Blog(){
 
 
     return(
-        <div className="h-[150vh] w-full flex flex-col justify-between items-center gap-[5vh] bg-neutral-800 p-[2vh]">
-            <div className="h-[10vh] w-[100%] flex flex-col justify-center items-center">
-            <p className="text-[2.3vw] text-white font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
-            <hr className="w-[40%] border-2 border-white" />
+      <>
+       
+       <div className="flex sm:hidden h-[100vh] w-full justify-center items-start bg-neutral-900 p-[2vh]">
+         <p className="text-[2.3vh] mt-[15vh] text-white text-center font-semibold">
+           Hey there! ✨ <br /> <br /> Writing blogs is best experienced on a bigger screen. <br /> <br />
+           Switch to a tablet or desktop to craft your masterpiece! 💻📱
+         </p>
+       </div>
+
+
+        <div className="hidden sm:flex lg:h-[150vh] h-[105vh] w-full flex-col justify-between items-center lg:gap-[5vh] gap-[2vh] bg-neutral-800 p-[2vh]">
+            <div className="lg:h-[10vh] h-[7vh] w-[100%] flex flex-col justify-center items-center">
+            <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
+            <hr className="lg:w-[40%] w-[50%] border-2 border-white" />
             </div>
 
-            <form onSubmit={handleSubmit} className="h-[130vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
-                <input type="text" maxLength={70} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="h-[6vh] w-[40%] p-[7px] rounded-xl bg-white text-[1.1vw] text-neutral-900 font-medium focus:outline-none" />
-                <div className="flex justify-center items-center gap-[1vw] h-[6vh] w-[100%]">
-                  <label htmlFor="thumbnail" className="text-[1.1vw] text-white font-medium">Upload thumbnail:</label>
+            <form onSubmit={handleSubmit} className="lg:h-[130vh] h-[90vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
+                <input type="text" maxLength={70} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="lg:h-[6vh] h-[4vh] lg:w-[40%] w-[60%] p-[7px] rounded-xl bg-white lg:text-[1.1vw] text-[1.6vh] text-neutral-900 font-medium focus:outline-none" />
+                <div className="flex justify-center items-center lg:gap-[1vw] gap-[1vh] h-[6vh] w-[100%]">
+                  <label htmlFor="thumbnail" className="lg:text-[1.1vw] text-[1.6vh] text-white font-medium">Upload thumbnail:</label>
                   <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className="text-white file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-neutral-900 file:font-medium" />
                 </div>
                 
@@ -161,11 +171,11 @@ function Blog(){
                 />
 
                 <div className="flex justify-center items-center gap-[1vh]">
-                  <label htmlFor="tone" className="text-[1.1vw] text-white font-medium">Upgrade Writing-Tone: </label>
+                  <label htmlFor="tone" className="lg:text-[1.1vw] text-[1.6vh] text-white font-medium">Upgrade Writing-Tone: </label>
                   <select
                     name="tone"
                     id="tone"
-                    className="px-[1vh] py-[0.6vh] bg-white text-[1vw] font-medium text-neutral-900 rounded-xl cursor-pointer focus:outline-none"
+                    className="px-[1vh] py-[0.6vh] bg-white lg:text-[1vw] text-[1.5vh] font-medium text-neutral-900 rounded-xl cursor-pointer focus:outline-none"
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
                   >
@@ -179,7 +189,7 @@ function Blog(){
                   
                   <button
                     type="button"
-                    className="flex justify-center items-center gap-1 px-[2vh] py-[0.4vh] bg-white text-[1vw] font-medium text-neutral-900 rounded-xl cursor-pointer hover:bg-neutral-200"
+                    className="flex justify-center items-center gap-1 px-[2vh] py-[0.4vh] bg-white lg:text-[1vw] text-[1.5vh] font-medium text-neutral-900 rounded-xl cursor-pointer hover:bg-neutral-200"
                     onClick={optimizeContent}
                     disabled={loadingTone}
                   >
@@ -192,7 +202,7 @@ function Blog(){
                 <button 
                 type="submit" 
                 disabled={loadingSubmit}
-                className="px-[7vh] py-[0.75vh] bg-white p-[6px] rounded-xl text-[1.2vw] text-neutral-900 font-semibold cursor-pointer hover:bg-neutral-200">
+                className="lg:px-[7vh] px-[5vh] py-[0.75vh] bg-white p-[6px] rounded-xl lg:text-[1.2vw] text-[1.6vh] text-neutral-900 font-semibold cursor-pointer hover:bg-neutral-200">
                 {loadingSubmit ? (
                   <>
                     <svg
@@ -225,6 +235,8 @@ function Blog(){
             </form>
             
         </div>
+
+      </>
     )
 }
 
