@@ -108,23 +108,23 @@ function Home(){
     return(
         <>
 
-                <div className='h-[30vh] w-full flex flex-col justify-around items-center p-[3vh] bg-neutral-100'>
-                    <div className='h-[35%] w-full flex justify-between items-center p-[2vh]'>
-                        <div className='h-full w-[60%] flex justify-start items-center gap-[3vh]'>
-                            <img src={searchimg} alt="search-logo" className='h-[80%] object-cover'/>
-                            <input type="text" className='h-[80%] w-[80%] p-[5px] text-neutral-900 rounded-2xl border-2 border-neutral-900' />
+                <div className='lg:h-[30vh] h-[27vh] w-full flex flex-col justify-around items-center lg:p-[3vh] p-[2vh] bg-neutral-100'>
+                    <div className='lg:h-[35%] h-[25%] w-full flex justify-between items-center lg:p-[2vh] p-[1vh]'>
+                        <div className='h-full w-[60%] flex justify-start items-center sm:gap-[3vh] gap-[1.5vh]'>
+                            <img src={searchimg} alt="search-logo" className='lg:h-[80%] sm:h-[65%] h-[75%] object-cover'/>
+                            <input type="text" className='lg:h-[80%] h-[65%] w-[80%] p-[5px] text-neutral-900 rounded-2xl border-2 border-neutral-900 focus:outline-none' />
                         </div>
-                        <div className='h-full w-[40%] flex justify-end items-center gap-[5vh]'>
-                            <BellRing style={{ height: "3.4vh" }} />
+                        <div className='h-full w-[40%] flex justify-end items-center sm:gap-[5vh] gap-[2vh]'>
+                            <BellRing className="sm:h-[3.4vh] h-[2.6vh] " />
                             <div className="relative flex flex-col text-left" ref={menuRef}>
                               <div onClick={() => setOpen(!open)} className="cursor-pointer bg-neutral-800 border-2 border-neutral-900 rounded-full">
-                              <User style={{ height: "3.3vh" }} />
+                              <User className="sm:h-[3.3vh] h-[2.6vh]" />
                             </div>
                             
                             {open && (
-                               <div className="absolute h-[6vh] right-0 flex flex-col justify-center items-center mt-[5vh] mr-[1.5vh] w-[8vw] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-md z-50">
+                               <div className="absolute lg:h-[6vh] h-[5vh] right-0 flex flex-col justify-center items-center mt-[5vh] mr-[1.5vh] lg:w-[8vw] w-[11vh] bg-white border border-gray-300 rounded-tl-3xl  rounded-br-3xl shadow-md z-50">
                                  <button
-                                   className=" h-[100%] w-full px-6 py-2 text-center text-red-600 rounded-tl-4xl  rounded-br-4xl cursor-pointer hover:bg-gray-100"
+                                   className=" h-[100%] w-full lg:px-6 lg:py-2 px-4 py-1  text-center lg:text-[1vw] text-[1.5vh] text-red-600 rounded-tl-3xl  rounded-br-3xl cursor-pointer hover:bg-gray-100"
                                    onClick={handleLogout}
                                  >
                                    Sign Out
@@ -135,48 +135,48 @@ function Home(){
                         </div>
                     </div>
     
-                    <div className='h-[60%] w-full flex justify-between items-center p-[2vh]'>
+                    <div className='lg:h-[60%] h-[70%] w-full flex justify-between items-center p-[2vh]'>
                         <div className='h-full w-[60%] flex flex-col justify-center items-start'>
-                            <p className='text-[1.3vw] text-neutral-900 font-medium'>What's up,</p>
-                            <p className='text-[2.5vw] text-neutral-900 font-semibold'>{user?.username || "User"}!</p>
+                            <p className='lg:text-[1.3vw] text-[1.6vh] text-neutral-900 font-medium'>What's up,</p>
+                            <p className='lg:text-[2.5vw] text-[3.7vh] text-neutral-900 font-semibold'>{user?.username || "User"}!</p>
                         </div>
     
                         <div className='h-full w-[40%] flex justify-end items-center'>
-                            <button type='button' onClick={() => navigate("/dashboard/newBlog")} className='bg-neutral-900 text-white font-medium px-[4vh] py-[1vh] rounded-xl cursor-pointer hover:bg-neutral-950'>New Blog +</button>
+                            <button type='button' onClick={() => navigate("/dashboard/newBlog")} className='bg-neutral-900 text-white lg:text-[1.1vw] text-[1.5vh] font-medium lg:px-[4vh] py-[1vh]  px-[2vh] rounded-xl cursor-pointer hover:bg-neutral-950'>New Blog +</button>
                         </div>
                     
                     </div>
 
                 </div>
 
-                <div className='h-[70vh] w-full flex flex-col justify-around items-center p-[3vh] bg-neutral-800'>
+                <div className='lg:h-[70vh] h-[66vh]  w-full flex flex-col justify-around items-center p-[3vh] bg-neutral-800'>
                     <div className="w-[100%] flex flex-col justify-center items-center">
-                    <p className="text-[2vw] text-white font-bold">Account Overview</p>
-                    <hr className="w-[35%] border-2 border-white" />
+                    <p className="lg:text-[2vw] sm:text-[2.1vh] text-[2.3vh] text-white font-bold">Account Overview</p>
+                    <hr className="lg:w-[35%] sm:w-[50%] w-[70%] border-2 border-white" />
                     </div>
-                    <p className="text-[1.5vw] text-white"><span className="font-semibold">User email: </span>{user?.email || "abc@gmail.com"}</p>
+                    <p className="lg:text-[1.5vw] sm:text-[1.7vh] text-[1.9vh] text-white"><span className="font-semibold">User email: </span>{user?.email || "abc@gmail.com"}</p>
 
-                    <div className="h-[50%] w-full flex justify-between items-center">
-                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
+                    <div className="lg:h-[50%] h-[70%] w-full flex lg:flex-row flex-col justify-between items-center">
+                        <div className="lg:h-[80%] h-[30%] lg:w-[30%] sm:w-[60%] w-[80%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
                             <div className="h-[40%] w-[35%] flex flex-col justify-center items-center gap-[0.5vh]">
-                            <p className="text-[2vw]">Blogs:</p>
-                            <p className="text-[2.5vw]">{user?.posts?.length || 0}</p>
+                            <p className="lg:text-[2vw] text-[2vh]">Blogs:</p>
+                            <p className="lg:text-[2.5vw] text-[2.5vh]">{user?.posts?.length || 0}</p>
                             </div>
                             <img src={allpost} alt="total-blog logo" className="h-[50%] object-cover" />
                         </div>
 
-                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
+                        <div className="lg:h-[80%] h-[30%] lg:w-[30%] sm:w-[60%] w-[80%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
                            <div className="h-[40%] w-[35%] flex flex-col justify-center items-center gap-[0.5vh]">
-                            <p className="text-[2vw]">Comments:</p>
-                            <p className="text-[2.5vw]">{receivedCommentsCount}</p>
+                            <p className="lg:text-[2vw] text-[2vh]">Comments:</p>
+                            <p className="lg:text-[2.5vw] text-[2.5vh]">{receivedCommentsCount}</p>
                             </div>
                             <img src={allcomment} alt="comment-logo" className="h-[50%] object-cover" />
                         </div>
 
-                        <div className="h-[80%] w-[30%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
+                        <div className="lg:h-[80%] h-[30%] lg:w-[30%] sm:w-[60%] w-[80%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">
                             <div className="h-[40%] w-[50%] flex flex-col justify-center items-center gap-[0.5vh]">
-                            <p className="text-[2vw]">Joined:</p>
-                            <p className="text-[1.8vw]">{formattedDate}</p>
+                            <p className="lg:text-[2vw] text-[2vh]">Joined:</p>
+                            <p className="lg:text-[1.8vw] text-[1.8vh]">{formattedDate}</p>
                             </div>
                             <img src={member} alt="user-logo" className="h-[50%] object-cover"/>
                         </div>
