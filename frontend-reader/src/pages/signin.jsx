@@ -52,7 +52,7 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
                 <button onClick={onClose} className=" absolute top-0 right-0 p-[1vh] pr-[2.5vh] cursor-pointer lg:text-[1.5vw] text-[1.8vh] text-gray-500 hover:text-gray-700">
                   x
                 </button>
-                <h2 className="lg:text-[1.8vw] sm:text-[2.2vh] text-[2vh] text-neutral-900 font-medium mb-[6vh]">Welcome back.</h2>
+                <h2 className="lg:text-[1.8vw] sm:text-[2.2vh] text-[2vh] text-neutral-900 font-medium mb-[5vh]">Welcome back.</h2>
 
                 <form className="flex flex-col justify-center items-center lg:w-[60%] w-[80%] gap-[1.5vh]" onSubmit={handleLogin}>
 
@@ -72,14 +72,14 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
                       onSwitchToSignUp();
                     }} className="lg:text-[1vw] text-[1.1vh] text-neutral-950 font-medium cursor-pointer hover:underline">Create one</span></p>
 
-                  <button type="submit" className="bg-neutral-700 lg:text-[1.1vw] text-[1.4vh] w-full  text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer">
+                  <button type="submit" className="bg-neutral-700 lg:text-[1.1vw] text-[1.4vh] w-full  text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 lg:mt-[2vh] mt-[1vh] cursor-pointer">
                     Sign in
                   </button>
                   <p className="lg:text-[1vw] text-[1.2vh] text-neutral-900">Or</p>
                    <button
                    type="button"
                    onClick={handleGoogleLogin2}
-                   className="bg-neutral-700 flex justify-center items-center gap-[1vh] lg:text-[1.1vw] text-[1.4vh] w-full text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 mt-[1vh] cursor-pointer"
+                   className="bg-neutral-700 flex justify-center items-center gap-[1vh] lg:text-[1.1vw] text-[1.4vh] w-full text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 cursor-pointer"
                    >
                     <img src={google} alt="google-logo" className="lg:h-[2.5vh] h-[1.6vh] object-cover" />
                     Sign in with Google
