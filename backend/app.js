@@ -3,8 +3,15 @@ const express = require("express");
 const path = require("path");
 const cors = require('cors');
 const routes = require('./routes');
+const session = require('express-session');
+const passport = require('passport');
+require('./config/passport');
 
 const app = express();
+
+app.use(session({ secret: 'random', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middlewares
 app.use(cors());
