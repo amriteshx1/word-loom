@@ -24,10 +24,15 @@ function Login(){
             localStorage.setItem("token", data.token);
             navigate("/dashboard");
           } else {
-            alert(data.message || "Login failed");
+            if (data.errors && Array.isArray(data.errors)) {
+            const errorMessages = data.errors.map(err => err.msg).join("\n\n");
+            alert(errorMessages);
+          } else {
+            alert(data.error || "Login failed");
+          }
           }
         } catch (err) {
-          alert("Server error");
+          alert("Server error. Please try again.");
           console.error(err);
         }
       };
