@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useNavigate, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from './pages/loginpage';
 import Dashboard from "./pages/dashboard";
 import Home from "./pages/home";
@@ -7,24 +8,39 @@ import Comments from "./pages/comments";
 import Support from "./pages/support";
 import Blog from "./pages/newblog";
 
+function AppWrapper() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-function App() {
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get("token");
+
+    if (token) {
+      localStorage.setItem("token", token);
+      navigate("/dashboard", { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route index element={<Home />} />
+        <Route path="posts" element={<Posts />} />
+        <Route path="comments" element={<Comments />} />
+        <Route path="support" element={<Support />} />
+        <Route path="newBlog" element={<Blog />} />
+        <Route path="edit/:postId" element={<Blog />} />
+      </Route>
+    </Routes>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <Routes>
-
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<Home />} />
-            <Route path="posts" element={<Posts />} />
-            <Route path="comments" element={<Comments />} />
-            <Route path="support" element={<Support />} />
-            <Route path="newBlog" element={<Blog />} />
-            <Route path="edit/:postId" element={<Blog />} />
-        </Route>
-
-      </Routes>
+      <AppWrapper />
     </Router>
   );
 }
