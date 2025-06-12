@@ -27,15 +27,20 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
 
           const data = await res.json();
            if (res.ok) {
-            console.log(data);
+            alert("Signup successful! Please sign in.");
             onClose();
             onSwitchToSignin();
           } else {
-           console.error("❌ Validation Errors:", data.errors);
+           if (data.errors && Array.isArray(data.errors)) {
+             const errorMessages = data.errors.map(err => err.msg).join("\n\n");
+             alert(errorMessages);
+           } else {
+             alert(data.error || "Something went wrong.");
+           }
           }
             
         } catch  (err) {
-          alert("Server error");
+          alert("Server error. Please try again.");
           console.error(err);
         }
     };
