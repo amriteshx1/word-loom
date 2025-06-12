@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import loginpageimg from '../assets/loginpage.png'
+import loginpageimg from '../assets/loginpage.png';
+import google from '../assets/google.png';
 
 function Login(){
     const [email, setEmail] = useState("");
@@ -29,6 +30,10 @@ function Login(){
           alert("Server error");
           console.error(err);
         }
+      };
+
+      const handleGoogleLogin = () => {
+        window.location.href = "http://localhost:3000/api/auth/google?type=admin";
       };
 
     return(
@@ -61,7 +66,17 @@ function Login(){
                         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required className='w-full p-1.5 border-2 border-gray-200 rounded-xl bg-white text-neutral-900 font-medium lg:text-[1.2vw] sm:text-[1.3vh] text-[1.4vh] focus:outline-none'/>
                     </div>
             
-                    <button type="submit" className=" bg-white text-neutral-900 border-2 border-white rounded-xl hover:bg-neutral-200 w-[30%] lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] font-medium p-1 mt-[2vh] cursor-pointer">Login</button>
+                    <button type="submit" className=" bg-neutral-950 text-white rounded-xl hover:bg-neutral-800 w-full lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] font-medium p-2 mt-[2vh] cursor-pointer">Login</button>
+                    <p className="text-white lg:text-[1.1vw] sm:text-[1.3vh] text-[1.4vh]">Or</p>
+                    <button
+                     type="button"
+                     onClick={handleGoogleLogin}
+                     className="bg-neutral-950 flex justify-center items-center gap-[1vh] lg:text-[1.3vw] sm:text-[1.5vh] text-[1.6vh] font-medium w-full text-white p-2 rounded-xl hover:bg-neutral-800 mt-[2vh] cursor-pointer"
+                     >
+                      <img src={google} alt="google-logo" className="lg:h-[2.5vh] h-[1.6vh] object-cover" />
+                      Login with Google
+                     </button>
+
                 </form>
 
             </div>
