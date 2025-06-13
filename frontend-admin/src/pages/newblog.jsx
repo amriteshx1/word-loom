@@ -151,7 +151,7 @@ function Blog(){
             </div>
 
             <form onSubmit={handleSubmit} className="lg:h-[145vh] h-[110vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
-                <input type="text" maxLength={70} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="lg:h-[6vh] h-[4vh] lg:w-[40%] w-[60%] p-[7px] rounded-xl bg-white lg:text-[1.1vw] text-[1.6vh] text-neutral-900 font-medium focus:outline-none" />
+                <input type="text" maxLength={80} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="lg:h-[6vh] h-[4vh] lg:w-[40%] w-[60%] p-[7px] rounded-xl bg-white lg:text-[1.1vw] text-[1.6vh] text-neutral-900 font-medium focus:outline-none" />
                 <div className="flex justify-center items-center lg:gap-[1vw] gap-[1vh] h-[6vh] w-[100%]">
                   <label htmlFor="thumbnail" className="lg:text-[1.1vw] text-[1.6vh] text-white font-medium">Upload thumbnail:</label>
                   <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} required className="text-white file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-neutral-900 file:font-medium" />
