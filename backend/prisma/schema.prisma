@@ -8,6 +8,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Category {
+  Tech
+  Marketing
+  Politics
+  Entertainment
+  Business
+  Life
+}
+
 model User{
   id         Int        @id @default(autoincrement())
   username   String     @unique
@@ -27,8 +36,9 @@ model Post{
   authorId    Int
   author      User       @relation(fields: [authorId], references: [id])
   comments    Comment[]
-  thumbnail   String?
+  thumbnail   String
   likes       Int        @default(0)
+  category    Category
 }
 
 model Comment{
