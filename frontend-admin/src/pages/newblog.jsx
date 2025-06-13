@@ -14,6 +14,7 @@ function Blog(){
     const [tone, setTone] = useState("Keep it as it is");
     const [loadingTone, setLoadingTone] = useState(false);
     const [loadingSubmit, setLoadingSubmit] = useState(false);
+    const [category, setCategory] = useState("");
 
     useEffect(() => {
       if (postId) {
@@ -76,7 +77,7 @@ function Blog(){
             const res = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
-                body: JSON.stringify({ title, content, thumbnail: imageUrl }),
+                body: JSON.stringify({ title, content, thumbnail: imageUrl, category }),
               });
 
               if (!res.ok) {
@@ -93,6 +94,7 @@ function Blog(){
               setTitle("");
               setContent("");
               setThumbnail(null);
+              setCategory("");
         } catch (err) {
             alert("Server error");
             console.error(err);
@@ -142,17 +144,17 @@ function Blog(){
        </div>
 
 
-        <div className="hidden sm:flex lg:h-[150vh] h-[105vh] w-full flex-col justify-between items-center lg:gap-[5vh] gap-[2vh] bg-neutral-800 p-[2vh]">
+        <div className="hidden sm:flex lg:h-[165vh] h-[120vh] w-full flex-col justify-between items-center lg:gap-[5vh] gap-[2vh] bg-neutral-800 p-[2vh]">
             <div className="lg:h-[10vh] h-[7vh] w-[100%] flex flex-col justify-center items-center">
             <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
             <hr className="lg:w-[40%] w-[50%] border-2 border-white" />
             </div>
 
-            <form onSubmit={handleSubmit} className="lg:h-[130vh] h-[90vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
+            <form onSubmit={handleSubmit} className="lg:h-[145vh] h-[110vh] w-[100%] flex flex-col justify-between items-center rounded-xl bg-neutral-900 p-[2vh]">
                 <input type="text" maxLength={70} placeholder="Enter your blog's title" value={title} onChange={(e) => setTitle(e.target.value)} required className="lg:h-[6vh] h-[4vh] lg:w-[40%] w-[60%] p-[7px] rounded-xl bg-white lg:text-[1.1vw] text-[1.6vh] text-neutral-900 font-medium focus:outline-none" />
                 <div className="flex justify-center items-center lg:gap-[1vw] gap-[1vh] h-[6vh] w-[100%]">
                   <label htmlFor="thumbnail" className="lg:text-[1.1vw] text-[1.6vh] text-white font-medium">Upload thumbnail:</label>
-                  <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} className="text-white file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-neutral-900 file:font-medium" />
+                  <input id="thumbnail" type="file" accept="image/*" onChange={(e) => setThumbnail(e.target.files[0])} required className="text-white file:mr-3 file:py-1 file:px-2 file:border-0 file:bg-white rounded-xl file:text-neutral-900 file:font-medium" />
                 </div>
                 
                 <Editor
@@ -198,6 +200,22 @@ function Blog(){
 
                 </div>
 
+                <div className="flex justify-center items-center gap-[1vh]">
+                  <label htmlFor="category" className="lg:text-[1.1vw] text-[1.6vh] text-white font-medium">Select Category: </label>
+                  <select name="category" id="category" required
+                   className="px-[1vh] py-[0.6vh] bg-white lg:text-[1vw] text-[1.5vh] font-medium text-neutral-900 rounded-xl cursor-pointer focus:outline-none"
+                   value={category}
+                   onChange={(e) => setCategory(e.target.value)}
+                  >
+                    <option value="" disabled hidden selected>Select Category</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Politics">Politics</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Business">Business</option>
+                    <option value="Life">Life</option>
+                  </select>
+                </div>
 
                 <button 
                 type="submit" 
