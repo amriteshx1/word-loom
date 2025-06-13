@@ -11,7 +11,10 @@ export default function Feed(){
     const [user, setUser] = useState(null);
     const [clickedId, setClickedId] = useState(null);
     const [greeting, setGreeting] = useState("");
+    const [activeCategory, setActiveCategory] = useState("For You");
     const navigate = useNavigate();
+
+    const categories = ["For You", "Tech", "Marketing", "Politics", "Entertainment", "Business", "Life"];
 
     const greetings = [
       (name) => `Yo ${name}, what’s cookin’?`,
@@ -34,14 +37,16 @@ export default function Feed(){
     }, [user]);
 
     //setting user-id
-    const token = localStorage.getItem("token");
-    if (token) {
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
         const decodedToken = jwtDecode(token); 
         const userId = decodedToken.id;
         localStorage.setItem("userId", userId);
       } else {
         console.log("No token found!");
       }
+    }, []);
 
     //getting user-info
     useEffect(() => {
@@ -117,6 +122,12 @@ export default function Feed(){
     .sort((a, b) => b._count.comments - a._count.comments)
     .slice(0, 4);
 
+    //filer posts based on category
+    const displayedPosts =
+      activeCategory === "For You"
+        ? [...posts].sort(() => Math.random() - 0.5).slice(0, 6)
+        : posts.filter(p => p.category === activeCategory);
+
     return(
 
             <div className='h-[91vh] w-full flex justify-between items-center lg:pt-[5vh] pt-[2vh]'>
@@ -129,12 +140,23 @@ export default function Feed(){
                 </div>
 
                 <div className='h-[10%] w-full flex flex-col justify-end items-start lg:mt-[7vh] mt-[3vh] gap-1 px-4'>
-                  <p className='lg:text-xl sm:text-lg text-base font-semibold text-neutral-700'>For You :</p>
-                  <hr className='w-[10%] border-neutral-200' />
+                  <div className="flex flex-wrap gap-3 px-4 py-2">
+                    {categories.map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => setActiveCategory(cat)}
+                        className={`px-4 py-1 rounded-full border cursor-pointer font-medium ${
+                          activeCategory === cat ? 'bg-black text-white' : 'bg-neutral-100 text-neutral-700'
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div className='h-[88%] w-full flex flex-col justify-start items-center gap-[5vh]'>
-                {posts.map(post => (
+                {displayedPosts.map(post => (
                 <div key={post.id} className="h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
                   <p onClick={() => handlePost(post.id)} className="lg:text-2xl sm:text-xl text-lg font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
@@ -187,7 +209,7 @@ export default function Feed(){
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] hover:underline">✨ {post.title}</p>
                    </div>
-                  ))};
+                  ))}
                   </div>
                   
 
@@ -204,7 +226,7 @@ export default function Feed(){
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] hover:underline">❄️ {post.title}</p>
                    </div>
-                  ))};
+                  ))}
                   </div>
 
                 </div>
