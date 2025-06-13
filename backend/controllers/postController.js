@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await prisma.post.findMany({
+      where: { published: true },
       include: {
         author: true,
         _count: {
@@ -44,14 +45,14 @@ exports.getPostbyId = async (req, res) => {
 // Create a post
 exports.createPost = async (req, res) => {
   try {
-    const { title, content, thumbnail } = req.body;
+    const { title, content, thumbnail, category } = req.body;
 
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const authorId = decodedToken.id; 
 
     const post = await prisma.post.create({
-      data: { title, content, authorId, thumbnail }
+      data: { title, content, authorId, thumbnail, category }
     });
 
     res.status(201).json({ message: "Post created", post });
@@ -64,11 +65,11 @@ exports.createPost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, content, thumbnail } = req.body;
+    const { title, content, thumbnail, category } = req.body;
 
     const post = await prisma.post.update({
       where: { id: parseInt(id) },
-      data: { title, content, thumbnail }
+      data: { title, content, thumbnail, category }
     });
 
     res.json({ message: "Post updated", post });
