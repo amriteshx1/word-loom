@@ -16,10 +16,23 @@ passport.use(new GoogleStrategy({
       let user = await prisma.user.findUnique({ where: { email } });
 
       if (!user) {
+        const baseUsername = profile.displayName.split(' ')[0];
+        let username = baseUsername;
+        let suffix;
+
+        while (true) {
+          const existing = await prisma.user.findUnique({ where: { username } });
+          if (!existing) break;
+
+          suffix = Math.floor(1000 + Math.random() * 900);
+          username = `${baseUsername}${suffix}`;
+        }
+
         const hashedPassword = await bcrypt.hash('google-oauth', 10);
+
         user = await prisma.user.create({
           data: {
-            username: profile.displayName.slice(0, 10).replace(/\s/g, ''),
+            username,
             email,
             password: hashedPassword,
           }
