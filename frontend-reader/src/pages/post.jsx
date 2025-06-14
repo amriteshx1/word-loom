@@ -7,6 +7,7 @@ import commentUser from '../assets/commentUser.png';
 import { formatDistanceToNow } from 'date-fns';
 import { ChevronsRight } from "../components/more";
 import {useNavigate } from "react-router-dom";
+import share from '../assets/share.png';
 
 export default function Post(){
   const [post, setPost] = useState(null);
@@ -91,6 +92,23 @@ export default function Post(){
     }));
     };
 
+    //sharing feature
+    const handleShare = async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: post.title,
+            text: "Check out this blog!",
+            url: window.location.href,
+          });
+        } catch (err) {
+          console.error("Error sharing:", err);
+        }
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+      }
+    };
 
     return(
         <div className="h-[91vh] lg:w-[50%] sm:w-[70%] w-[80%] flex flex-col justify-start items-center lg:gap-[5vh] gap-[4vh]">
@@ -108,7 +126,8 @@ export default function Post(){
                   
                 <div className="flex flex-col w-full justify-center items-center gap-[1vw]">
                 <hr className="w-full border-neutral-200 " />
-                <div className="w-full flex justify-start items-center gap-[3vw]">
+                <div className="w-full flex justify-between items-center">
+                  <div className="w-[50%] flex justify-start items-center gap-[3vw]">
                   <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
                       clickedId === post.id ? 'scale-90' : ''}`}>
                     <HeartHandshake className="lg:h-[2.5vh] sm:h-[1.9vh] h-[1.7vh]" />
@@ -118,6 +137,11 @@ export default function Post(){
                   <div className='flex items-center lg:gap-[0.3vw] sm:gap-[0.2vh] gap-[0.5vh] cursor-pointer'>
                     <img src={commentLogo} alt="comment-logo" className='lg:h-[2.5vh] sm:h-[1.9vh] h-[1.7vh] object-cover' />
                     <span className="text-neutral-700 lg:text-[1vw] sm:text-[1.2vh] text-[1.4vh] font-medium">{post._count.comments}</span>
+                  </div>
+                  </div>
+
+                  <div onClick={handleShare} className="w-[30%] flex justify-end items-center mr-[1vh]">
+                    <img src={share} alt="share-button" className="lg:h-[2.6vh] sm:h-[1.9vh] h-[1.7vh] object-cover cursor-pointer" />
                   </div>
                 </div>
                 <hr className="w-full border-neutral-200 " />
@@ -134,7 +158,8 @@ export default function Post(){
 
               <div className="flex flex-col w-full justify-center items-center gap-[1vw]">
                 <hr className="w-full border-neutral-200 " />
-                <div className="w-full flex justify-start items-center gap-[3vw]">
+                <div className="w-full flex justify-between items-center">
+                  <div className="w-[50%] flex justify-start items-center gap-[3vw]">
                   <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
                     clickedId === post.id ? 'scale-90' : ''}`}>
                     <HeartHandshake className="lg:h-[2.5vh] sm:h-[1.9vh] h-[1.7vh]" />
@@ -144,6 +169,11 @@ export default function Post(){
                   <div className='flex items-center lg:gap-[0.3vw] sm:gap-[0.2vh] gap-[0.5vh] cursor-pointer'>
                     <img src={commentLogo} alt="comment-logo" className='lg:h-[2.5vh] sm:h-[1.9vh] h-[1.7vh] object-cover' />
                     <span className="text-neutral-700 lg:text-[1vw] sm:text-[1.2vh] text-[1.4vh] font-medium">{post._count.comments}</span>
+                  </div>
+                  </div>
+
+                  <div className="w-[30%] flex justify-end items-center mr-[1vh]">
+                    <img onClick={handleShare} src={share} alt="share-button" className="lg:h-[2.6vh] sm:h-[1.9vh] h-[1.7vh] object-cover cursor-pointer" />
                   </div>
                 </div>
                 <hr className="w-full border-neutral-200 " />
