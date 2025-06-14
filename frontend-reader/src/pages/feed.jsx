@@ -11,6 +11,7 @@ export default function Feed(){
     const [user, setUser] = useState(null);
     const [greeting, setGreeting] = useState("");
     const [activeCategory, setActiveCategory] = useState("For You");
+    const [shuffledPosts, setShuffledPosts] = useState([]);
     const navigate = useNavigate();
 
     const categories = ["For You", "Tech", "Marketing", "Politics", "Entertainment", "Business", "Life"];
@@ -101,10 +102,18 @@ export default function Feed(){
     .sort((a, b) => b._count.comments - a._count.comments)
     .slice(0, 4);
 
+    // Shuffle only once when posts first load
+    useEffect(() => {
+      if (posts.length > 0 && shuffledPosts.length === 0) {
+        const shuffled = [...posts].sort(() => Math.random() - 0.5);
+        setShuffledPosts(shuffled);
+      }
+    }, [posts, shuffledPosts]);
+
     //filer posts based on category
     const displayedPosts =
       activeCategory === "For You"
-        ? [...posts].sort(() => Math.random() - 0.5)
+        ? shuffledPosts
         : posts.filter(p => p.category === activeCategory);
 
     return(
