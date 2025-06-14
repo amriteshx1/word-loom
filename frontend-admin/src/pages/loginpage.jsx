@@ -22,17 +22,18 @@ function Login(){
     
           if (res.ok) {
             localStorage.setItem("token", data.token);
+            toast.success("Signed in successfully!");
             navigate("/dashboard");
           } else {
             if (data.errors && Array.isArray(data.errors)) {
             const errorMessages = data.errors.map(err => err.msg).join("\n\n");
-            alert(errorMessages);
+            toast.error(errorMessages);
           } else {
-            alert(data.error || "Login failed");
+            toast.error(data.error || "Login failed");
           }
           }
         } catch (err) {
-          alert("Server error. Please try again.");
+          toast.error("Server error. Please try again.");
           console.error(err);
         }
       };
