@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import google from '../assets/google.png';
+import { toast } from "react-hot-toast";
 
 export default function Signin({isOpen, onClose, onSwitchToSignUp}){
     const [email, setEmail] = useState("");
@@ -29,17 +30,17 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
     
           if (res.ok) {
             localStorage.setItem("token", data.token);
+            toast.success("Signed in successfully!");
             navigate("/feed");
           } else {
             if (data.errors && Array.isArray(data.errors)) {
-              const errorMessages = data.errors.map(err => err.msg).join("\n\n");
-              alert(errorMessages);
+              data.errors.forEach((err) => toast.error(err.msg));
             } else {
-              alert(data.error || "Login failed");
+              toast.error(data.error || "Login failed");
             }
           }
         } catch (err) {
-          alert("Server error. Please try again.");
+          toast.error("Server error. Please try again.");
           console.error(err);
         }
       };
