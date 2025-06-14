@@ -5,6 +5,7 @@ import Feed from "./pages/feed";
 import Post from "./pages/post";
 import Layout from "./pages/layout";
 import { Toaster } from "react-hot-toast";
+import Profile from "./pages/profile";
 
 function AppWrapper() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AppWrapper() {
       <Route path="/feed" element={<Layout />}>
         <Route index element={<Feed />} />
         <Route path="post/:id" element={<Post />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
     </>
