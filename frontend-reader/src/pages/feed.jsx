@@ -9,7 +9,6 @@ import comments from '../assets/comments.png';
 export default function Feed(){
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState(null);
-    const [clickedId, setClickedId] = useState(null);
     const [greeting, setGreeting] = useState("");
     const [activeCategory, setActiveCategory] = useState("For You");
     const navigate = useNavigate();
@@ -92,26 +91,6 @@ export default function Feed(){
       navigate(`/feed/post/${id}`)
     }
 
-    //increase blog likes
-    const increaseLike = async (id) => {
-      setClickedId(id);
-      setTimeout(() => setClickedId(null), 120); 
-
-      const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/api/posts/${id}/like`, {
-       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-    });
-    setPosts(prev =>
-      prev.map(p =>
-        p.id === id ? { ...p, likes: p.likes + 1 } : p
-      )
-    );
-    }
-
     //trending blogs
     const trendingPosts = [...posts]
     .sort((a, b) => b.likes - a.likes)
@@ -157,9 +136,9 @@ export default function Feed(){
 
                 <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]'>
                 {displayedPosts.map(post => (
-                <div key={post.id} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                <div key={post.id} onClick={() => handlePost(post.id)} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
-                  <p onClick={() => handlePost(post.id)} className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
+                  <p className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
                   <div className="lg:text-[1vw] text-[1.2vh] text-neutral-600 mb-2">
                     By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -173,8 +152,7 @@ export default function Feed(){
                   />
 
                   <div className='flex justify-start items-center mt-[1vh] lg:gap-[2vw] gap-[2vh]'>
-                    <div onClick={() => increaseLike(post.id)} className= {`flex items-center gap-[0.2vw] cursor-pointer transition-transform duration-150 ${
-                      clickedId === post.id ? 'scale-90' : ''}`}>
+                    <div className= {"flex items-center gap-[0.2vw] cursor-pointer"}>
 
                       <HeartHandshake className="lg:h-[2.5vh] sm:h-[1.9vh] h-[1.7vh]" />
                       <span className="text-neutral-700 lg:text-[1vw] text-[1.2vh] font-medium">{post.likes}</span>
