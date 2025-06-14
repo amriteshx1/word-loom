@@ -5,6 +5,7 @@ import { Rocket } from '../components/trending';
 import { Flame } from '../components/featured';
 import { HeartHandshake } from '../components/blogLike';
 import comments from '../assets/comments.png';
+import { toast } from 'react-hot-toast';
 
 export default function Feed(){
     const [posts, setPosts] = useState([])
@@ -63,6 +64,7 @@ export default function Feed(){
               setUser(data);
             } catch (error) {
               console.error("Error fetching user:", error);
+              toast.error("Failed to fetch user.");
             }
           };
     
@@ -81,7 +83,6 @@ export default function Feed(){
             if (!res.ok) throw new Error("Failed to fetch posts");
 
             const data = await res.json();
-            console.log(data);
             setPosts(data);
         }
 

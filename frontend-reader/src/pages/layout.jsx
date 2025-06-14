@@ -4,6 +4,7 @@ import { BellRing } from "../components/bellring";
 import { User } from "../components/profile";
 import write from "../assets/write.png";
 import appWrite from "../assets/appWrite.png";
+import { toast } from 'react-hot-toast';
 
 export default function Layout() {
   const [open, setOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function Layout() {
     if (confirmLogout) {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      toast.success("Logged out successfully.");
       navigate("/");
     }
   };
