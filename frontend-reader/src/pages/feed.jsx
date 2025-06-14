@@ -125,7 +125,7 @@ export default function Feed(){
     //filer posts based on category
     const displayedPosts =
       activeCategory === "For You"
-        ? [...posts].sort(() => Math.random() - 0.5).slice(0, 6)
+        ? [...posts].sort(() => Math.random() - 0.5)
         : posts.filter(p => p.category === activeCategory);
 
     return(
@@ -134,19 +134,19 @@ export default function Feed(){
 
               <div className='h-full lg:w-[60%] w-full flex flex-col justify-start items-center overflow-y-scroll'>
 
-                <div className='h-[12%] w-full flex flex-col justify-start gap-1 items-start px-4'>
+                <div className='lg:h-[10%] sm:h-[5%] h-[6%] w-full flex flex-col justify-start gap-1 items-start px-4'>
                   <p className='lg:text-[2.3vw] text-[2.3vh] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>❝ {greeting || "Welcome back!"}</p>
                   <hr className='w-full border-neutral-200' />
                 </div>
 
-                <div className='h-[10%] w-full flex flex-col justify-end items-start lg:mt-[7vh] mt-[3vh] gap-1 px-4'>
+                <div className='lg:h-[10%] sm:h-[5%] h-[10%] w-full flex flex-col justify-end items-start mt-[0.5vh] gap-1'>
                   <div className="flex flex-wrap gap-3 px-4 py-2">
                     {categories.map(cat => (
                       <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
-                        className={`px-4 py-1 rounded-full border cursor-pointer font-medium ${
-                          activeCategory === cat ? 'bg-black text-white' : 'bg-neutral-100 text-neutral-700'
+                        className={`px-3 py-1 rounded-full border lg:text-[1vw] text-[1.1vh] cursor-pointer font-medium ${
+                          activeCategory === cat ? 'bg-neutral-700 text-white' : 'bg-white text-neutral-700'
                         }`}
                       >
                         {cat}
@@ -155,11 +155,11 @@ export default function Feed(){
                   </div>
                 </div>
 
-                <div className='h-[88%] w-full flex flex-col justify-start items-center gap-[5vh]'>
+                <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]'>
                 {displayedPosts.map(post => (
-                <div key={post.id} className="h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                <div key={post.id} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
-                  <p onClick={() => handlePost(post.id)} className="lg:text-2xl sm:text-xl text-lg font-semibold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
+                  <p onClick={() => handlePost(post.id)} className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
                   <div className="lg:text-[1vw] text-[1.2vh] text-neutral-600 mb-2">
                     By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -168,7 +168,7 @@ export default function Feed(){
                   })}
                   </div>
                   <div
-                    className="prose-sm sm:prose max-w-none font-medium text-neutral-700 line-clamp-2"
+                    className="prose-sm sm:prose max-w-none font-medium text-neutral-700 line-clamp-1"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
 
@@ -188,8 +188,8 @@ export default function Feed(){
                   
                 </div>
 
-                <div className='h-full w-[25%] flex justify-center items-center'>
-                  <img src={post.thumbnail} alt="blog-thumbnail" className='lg:h-[80%] sm:h-[65%] h-[55%] object-cover rounded-xl'/>
+                <div className='h-full w-[25%] flex justify-center items-start p-4'>
+                  <img src={post.thumbnail} alt="blog-thumbnail" className='lg:h-[75%] sm:h-[65%] h-[55%] object-cover rounded-xl'/>
                 </div>
 
                 </div>
@@ -198,7 +198,7 @@ export default function Feed(){
               </div>
 
               <div className='hidden lg:flex h-full w-[30%] flex-col justify-between items-center pb-[5vh]'>
-                <div className='h-[45%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                <div className='h-[47%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
                   <div className='flex'>
                     <p className='text-[1.2vw] text-white font-medium'>Trending</p>
                     <Rocket style={{height: '2.2vh'}} />
@@ -207,7 +207,10 @@ export default function Feed(){
                   <div className='flex h-[80%] justify-between flex-col'>
                   {trendingPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
-                   <p className="text-white text-[1vw] hover:underline">✨ {post.title}</p>
+                   <p className="text-white text-[1vw] flex">
+                    <span className="mr-1">➲</span>
+                    <span className="flex-1 hover:underline">{post.title}</span>
+                   </p>
                    </div>
                   ))}
                   </div>
@@ -215,7 +218,7 @@ export default function Feed(){
 
                 </div>
 
-                <div className='h-[45%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                <div className='h-[47%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
                   <div className='flex'>
                     <p className='text-[1.2vw] text-white font-medium'>Featured</p>
                     <Flame style={{height: '2.2vh'}} />
@@ -224,7 +227,10 @@ export default function Feed(){
                   <div className='flex h-[80%] justify-between flex-col'>
                   {featuredPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
-                   <p className="text-white text-[1vw] hover:underline">❄️ {post.title}</p>
+                   <p className="text-white text-[1vw] flex">
+                    <span className='mr-1'>➲</span> 
+                    <span className='flex-1 hover:underline'>{post.title}</span>
+                    </p>
                    </div>
                   ))}
                   </div>
