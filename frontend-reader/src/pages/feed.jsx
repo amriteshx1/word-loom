@@ -192,11 +192,11 @@ export default function Feed(){
                     <Rocket style={{height: '2.2vh'}} />
                   </div>
                   
-                  <div className='flex h-[80%] justify-between flex-col'>
+                  <div className='flex h-[83%] justify-between flex-col'>
                   {trendingPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
-                    <span className="mr-1">➲</span>
+                    <span className="mr-2">➲</span>
                     <span className="flex-1 hover:underline">{post.title}</span>
                    </p>
                    </div>
@@ -212,11 +212,11 @@ export default function Feed(){
                     <Flame style={{height: '2.2vh'}} />
                   </div>
 
-                  <div className='flex h-[80%] justify-between flex-col'>
+                  <div className='flex h-[83%] justify-between flex-col'>
                   {featuredPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
-                    <span className='mr-1'>➲</span> 
+                    <span className='mr-2'>➲</span> 
                     <span className='flex-1 hover:underline'>{post.title}</span>
                     </p>
                    </div>
