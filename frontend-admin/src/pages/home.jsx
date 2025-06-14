@@ -7,6 +7,7 @@ import allcomment from "../assets/allcomments.png";
 import member from "../assets/member.png";
 import { BellRing } from "../components/bell";
 import { User } from "../components/user";
+import { toast } from "react-hot-toast";
 
 function Home(){
     const [user, setUser] = useState(null);
@@ -103,6 +104,14 @@ function Home(){
           return () => document.removeEventListener("mousedown", handleClickOutside);
         }, []);
 
+        const handleNotify = () => {
+          toast.success(() => (
+          <span>
+            You’re all caught up!<br />
+            <small className="text-gray-500">No notifications at the moment.</small>
+          </span>
+          ));
+        }
 
 
     return(
@@ -115,7 +124,7 @@ function Home(){
                             <input type="text" className='lg:h-[80%] h-[65%] w-[80%] p-[5px] text-neutral-900 rounded-2xl border-2 border-neutral-900 focus:outline-none' />
                         </div>
                         <div className='h-full w-[40%] flex justify-end items-center sm:gap-[5vh] gap-[2vh]'>
-                            <BellRing className="sm:h-[3.4vh] h-[2.6vh] " />
+                            <BellRing onClick={handleNotify} className="sm:h-[3.4vh] h-[2.6vh] " />
                             <div className="relative flex flex-col text-left" ref={menuRef}>
                               <div onClick={() => setOpen(!open)} className="cursor-pointer bg-neutral-800 border-2 border-neutral-900 rounded-full">
                               <User className="sm:h-[3.3vh] h-[2.6vh]" />

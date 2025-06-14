@@ -31,6 +31,15 @@ export default function Layout() {
     }
   };
 
+  const handleNotify = () => {
+    toast.success(() => (
+    <span>
+      You’re all caught up!<br />
+      <small className="text-gray-500">No notifications at the moment.</small>
+    </span>
+    ));
+  }
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -64,7 +73,7 @@ export default function Layout() {
             </button>
           </div>
 
-          <BellRing className="lg:h-[2.7vh] h-[1.9vh]" />
+          <BellRing onClick={handleNotify} className="lg:h-[2.7vh] h-[1.9vh]" />
           <div className="relative flex flex-col text-left" ref={menuRef}>
             <div onClick={() => setOpen(!open)} className="cursor-pointer">
               <User className="lg:h-[3vh] h-[2vh]" />
