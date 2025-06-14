@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { ChevronsRight } from "../components/more";
 import {useNavigate } from "react-router-dom";
 import share from '../assets/share.png';
+import { toast } from 'react-hot-toast';
 
 export default function Post(){
   const [post, setPost] = useState(null);
@@ -39,6 +40,7 @@ export default function Post(){
       setComments(commentsData);
     } catch (err) {
       console.error("Error fetching data:", err);
+      toast.error("Failed to load post and comments.");
     }
   };
 
@@ -67,29 +69,42 @@ export default function Post(){
 
     //post new comment
     const handleAddComment = async () => {
-     if (!newComment.trim()) return;
+      if (!newComment.trim()) {
+        toast.error("Comment can't be empty.");
+        return;
+      }
     
-     const token = localStorage.getItem("token");
-     const res = await fetch(`http://localhost:3000/api/posts/${id}/comments`, {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-         "Authorization": `Bearer ${token}`,
-       },
-       body: JSON.stringify({ content: newComment }),
-     });
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`http://localhost:3000/api/posts/${id}/comments`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({ content: newComment }),
+        });
     
-     const data = await res.json();
-     console.log(data);
-     setComments((prev) => [...prev, data.comment]);
-     setNewComment("");
-     setPost((prevPost) => ({
-    ...prevPost,
-    _count: {
-      ...prevPost._count,
-      comments: prevPost._count.comments + 1,
-    },
-    }));
+        const data = await res.json();
+    
+        if (res.ok) {
+          setComments((prev) => [...prev, data.comment]);
+          setNewComment("");
+          setPost((prevPost) => ({
+            ...prevPost,
+            _count: {
+              ...prevPost._count,
+              comments: prevPost._count.comments + 1,
+            },
+          }));
+          toast.success("Comment posted!");
+        } else {
+          toast.error(data.error || "Failed to post comment.");
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Server error while posting comment.");
+      }
     };
 
     //sharing feature
@@ -105,8 +120,12 @@ export default function Post(){
           console.error("Error sharing:", err);
         }
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert("Link copied to clipboard!");
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          toast.success("Link copied to clipboard!");
+        } catch (err) {
+          toast.error("Failed to copy link.");
+        }
       }
     };
 
