@@ -50,6 +50,10 @@ export default function Layout() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleProfile = () => {
+    navigate("/feed/profile");
+  }
+
   return (
     <div className="main-container flex-col lg:px-[10vh] sm:px-[2vh] px-[1vh] overflow-y-scroll">
       <div className="lg:h-[9vh] h-[8vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl">
@@ -80,9 +84,19 @@ export default function Layout() {
             </div>
 
             {open && (
-              <div className="absolute lg:h-[12vh] sm:h-[8vh] h-[12vh] right-0 flex flex-col justify-center items-center lg:mt-[5vh] mt-[4vh] mr-[1.5vh] lg:w-[10vw] sm:w-[12vh] w-[13vh] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-lg z-50">
+              <div className="absolute lg:h-[18vh] sm:h-[12vh] h-[16vh] right-0 flex flex-col justify-center items-center lg:mt-[5vh] mt-[4vh] mr-[1.5vh] lg:w-[10vw] sm:w-[12vh] w-[13vh] bg-white border border-gray-300 rounded-tl-4xl  rounded-br-4xl shadow-lg z-50">
                 <button
-                 className="sm:hidden h-[33%] w-full flex justify-start items-center gap-1 px-4 py-1 text-left text-[1.2vh] text-gray-700 rounded-tl-4xl cursor-pointer hover:bg-gray-100"
+                 className="sm:h-[33%] h-[25%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left lg:text-[1.1vw] text-[1.2vh] text-gray-700 rounded-tl-4xl cursor-pointer hover:bg-gray-100 "
+                 onClick={() => {
+                    handleProfile();
+                    setOpen(false);
+                  }}
+                > 
+                  Profile
+                </button>
+
+                <button
+                 className="sm:hidden h-[25%] w-full flex justify-start items-center gap-1 px-4 py-1 text-left text-[1.2vh] text-gray-700 cursor-pointer hover:bg-gray-100"
                  onClick={() => {
                     handleWrite();
                     setOpen(false);
@@ -92,7 +106,7 @@ export default function Layout() {
                   Write
                 </button>
                 <button
-                  className="sm:h-[50%] h-[33%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left lg:text-[1.1vw] text-[1.2vh] text-gray-700 sm:rounded-tl-4xl cursor-pointer hover:bg-gray-100"
+                  className="sm:h-[33%] h-[25%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left lg:text-[1.1vw] text-[1.2vh] text-gray-700 cursor-pointer hover:bg-gray-100"
                   onClick={() => {
                     handleWrite();
                     setOpen(false);
@@ -101,7 +115,7 @@ export default function Layout() {
                   Admin Portal
                 </button>
                 <button
-                  className="sm:h-[50%] h-[33%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left lg:text-[1.1vw] text-[1.2vh] text-red-600  rounded-br-4xl cursor-pointer hover:bg-gray-100"
+                  className="sm:h-[33%] h-[25%] w-full lg:px-6 lg:py-2 px-4 py-1 text-left lg:text-[1.1vw] text-[1.2vh] text-red-600  rounded-br-4xl cursor-pointer hover:bg-gray-100"
                   onClick={handleLogout}
                 >
                   Sign Out
