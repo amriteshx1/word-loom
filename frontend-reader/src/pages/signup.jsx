@@ -1,5 +1,6 @@
 import { useState } from "react";
 import google from '../assets/google.png';
+import toast from 'react-hot-toast';
 
 export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onSwitchToSignin}){
     const [username, setUsername] = useState('');
@@ -27,20 +28,20 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
 
           const data = await res.json();
            if (res.ok) {
-            alert("Signup successful! Please sign in.");
+            toast.success("Signup successful! Please sign in.");
             onClose();
             onSwitchToSignin();
           } else {
            if (data.errors && Array.isArray(data.errors)) {
              const errorMessages = data.errors.map(err => err.msg).join("\n\n");
-             alert(errorMessages);
+             toast.error(errorMessages);
            } else {
-             alert(data.error || "Something went wrong.");
+             toast.error(data.error || "Something went wrong.");
            }
           }
             
         } catch  (err) {
-          alert("Server error. Please try again.");
+          toast.error("Server error. Please try again.");
           console.error(err);
         }
     };
