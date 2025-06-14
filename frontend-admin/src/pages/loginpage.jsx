@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import loginpageimg from '../assets/loginpage.png';
 import google from '../assets/google.png';
+import { toast } from "react-hot-toast";
 
 function Login(){
     const [email, setEmail] = useState("");

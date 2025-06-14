@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HeartHandshake } from "../components/likes";
 import blogComment from "../assets/blogComment.png";
+import { toast } from "react-hot-toast";
 
 function Posts(){
     const [posts, setPosts] = useState([]);
@@ -42,8 +43,11 @@ function Posts(){
 
             if (!res.ok) throw new Error("Failed to publish post");
             const updated = await res.json();
-            console.log(updated);
-            alert(updated.post.published ? "🎉 Woohoo! Your post is live for the world to see! 🚀" : "😢 Oh no! Your post is now hidden from the spotlight...");
+            toast.success(
+              updated.post.published
+                ? "🎉 Woohoo! Your post is live for the world to see! 🚀"
+                : "😢 Oh no! Your post is now hidden from the spotlight..."
+            );
 
             setPosts((prev) =>
                 prev.map((p) => (p.id === updated.post.id ? updated.post : p))

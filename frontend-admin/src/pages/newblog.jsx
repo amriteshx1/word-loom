@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import ai from '../assets/ai.png';
+import { toast } from "react-hot-toast";
 
 function Blog(){
     const { postId } = useParams();
@@ -44,7 +45,7 @@ function Blog(){
           .split(/\s+/).length;
       
         if (wordCount < 120) {
-          alert("Please write at least 120 words for your blog post.");
+          toast.error("Please write at least 120 words for your blog post.");
           return;
         }
 
@@ -88,6 +89,12 @@ function Blog(){
               console.log("Post created:", data.post);
         
               if (res.ok) {
+                toast.success(() => (
+                  <span>
+                    Blog created successfully!<br />
+                    <small>Don’t forget to publish it</small>
+                  </span>
+                ));
                 navigate("/dashboard/posts");
               }
 
@@ -120,7 +127,7 @@ function Blog(){
           const data = await res.json();
       
           if (res.ok) {
-            setContent(data.transformed); // Update editor with new content
+            setContent(data.transformed);
           } else {
             alert("Failed to optimize content.");
           }
