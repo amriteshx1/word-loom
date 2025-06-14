@@ -4,6 +4,7 @@ import Homepage from "./pages/homepage";
 import Feed from "./pages/feed";
 import Post from "./pages/post";
 import Layout from "./pages/layout";
+import { Toaster } from "react-hot-toast";
 
 function AppWrapper() {
   const location = useLocation();
@@ -20,6 +21,8 @@ function AppWrapper() {
   }, [location, navigate]);
 
   return (
+    <>
+    <Toaster position="top-center" />
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/feed" element={<Layout />}>
@@ -27,6 +30,7 @@ function AppWrapper() {
         <Route path="post/:id" element={<Post />} />
       </Route>
     </Routes>
+    </>
   );
 }
 
