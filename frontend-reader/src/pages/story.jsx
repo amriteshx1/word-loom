@@ -50,13 +50,13 @@ export default function Story(){
                        setSignupHeading("Join Wordloom.");
                        setShowSignup(true);
                      }} 
-                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Reading <span>&rarr;</span></button>
+                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer transition-colors duration-400">Start Reading <span>&rarr;</span></button>
                     <button
                      onClick={() => {
                       setSignupHeading("Create an account to start writing.");
                       setShowSignup(true);
                      }}
-                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Writing <span>&rarr;</span></button>
+                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer transition-colors duration-400">Start Writing <span>&rarr;</span></button>
                 </div>
 
                 <div className="h-[10vh] w-full flex justify-between items-center p-[2vh] bg-neutral-200 text-neutral-700">
