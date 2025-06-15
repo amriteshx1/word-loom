@@ -35,7 +35,7 @@ export default function Profile(){
       }, []);
 
     return(
-        <div className='h-[91vh] w-full grid lg:grid-cols-[2.7fr_1.3fr] grid-cols-1'>
+        <div className='h-[91vh] w-full grid lg:grid-cols-[2.7fr_1.3fr] grid-cols-1 motion-preset-slide-up motion-duration-500'>
             <div className="border-r-1 border-r-neutral-200 flex flex-col justify-between items-start">
                 <div className='lg:h-[30%] h-[25%] w-full flex flex-col gap-[2vh] lg:p-10 p-8'>
                 <p className='font-bold lg:text-[4vw] text-[4vh] text-neutral-700'>{user?.username || "User"}</p>

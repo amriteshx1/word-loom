@@ -130,7 +130,7 @@ export default function Post(){
     };
 
     return(
-        <div className="h-[91vh] lg:w-[50%] sm:w-[70%] w-[80%] flex flex-col justify-start items-center lg:gap-[5vh] gap-[4vh]">
+        <div className="h-[91vh] lg:w-[50%] sm:w-[70%] w-[80%] flex flex-col justify-start items-center lg:gap-[5vh] gap-[4vh] motion-preset-slide-up motion-duration-500">
         
             {post ? (
               <>

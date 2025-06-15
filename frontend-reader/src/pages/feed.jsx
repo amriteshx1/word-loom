@@ -119,12 +119,12 @@ export default function Feed(){
 
     return(
 
-            <div className='h-[91vh] w-full flex justify-between items-center lg:pt-[5vh] pt-[2vh]'>
+            <div className='h-[91vh] w-full flex justify-between items-center lg:pt-[5vh] pt-[2vh] motion-preset-slide-up motion-duration-500 motion-delay-300'>
 
               <div className='h-full lg:w-[60%] w-full flex flex-col justify-start items-center overflow-y-scroll'>
 
                 <div className='lg:h-[10%] sm:h-[5%] h-[6%] w-full flex flex-col justify-start gap-1 items-start px-4'>
-                  <p className='lg:text-[2.3vw] text-[2.3vh] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>❝ {greeting || "Welcome back!"}</p>
+                  <p className='lg:text-[2.3vw] text-[2.3vh] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent motion-preset-slide-up motion-duration-500 motion-delay-300'>❝ {greeting || "Welcome back!"}</p>
                   <hr className='w-full border-neutral-200' />
                 </div>
 
@@ -134,7 +134,7 @@ export default function Feed(){
                       <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
-                        className={`px-3 py-1 rounded-full border lg:text-[1vw] text-[1.1vh] cursor-pointer font-medium ${
+                        className={`px-3 py-1 rounded-full border lg:text-[1vw] text-[1.1vh] cursor-pointer font-medium transition duration-200 ${
                           activeCategory === cat ? 'bg-neutral-700 text-white' : 'bg-white text-neutral-700'
                         }`}
                       >
@@ -144,7 +144,7 @@ export default function Feed(){
                   </div>
                 </div>
 
-                <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]'>
+                <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]  motion-preset-slide-up motion-duration-500 motion-delay-300'>
                 {displayedPosts.map(post => (
                 <div key={post.id} onClick={() => handlePost(post.id)} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
@@ -185,7 +185,7 @@ export default function Feed(){
               </div>
               </div>
 
-              <div className='hidden lg:flex h-full w-[30%] flex-col justify-between items-center pb-[5vh]'>
+              <div className='hidden lg:flex h-full w-[30%] flex-col justify-between items-center pb-[5vh] motion-preset-slide-up motion-duration-500 motion-delay-300'>
                 <div className='h-[47%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
                   <div className='flex'>
                     <p className='text-[1.2vw] text-white font-medium'>Trending</p>
@@ -206,7 +206,7 @@ export default function Feed(){
 
                 </div>
 
-                <div className='h-[47%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh]'>
+                <div className='h-[47%] w-full flex flex-col justify-between items-start bg-neutral-700 rounded-2xl p-[2vh] motion-preset-slide-up motion-duration-500 motion-delay-300'>
                   <div className='flex'>
                     <p className='text-[1.2vw] text-white font-medium'>Featured</p>
                     <Flame style={{height: '2.2vh'}} />
