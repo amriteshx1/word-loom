@@ -27,7 +27,7 @@ export default function Layout() {
     );
 
     if (adminAlert) {
-      window.open("http://localhost:5174", "_blank");
+      window.open("word-loom-mocha.vercel.app", "_blank");
     }
   };
 
