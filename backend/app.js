@@ -9,12 +9,14 @@ require('./config/passport');
 
 const app = express();
 
+app.use(cors({
+  origin: [process.env.FRONTEND_URL_USER, process.env.FRONTEND_URL_ADMIN],
+  credentials: true
+}));
+
 app.use(session({ secret: 'random', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Middlewares
-app.use(cors());
 app.use(express.json());
 
 // Home Route
@@ -24,5 +26,7 @@ app.get('/', (req, res) => {
 app.use('/api', routes);
 
 // Start Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
