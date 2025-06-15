@@ -7,7 +7,11 @@ export default function Profile(){
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        toast("This page is not functional yet!");
+        toast(() => (
+          <span>This page is not functional yet! <br />
+          <small className="text-gray-500">Just a glimpse of what’s coming next.</small>
+          </span>
+        ));
         
         const userId = localStorage.getItem("userId");
         if(!userId) return;

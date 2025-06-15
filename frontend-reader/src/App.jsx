@@ -5,6 +5,7 @@ import Feed from "./pages/feed";
 import Post from "./pages/post";
 import Layout from "./pages/layout";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";  
 import Profile from "./pages/profile";
 import Story from "./pages/story";
 
@@ -18,6 +19,7 @@ function AppWrapper() {
 
     if (token) {
       localStorage.setItem("token", token);
+      toast.success("Signed in successfully!");
       navigate("/feed", { replace: true });
     }
   }, [location, navigate]);

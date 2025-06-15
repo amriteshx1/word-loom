@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import Signin from './signin';
 import Signup from './signup';
 import homeimg from '../assets/homeimg.png';
@@ -24,8 +25,8 @@ function Homepage(){
                 </div>
 
                 <div className='lg:w-[40%] w-[60%] flex sm:justify-around justify-end items-center'>
-                    <p onClick={handleStory} className='hidden sm:block lg:text-[1.1vw] cursor-pointer text-[1.2vh] font-medium'>Our Story</p>
-                    <p className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium'>Membership</p>
+                    <p onClick={handleStory} className='hidden sm:block lg:text-[1.1vw] cursor-pointer text-[1.2vh] font-medium hover:text-zinc-200'>Our Story</p>
+                    <p onClick={() => toast.success("Coming soon - stay tuned!")} className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium cursor-pointer hover:text-zinc-200'>Membership</p>
                     <button
                     onClick={() => {
                       setSignupHeading("Create an account to start writing.");
