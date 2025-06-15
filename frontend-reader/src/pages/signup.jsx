@@ -22,7 +22,7 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
         setLoading(true);
         
         try {
-            const res = await fetch("http://localhost:3000/api/users/register", {
+            const res = await fetch("https://wordloom.onrender.com/api/users/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, email, password, confirmPassword }),
@@ -51,7 +51,7 @@ export default function Signup({isOpen, onClose, heading = "Join Wordloom.", onS
     };
 
     const handleGoogleLogin = () => {
-      window.location.href = "http://localhost:3000/api/auth/google";
+      window.location.href = "https://wordloom.onrender.com/api/auth/google";
     };
 
 

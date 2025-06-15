@@ -30,8 +30,8 @@ export default function Post(){
       };
 
       const [postRes, commentsRes] = await Promise.all([
-        fetch(`http://localhost:3000/api/posts/${id}`, { headers }),
-        fetch(`http://localhost:3000/api/posts/${id}/comments`, { headers }),
+        fetch(`https://wordloom.onrender.com/api/posts/${id}`, { headers }),
+        fetch(`https://wordloom.onrender.com/api/posts/${id}/comments`, { headers }),
       ]);
 
       const postData = await postRes.json();
@@ -54,7 +54,7 @@ export default function Post(){
       setTimeout(() => setClickedId(null), 120); 
 
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/api/posts/${id}/like`, {
+      await fetch(`https://wordloom.onrender.com/api/posts/${id}/like`, {
        method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export default function Post(){
     
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch(`http://localhost:3000/api/posts/${id}/comments`, {
+        const res = await fetch(`https://wordloom.onrender.com/api/posts/${id}/comments`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

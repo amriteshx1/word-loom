@@ -22,7 +22,7 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
         setLoading(true);
     
         try {
-          const res = await fetch("http://localhost:3000/api/users/login", {
+          const res = await fetch("https://wordloom.onrender.com/api/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -50,7 +50,7 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
       };
 
       const handleGoogleLogin2 = () => {
-        window.location.href = "http://localhost:3000/api/auth/google";
+        window.location.href = "https://wordloom.onrender.com/api/auth/google";
       };
 
     return (

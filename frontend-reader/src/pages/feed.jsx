@@ -54,7 +54,7 @@ export default function Feed(){
         const fetchUser = async () => {
             try {
               const userId = localStorage.getItem("userId");
-              const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+              const response = await fetch(`https://wordloom.onrender.com/api/users/${userId}`);
           
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -75,7 +75,7 @@ export default function Feed(){
         const fetchPosts = async() => {
             const token = localStorage.getItem("token");
 
-            const res = await fetch(`http://localhost:3000/api/posts`, {
+            const res = await fetch(`https://wordloom.onrender.com/api/posts`, {
               method: "GET",
               headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
             });

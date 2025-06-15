@@ -18,7 +18,7 @@ export default function Profile(){
 
         const fetchUser = async () => {
             try {
-              const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+              const response = await fetch(`https://wordloom.onrender.com/api/users/${userId}`);
           
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
