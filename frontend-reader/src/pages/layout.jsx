@@ -27,7 +27,7 @@ export default function Layout() {
     );
 
     if (adminAlert) {
-      window.open("word-loom-mocha.vercel.app", "_blank");
+      window.open("https://word-loom-mocha.vercel.app", "_blank");
     }
   };
 
