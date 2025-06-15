@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 export default function Signin({isOpen, onClose, onSwitchToSignUp}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     if(!isOpen) return null;
@@ -18,6 +19,7 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
 
    const handleLogin = async (e) => {
         e.preventDefault();
+        setLoading(true);
     
         try {
           const res = await fetch("http://localhost:3000/api/users/login", {
@@ -42,6 +44,8 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
         } catch (err) {
           toast.error("Server error. Please try again.");
           console.error(err);
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -78,9 +82,33 @@ export default function Signin({isOpen, onClose, onSwitchToSignUp}){
                       onSwitchToSignUp();
                     }} className="lg:text-[1vw] text-[1.1vh] text-neutral-950 font-medium cursor-pointer hover:underline">Create one</span></p>
 
-                  <button type="submit" className="bg-neutral-700 lg:text-[1.1vw] text-[1.4vh] w-full  text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 lg:mt-[2vh] mt-[1vh] cursor-pointer">
-                    Sign in
+                  <button type="submit"
+                   disabled={loading} 
+                   className="bg-neutral-700 flex justify-center items-center gap-[1vh] lg:text-[1.1vw] text-[1.4vh] w-full  text-white p-[1vh] pr-[2vh] pl-[2vh] rounded-xl hover:bg-neutral-800 lg:mt-[2vh] mt-[1vh] cursor-pointer"
+                   >
+                    {loading ? (
+                     <>
+                       <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                         <circle
+                           className="opacity-25"
+                           cx="12"
+                           cy="12"
+                           r="10"
+                           stroke="currentColor"
+                           strokeWidth="4"
+                         />
+                         <path
+                           className="opacity-75"
+                           fill="currentColor"
+                           d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                         />
+                       </svg>
+                     </>
+                   ) : (
+                     "Sign in"
+                   )}
                   </button>
+
                   <p className="lg:text-[1vw] text-[1.2vh] text-neutral-900">Or</p>
                    <button
                    type="button"
