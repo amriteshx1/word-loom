@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Signin from './signin';
 import Signup from './signup';
 import homeimg from '../assets/homeimg.png';
@@ -8,7 +9,11 @@ function Homepage(){
     const [showSignup, setShowSignup] = useState(false);
     const [showSignin, setShowSignin] = useState(false);
     const [signupHeading, setSignupHeading] = useState("Join Wordloom.");
+    const navigate = useNavigate();
 
+    const handleStory = () => {
+      navigate("/story");
+    }
 
     return(
         <div className="main-container flex-col lg:px-[10vh] px-[2vh] overflow-hidden">
@@ -19,7 +24,7 @@ function Homepage(){
                 </div>
 
                 <div className='lg:w-[40%] w-[60%] flex sm:justify-around justify-end items-center'>
-                    <p className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium'>Our Story</p>
+                    <p onClick={handleStory} className='hidden sm:block lg:text-[1.1vw] cursor-pointer text-[1.2vh] font-medium'>Our Story</p>
                     <p className='hidden sm:block lg:text-[1.1vw] text-[1.2vh] font-medium'>Membership</p>
                     <button
                     onClick={() => {
