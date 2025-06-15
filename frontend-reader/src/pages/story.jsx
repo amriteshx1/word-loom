@@ -14,7 +14,7 @@ export default function Story(){
     }
 
     return(
-        <div className="main-container overflow-y-auto flex-col bg-neutral-700 ">
+        <div className="main-container overflow-y-auto flex-col bg-neutral-700 motion-preset-slide-up motion-duration-500">
             <div className="h-[11vh] w-full flex justify-between items-center border-b-2 border-b-zinc-100 p-[2vh]">
                 <p onClick={handleLogo} className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] font-medium cursor-pointer text-white'>Wordloom.</p>
                 <div className="w-[50%] flex justify-end items-center gap-[2vh]">
