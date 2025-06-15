@@ -22,6 +22,7 @@ function Home(){
         if (confirmLogout) {
           localStorage.removeItem("token");
           localStorage.removeItem("userId");
+          toast.success("Logged out successfully.");
           navigate("/");
         }
     };
