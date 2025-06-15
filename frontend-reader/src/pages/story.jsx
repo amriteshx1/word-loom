@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Signup from './signup';
+import Signin from './signin';
 
 export default function Story(){
+    const [showSignup, setShowSignup] = useState(false);
+    const [showSignin, setShowSignin] = useState(false);
+    const [signupHeading, setSignupHeading] = useState("Join Wordloom.");
     const navigate = useNavigate();
 
     const handleLogo = () => {
@@ -8,12 +14,17 @@ export default function Story(){
     }
 
     return(
-        <div className="main-container overflow-y-auto flex-col bg-neutral-700 text-zinc-100 ">
+        <div className="main-container overflow-y-auto flex-col bg-neutral-700 ">
             <div className="h-[11vh] w-full flex justify-between items-center border-b-2 border-b-zinc-100 p-[2vh]">
                 <p onClick={handleLogo} className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] font-medium cursor-pointer text-white'>Wordloom.</p>
                 <div className="w-[50%] flex justify-end items-center gap-[2vh]">
-                    <button className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-neutral-700 text-zinc-100 border border-white">Sign in</button>
-                    <button className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-zinc-100 text-neutral-700 hover:bg-white">Sign up</button>
+                    <button onClick={() => setShowSignin(true)} className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-neutral-700 text-zinc-100 border border-white">Sign in</button>
+                    <button
+                    onClick={() => {
+                      setSignupHeading("Join Wordloom.");
+                      setShowSignup(true);
+                    }} 
+                    className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-zinc-100 text-neutral-700 hover:bg-white">Sign up</button>
                 </div>
 
             </div>
@@ -34,8 +45,18 @@ export default function Story(){
                 </div>
 
                 <div className="w-full flex flex-col justify-start items-start text-neutral-200">
-                    <button className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Reading <span>&rarr;</span></button>
-                    <button className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Writing <span>&rarr;</span></button>
+                    <button
+                     onClick={() => {
+                       setSignupHeading("Join Wordloom.");
+                       setShowSignup(true);
+                     }} 
+                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Reading <span>&rarr;</span></button>
+                    <button
+                     onClick={() => {
+                      setSignupHeading("Create an account to start writing.");
+                      setShowSignup(true);
+                     }}
+                     className="text-[5vw] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer">Start Writing <span>&rarr;</span></button>
                 </div>
 
                 <div className="h-[10vh] w-full flex justify-between items-center p-[2vh] bg-neutral-200 text-neutral-700">
@@ -50,6 +71,10 @@ export default function Story(){
                 </div>
 
             </div>
+
+        <Signup isOpen={showSignup} onClose={() => setShowSignup(false)} heading={signupHeading} onSwitchToSignin={() => setShowSignin(true)} />
+                    
+        <Signin isOpen={showSignin} onClose={() => setShowSignin(false)} onSwitchToSignUp={() => setShowSignup(true)} />
 
         </div>
     )
