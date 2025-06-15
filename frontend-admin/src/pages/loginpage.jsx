@@ -49,7 +49,7 @@ function Login(){
 
     return(
         <div className="main-container lg:flex-row flex-col">
-            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex flex-col justify-center items-center p-[2vh] bg-white'>
+            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex flex-col justify-center items-center p-[2vh] bg-white lg:motion-preset-slide-right lg:motion-duration-500 motion-preset-slide-up motion-duration-500'>
 
                 <div className='lg:h-[40%] h-[90%] w-full flex flex-col justify-end items-center'>
                     <p className='lg:text-[6vw] text-[6vh] text-neutral-900 font-medium '>Wordloom</p>
@@ -62,7 +62,7 @@ function Login(){
                 
             </div>
 
-            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex justify-center items-center p-[2vh] bg-neutral-900 lg:rounded-l-[115px] lg:rounded-tr-none sm:rounded-tl-[115px] sm:rounded-tr-[115px] rounded-tl-[70px] rounded-tr-[70px]'>
+            <div className='lg:h-screen lg:w-[50%] h-[50vh] w-full flex justify-center items-center p-[2vh] bg-neutral-900 lg:rounded-l-[115px] lg:rounded-tr-none sm:rounded-tl-[115px] sm:rounded-tr-[115px] rounded-tl-[70px] rounded-tr-[70px] lg:motion-preset-slide-left lg:motion-duration-500 motion-preset-slide-up motion-duration-500'>
                 
                 <form className='h-[80%] w-[60%] flex flex-col justify-center items-center gap-[1.5vh]' onSubmit={handleLogin}>
                     

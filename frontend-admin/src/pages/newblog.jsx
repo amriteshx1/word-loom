@@ -143,7 +143,7 @@ function Blog(){
     return(
       <>
        
-       <div className="flex sm:hidden h-[100vh] w-full justify-center items-start bg-neutral-900 p-[2vh]">
+       <div className="flex sm:hidden h-[100vh] w-full justify-center items-start bg-neutral-900 p-[2vh] motion-preset-slide-up motion-duration-500">
          <p className="text-[2.3vh] mt-[15vh] text-white text-center font-semibold">
            Hey there! ✨ <br /> <br /> Writing blogs is best experienced on a bigger screen. <br /> <br />
            Switch to a tablet or desktop to craft your masterpiece! 💻📱
@@ -151,7 +151,7 @@ function Blog(){
        </div>
 
 
-        <div className="hidden sm:flex lg:h-[165vh] h-[120vh] w-full flex-col justify-between items-center lg:gap-[5vh] gap-[2vh] bg-neutral-800 p-[2vh]">
+        <div className="hidden sm:flex lg:h-[165vh] h-[120vh] w-full flex-col justify-between items-center lg:gap-[5vh] gap-[2vh] bg-neutral-800 p-[2vh] motion-preset-slide-up motion-duration-500">
             <div className="lg:h-[10vh] h-[7vh] w-[100%] flex flex-col justify-center items-center">
             <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">{isEditing ? "Edit Your Blog!" : "Craft Your New Blog!"}</p>
             <hr className="lg:w-[40%] w-[50%] border-2 border-white" />

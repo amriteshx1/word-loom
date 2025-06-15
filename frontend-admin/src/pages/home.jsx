@@ -118,7 +118,7 @@ function Home(){
     return(
         <>
 
-                <div className='lg:h-[30vh] h-[27vh] w-full flex flex-col justify-around items-center lg:p-[3vh] p-[2vh] bg-neutral-100'>
+                <div className='lg:h-[30vh] h-[27vh] w-full flex flex-col justify-around items-center lg:p-[3vh] p-[2vh] bg-neutral-100 motion-preset-slide-up motion-duration-500 motion-delay-200'>
                     <div className='lg:h-[35%] h-[25%] w-full flex justify-between items-center lg:p-[2vh] p-[1vh]'>
                         <div className='h-full w-[60%] flex justify-start items-center sm:gap-[3vh] gap-[1.5vh]'>
                             <img src={searchimg} alt="search-logo" className='lg:h-[80%] sm:h-[65%] h-[75%] object-cover'/>
@@ -159,7 +159,7 @@ function Home(){
 
                 </div>
 
-                <div className='lg:h-[70vh] h-[66vh]  w-full flex flex-col justify-around items-center p-[3vh] bg-neutral-800'>
+                <div className='lg:h-[70vh] h-[66vh]  w-full flex flex-col justify-around items-center p-[3vh] bg-neutral-800 motion-preset-slide-up motion-duration-500 motion-delay-200'>
                     <div className="w-[100%] flex flex-col justify-center items-center">
                     <p className="lg:text-[2vw] sm:text-[2.1vh] text-[2.3vh] text-white font-bold">Account Overview</p>
                     <hr className="lg:w-[35%] sm:w-[50%] w-[70%] border-2 border-white" />

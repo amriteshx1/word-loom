@@ -8,6 +8,7 @@ import Comments from "./pages/comments";
 import Support from "./pages/support";
 import Blog from "./pages/newblog";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";  
 
 function AppWrapper() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function AppWrapper() {
 
     if (token) {
       localStorage.setItem("token", token);
+      toast.success("Signed in successfully!");
       navigate("/dashboard", { replace: true });
     }
   }, [location, navigate]);

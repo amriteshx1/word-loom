@@ -73,7 +73,7 @@ function Dashboard(){
                   onClick={() => setMenuOpen(false)}
                 />
             
-                <div className="fixed top-0 left-0 h-full w-[70vw] max-w-[300px] bg-neutral-900 z-50 p-6 flex flex-col justify-between">
+                <div className="fixed top-0 left-0 h-full w-[70vw] max-w-[300px] bg-neutral-900 z-50 p-6 flex flex-col justify-between motion-preset-slide-right motion-duration-500">
                   
                   <div className="flex justify-between items-center mb-6">
                     <div className="flex items-center gap-2">

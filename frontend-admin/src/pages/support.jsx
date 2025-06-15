@@ -4,7 +4,7 @@ import mail from "../assets/mail.png";
 function Support(){
     return(
         <>
-        <div className="min-h-full w-[90%] flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800">
+        <div className="min-h-full w-[90%] flex flex-col justify-start items-center gap-[4vh] p-[2vh] bg-neutral-800 motion-preset-slide-up motion-duration-500">
             <div className="w-[100%] flex flex-col justify-center items-center p-[2vh]">
             <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">Get In Touch!</p>
             <hr className="lg:w-[30%] w-[50%] border-2 border-white" />
