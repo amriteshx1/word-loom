@@ -45,7 +45,7 @@ function Home(){
       const fetchComments = async () => {
         try {
           const token = localStorage.getItem("token");
-          const res = await fetch(`http://localhost:3000/api/posts/author/${userId}/comments`, {
+          const res = await fetch(`https://wordloom.onrender.com/api/posts/author/${userId}/comments`, {
             headers: {
               "Content-Type": "application/json",
               "Authorization": `Bearer ${token}`,
@@ -71,7 +71,7 @@ function Home(){
 
         const fetchUser = async () => {
             try {
-              const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+              const response = await fetch(`https://wordloom.onrender.com/api/users/${userId}`);
           
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

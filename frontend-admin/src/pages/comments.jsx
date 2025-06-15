@@ -9,7 +9,7 @@ function Comments(){
           const userId = localStorage.getItem("userId");
           const token = localStorage.getItem("token");
 
-          const res = await fetch(`http://localhost:3000/api/posts/author/${userId}/comments`, {
+          const res = await fetch(`https://wordloom.onrender.com/api/posts/author/${userId}/comments`, {
             method: "GET",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
           });
@@ -30,7 +30,7 @@ function Comments(){
 
          const token = localStorage.getItem("token");
 
-         const res = await fetch(`http://localhost:3000/api/posts/comments/${id}`, {
+         const res = await fetch(`https://wordloom.onrender.com/api/posts/comments/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
          })
@@ -46,7 +46,7 @@ function Comments(){
     
         const token = localStorage.getItem("token");
     
-        const res = await fetch(`http://localhost:3000/api/posts/comments/${id}`, {
+        const res = await fetch(`https://wordloom.onrender.com/api/posts/comments/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({ content: updatedContent }),

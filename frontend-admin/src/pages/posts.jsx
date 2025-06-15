@@ -14,7 +14,7 @@ function Posts(){
             const userId = localStorage.getItem("userId");
             const token = localStorage.getItem("token");
            
-            const res = await fetch(`http://localhost:3000/api/posts/myposts/${userId}`, {
+            const res = await fetch(`https://wordloom.onrender.com/api/posts/myposts/${userId}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
             });
@@ -36,7 +36,7 @@ function Posts(){
         try {
             const token = localStorage.getItem("token");
 
-            const res = await fetch(`http://localhost:3000/api/posts/${postId}/togglePublish`, {
+            const res = await fetch(`https://wordloom.onrender.com/api/posts/${postId}/togglePublish`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}`, },
             })

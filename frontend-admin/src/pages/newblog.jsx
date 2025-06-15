@@ -21,7 +21,7 @@ function Blog(){
       if (postId) {
         setIsEditing(true);
         const token = localStorage.getItem("token");
-        fetch(`http://localhost:3000/api/posts/${postId}`, {
+        fetch(`https://wordloom.onrender.com/api/posts/${postId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -72,7 +72,7 @@ function Blog(){
               }
 
             const token = localStorage.getItem("token");
-            const url = isEditing ? `http://localhost:3000/api/posts/${postId}` : "http://localhost:3000/api/posts";
+            const url = isEditing ? `https://wordloom.onrender.com/api/posts/${postId}` : "https://wordloom.onrender.com/api/posts";
             const method = isEditing ? "PUT" : "POST";
 
             const res = await fetch(url, {
@@ -118,7 +118,7 @@ function Blog(){
         setLoadingTone(true);
       
         try {
-          const res = await fetch("http://localhost:3000/api/posts/tone/gemini/transform", {
+          const res = await fetch("https://wordloom.onrender.com/api/posts/tone/gemini/transform", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ content, tone }),

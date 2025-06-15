@@ -15,7 +15,7 @@ function Login(){
          setLoading(true);
     
         try {
-          const res = await fetch("http://localhost:3000/api/users/login", {
+          const res = await fetch("https://wordloom.onrender.com/api/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -44,7 +44,7 @@ function Login(){
       };
 
       const handleGoogleLogin = () => {
-        window.location.href = "http://localhost:3000/api/auth/google?type=admin";
+        window.location.href = "https://wordloom.onrender.com/api/auth/google?type=admin";
       };
 
     return(
