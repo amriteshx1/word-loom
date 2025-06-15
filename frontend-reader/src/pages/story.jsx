@@ -1,8 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Story(){
+    const navigate = useNavigate();
+
+    const handleLogo = () => {
+      navigate("/");
+    }
+
     return(
         <div className="main-container overflow-y-auto flex-col bg-neutral-700 text-zinc-100 ">
             <div className="h-[11vh] w-full flex justify-between items-center border-b-2 border-b-zinc-100 p-[2vh]">
-                <p className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] font-medium text-white'>Wordloom.</p>
+                <p onClick={handleLogo} className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] font-medium cursor-pointer text-white'>Wordloom.</p>
                 <div className="w-[50%] flex justify-end items-center gap-[2vh]">
                     <button className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-neutral-700 text-zinc-100 border border-white">Sign in</button>
                     <button className="px-4 py-1 text-[1.1vw] rounded-full cursor-pointer bg-zinc-100 text-neutral-700 hover:bg-white">Sign up</button>
@@ -31,7 +39,7 @@ export default function Story(){
                 </div>
 
                 <div className="h-[10vh] w-full flex justify-between items-center p-[2vh] bg-neutral-200 text-neutral-700">
-                    <p className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] font-medium'>Wordloom.</p>
+                    <p onClick={handleLogo} className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] cursor-pointer font-medium'>Wordloom.</p>
                     <div className="w-[50%] flex justify-end items-center gap-[2vh]">
                         <p className='text-[0.9vw]  text-neutral-700 cursor-pointer  hover:text-neutral-500'>Help</p>
                         <p className='text-[0.9vw]  text-neutral-700 cursor-pointer  hover:text-neutral-500'>About</p>
