@@ -165,7 +165,7 @@ function Blog(){
                 </div>
                 
                 <Editor
-                    apiKey='u5fbml5dtavsjnyloaai6j180opwm6mz7aet9a60t19vu0c5'
+                    apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
                     value={content}
                     init={{
                       height: 700,
