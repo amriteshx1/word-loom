@@ -12,8 +12,10 @@ exports.upgradeTone = async(req, res) => {
       return res.status(400).json({ error: "Content and tone are required." });
     }
   
-    const prompt = `You are a professional writing assistant that rewrites blog content in a specified tone while preserving the original meaning, structure, and flow. The output should be a single, polished version of the content rewritten in a ${tone.toLowerCase()} tone. Maintain proper paragraph breaks, formatting, and readability suitable for publishing. Do not include multiple options, explanations, or introductory text — only return the transformed content.
+    const prompt = `You're a skilled human writer rewriting a blog post in a ${tone.toLowerCase()} tone. Keep the original meaning, structure, and message intact, but rewrite it to sound more authentic, engaging, and natural — as if written by a thoughtful, expressive human. Keep the formatting clean and paragraph breaks intact, and make sure it's ready to publish. 
 
+        Just return the rewritten content — no extra commentary or explanation.
+        
         Original content:
         """
         ${content}
