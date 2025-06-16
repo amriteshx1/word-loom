@@ -233,7 +233,7 @@ export default function Post(){
               </>
 
             ) : (
-                <div className="w-full mt-[5vh] flex flex-col justify-start items-start gap-[3vh] animate-pulse">
+                <div className="w-full lg:mt-[10vh] mt-[5vh] flex flex-col justify-start items-start gap-[3vh] animate-pulse">
                 <div className="h-[3.5vh] w-[80%] bg-neutral-300 rounded" />
                 <div className="h-[2.5vh] w-[60%] bg-neutral-300 rounded" />
 
