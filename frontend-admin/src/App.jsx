@@ -27,7 +27,7 @@ function AppWrapper() {
 
   return (
     <>
-    <Toaster position="top-center" />
+    <Toaster position="top-right" />
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />}>
