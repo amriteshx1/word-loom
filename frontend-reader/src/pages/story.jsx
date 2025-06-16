@@ -44,21 +44,6 @@ export default function Story(){
                     <p className="lg:text-[1.7vw] text-[1.6vh] font-medium italic">Rooted. Real. Writing the start of a journey we’re proud to share.</p>
                 </div>
 
-                <div className="w-full flex flex-col justify-start items-start text-neutral-200">
-                    <button
-                     onClick={() => {
-                       setSignupHeading("Join Wordloom.");
-                       setShowSignup(true);
-                     }} 
-                     className="lg:text-[5vw] text-[3.5vh] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer transition-colors duration-400">Start Reading <span>&rarr;</span></button>
-                    <button
-                     onClick={() => {
-                      setSignupHeading("Create an account to start writing.");
-                      setShowSignup(true);
-                     }}
-                     className="lg:text-[5vw] text-[3.5vh] px-6 py-6 border-y border-y-zinc-100 w-full text-start flex justify-between items-center hover:bg-neutral-200 hover:text-neutral-700 cursor-pointer transition-colors duration-400">Start Writing <span>&rarr;</span></button>
-                </div>
-
                 <div className="h-[10vh] w-full flex justify-between items-center p-[2vh] bg-neutral-200 text-neutral-700">
                     <p onClick={handleLogo} className='lg:text-[2.1vw] sm:text-[2.4vh] text-[3vh] cursor-pointer font-medium'>Wordloom.</p>
                     <div className="w-[50%] flex justify-end items-center gap-[2vh]">
