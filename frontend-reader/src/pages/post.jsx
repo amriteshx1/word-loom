@@ -15,6 +15,7 @@ export default function Post(){
   const [clickedId, setClickedId] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
   const {id} = useParams();
   const navigate = useNavigate();
 
@@ -74,6 +75,8 @@ export default function Post(){
         return;
       }
     
+      setIsPostingComment(true);
+
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(`https://wordloom.onrender.com/api/posts/${id}/comments`, {
@@ -104,6 +107,8 @@ export default function Post(){
       } catch (err) {
         console.error(err);
         toast.error("Server error while posting comment.");
+      } finally {
+        setIsPostingComment(false);
       }
     };
 
@@ -202,7 +207,16 @@ export default function Post(){
 
                 <div className="w-full flex justify-between items-center">
                   <textarea className="lg:w-[80%] w-[65%] lg:text-[1.1vw] text-[1.1vh] border border-neutral-300 rounded-2xl p-[1vh]" rows={2} placeholder="What are your thoughts?" value={newComment} onChange={(e) => setNewComment(e.target.value)}></textarea>
-                  <button onClick={handleAddComment} className="px-[2vh] py-[1vh] lg:text-[1vw] text-[1.1vh] bg-neutral-700 text-white rounded-2xl hover:bg-neutral-800 cursor-pointer">Respond</button>
+                  <button onClick={handleAddComment} 
+                    className="px-[2vh] py-[1vh] lg:text-[1vw] text-[1.1vh] bg-neutral-700 text-white rounded-2xl hover:bg-neutral-800 cursor-pointer"
+                    disabled={isPostingComment}
+                  >
+                  {isPostingComment ? (
+                     <div className="lg:h-[2vh] lg:w-[2vh] h-[1.6vh] w-[1.6vh] border-[2px] border-white border-t-transparent rounded-full animate-spin" />
+                   ) : (
+                     "Respond"
+                   )}
+                    </button>
                 </div>
                 
                 <div className="flex flex-col w-full justify-start items-center lg:gap-[5vh] gap-[4vh]">
