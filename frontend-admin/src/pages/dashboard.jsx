@@ -8,6 +8,7 @@ import logout from '../assets/logout.png';
 import dashboard from '../assets/dashboard.png';
 import support from '../assets/support.png';
 import menu from '../assets/menu.png';
+import { toast } from "react-hot-toast";
 
 function Dashboard(){
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -18,6 +19,7 @@ function Dashboard(){
         if (confirmLogout) {
           localStorage.removeItem("token");
           localStorage.removeItem("userId");
+          toast.success("Logged out successfully.");
           navigate("/");
         }
     };
