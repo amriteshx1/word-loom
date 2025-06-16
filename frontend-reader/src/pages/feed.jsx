@@ -124,7 +124,11 @@ export default function Feed(){
               <div className='h-full lg:w-[60%] w-full flex flex-col justify-start items-center overflow-y-scroll'>
 
                 <div className='lg:h-[10%] sm:h-[5%] h-[6%] w-full flex flex-col justify-start gap-1 items-start px-4'>
-                  <p className='lg:text-[2.3vw] text-[2.3vh] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent motion-preset-slide-up motion-duration-500 motion-delay-300'>❝ {greeting || "Welcome back!"}</p>
+                  {greeting ? (
+                  <p className='lg:text-[2.3vw] text-[2.3vh] font-semibold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent motion-preset-slide-up motion-duration-500 motion-delay-300'>❝ {greeting}</p>
+                  ) : (
+                    <div className='w-[60%] h-6 bg-neutral-300 rounded animate-pulse'></div>
+                  )}
                   <hr className='w-full border-neutral-200' />
                 </div>
 
@@ -145,7 +149,8 @@ export default function Feed(){
                 </div>
 
                 <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]  motion-preset-slide-up motion-duration-500 motion-delay-300'>
-                {displayedPosts.map(post => (
+                {displayedPosts.length > 0 ? (
+                 displayedPosts.map(post => (
                 <div key={post.id} onClick={() => handlePost(post.id)} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
                   <p className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
@@ -181,7 +186,25 @@ export default function Feed(){
                 </div>
 
                 </div>
-              ))}
+              ))
+            ) : (
+              Array(3).fill().map((_, i) => (
+               <div key={i} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md animate-pulse">
+                 <div className='h-full w-[70%] flex flex-col justify-around items-start gap-2'>
+                   <div className="h-6 w-[80%] bg-neutral-300 rounded" />
+                   <div className="h-4 w-[60%] bg-neutral-200 rounded" />
+                   <div className="h-4 w-[90%] bg-neutral-200 rounded" />
+                   <div className="flex gap-4 mt-2">
+                     <div className="h-4 w-12 bg-neutral-300 rounded" />
+                     <div className="h-4 w-12 bg-neutral-300 rounded" />
+                   </div>
+                 </div>
+                 <div className='h-full w-[25%] flex justify-center items-start p-4'>
+                   <div className="h-[75%] w-full bg-neutral-300 rounded-xl" />
+                 </div>
+               </div>
+              ))
+            )}
               </div>
               </div>
 
@@ -193,14 +216,18 @@ export default function Feed(){
                   </div>
                   
                   <div className='flex h-[83%] justify-between flex-col'>
-                  {trendingPosts.map((post) => (
+                  {trendingPosts.length > 0 ? trendingPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className="mr-2">➲</span>
                     <span className="flex-1 hover:underline">{post.title}</span>
                    </p>
                    </div>
-                  ))}
+                  )) : (
+                    Array(4).fill().map((_, i) => (
+                      <div key={i} className="h-4 w-[90%] bg-neutral-500 rounded animate-pulse mb-2" />
+                    ))
+                  )}
                   </div>
                   
 
@@ -213,14 +240,18 @@ export default function Feed(){
                   </div>
 
                   <div className='flex h-[83%] justify-between flex-col'>
-                  {featuredPosts.map((post) => (
+                  {featuredPosts.length > 0 ? featuredPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className='mr-2'>➲</span> 
                     <span className='flex-1 hover:underline'>{post.title}</span>
                     </p>
                    </div>
-                  ))}
+                  )) : (
+                    Array(4).fill().map((_, i) => (
+                      <div key={i} className="h-4 w-[90%] bg-neutral-500 rounded animate-pulse mb-2" />
+                    ))
+                  )}
                   </div>
 
                 </div>
