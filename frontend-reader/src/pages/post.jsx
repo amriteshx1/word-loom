@@ -233,7 +233,34 @@ export default function Post(){
               </>
 
             ) : (
-                <p>Loading...</p>
+                <div className="w-full mt-[5vh] flex flex-col justify-start items-start gap-[3vh] animate-pulse">
+                <div className="h-[3.5vh] w-[80%] bg-neutral-300 rounded" />
+                <div className="h-[2.5vh] w-[60%] bg-neutral-300 rounded" />
+
+                <div className="w-full flex flex-col justify-center items-center gap-[1vw] mt-[1vh]">
+                  <hr className="w-full border-neutral-200" />
+                  <div className="w-full flex justify-between items-center">
+                    <div className="w-[50%] flex gap-[3vw]">
+                      <div className="h-[2.5vh] w-[5vw] bg-neutral-300 rounded" />
+                      <div className="h-[2.5vh] w-[5vw] bg-neutral-300 rounded" />
+                    </div>
+                    <div className="w-[30%] flex justify-end">
+                      <div className="h-[2.5vh] w-[3vw] bg-neutral-300 rounded" />
+                    </div>
+                  </div>
+                  <hr className="w-full border-neutral-200" />
+                </div>
+              
+                <div className="w-full h-[40vh] bg-neutral-300 rounded-lg" />
+              
+                <div className="w-full flex flex-col gap-[1.5vh] mt-[2vh]">
+                  <div className="h-[2.2vh] w-[90%] bg-neutral-200 rounded" />
+                  <div className="h-[2.2vh] w-[85%] bg-neutral-200 rounded" />
+                  <div className="h-[2.2vh] w-[80%] bg-neutral-200 rounded" />
+                  <div className="h-[2.2vh] w-[75%] bg-neutral-200 rounded" />
+                </div>
+              </div>
+
             )}
 
         </div>
