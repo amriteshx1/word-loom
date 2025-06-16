@@ -73,7 +73,7 @@ export default function Profile(){
                     {user ? (
                     <p className='font-bold text-[1.2vw] text-neutral-700'>- {user.username}</p>
                     ) : (
-                      <div className="h-[2vh] w-[50%] bg-neutral-200 animate-pulse rounded" />
+                      <div className="h-[2vh] w-[8ch] bg-neutral-200 animate-pulse rounded" />
                     )}
                     <p className='font-medium text-[1vw] text-neutral-500'><span className='text-white'>- </span>1 follower</p>
                 </div>

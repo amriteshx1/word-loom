@@ -76,8 +76,8 @@ function Comments(){
             
             {loading ? (
               <div className="w-full h-[40vh] flex flex-col justify-center items-center">
-                <div className="h-[10vh] w-[10vh] border-4 border-white border-t-transparent rounded-full animate-spin" />
-                <p className="text-white text-[1.5vh] mt-4">Loading ...</p>
+                <div className="h-[7vh] w-[7vh] border-4 border-white border-t-transparent rounded-full animate-spin" />
+                <p className="text-white lg:text-[1.2vw] text-[1.5vh] mt-4">Loading ...</p>
               </div>
             ) :
             comments && comments.length > 0 ? (
