@@ -9,8 +9,11 @@ require('./config/passport');
 
 const app = express();
 
+console.log("USER URL:", process.env.FRONTEND_URL_USER);
+console.log("ADMIN URL:", process.env.FRONTEND_URL_ADMIN);
+
 app.use(cors({
-  origin: [process.env.FRONTEND_URL_USER, process.env.FRONTEND_URL_ADMIN],
+  origin: [process.env.FRONTEND_URL_USER, 'https://word-loom-mocha.vercel.app'],
   credentials: true
 }));
 
