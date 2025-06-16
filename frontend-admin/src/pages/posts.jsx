@@ -7,9 +7,11 @@ import { toast } from "react-hot-toast";
 
 function Posts(){
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     const fetchPosts = async () => {
+        setLoading(true);
         try {
             const userId = localStorage.getItem("userId");
             const token = localStorage.getItem("token");
@@ -28,6 +30,8 @@ function Posts(){
         } catch (err) {
             console.error(err);
             alert("Could not load posts");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -73,8 +77,13 @@ function Posts(){
             <hr className="lg:w-[30%] w-[50%] border-2 border-white" />
             </div>
 
-
-            {posts && posts.length > 0 ? (
+            {loading ? (
+              <div className="w-full h-[40vh] flex flex-col justify-center items-center">
+                <div className="h-[10vh] w-[10vh] border-4 border-white border-t-transparent rounded-full animate-spin" />
+                <p className="text-white text-[1.5vh] mt-4">Loading blogs...</p>
+              </div>
+            ) :
+            posts && posts.length > 0 ? (
                 posts.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex lg:flex-row flex-col lg:justify-between justify-center lg:gap-0 gap-[2vh] items-center bg-neutral-900 rounded-xl text-white">
                     <div className="h-full lg:w-[75%] w-full flex justify-between items-center text-white">
                         <p className="lg:text-[1.2vw] text-[1.5vh] lg:w-[66%] w-[50%]"><span className="font-bold">Title: </span>{item?.title || "The abc of xyz being 123"}</p>

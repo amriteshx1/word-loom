@@ -38,7 +38,11 @@ export default function Profile(){
         <div className='h-[91vh] w-full grid lg:grid-cols-[2.7fr_1.3fr] grid-cols-1 motion-preset-slide-up motion-duration-500'>
             <div className="border-r-1 border-r-neutral-200 flex flex-col justify-between items-start">
                 <div className='lg:h-[30%] h-[25%] w-full flex flex-col gap-[2vh] lg:p-10 p-8'>
-                <p className='font-bold lg:text-[4vw] text-[4vh] text-neutral-700'>{user?.username || "User"}</p>
+                {user ? (
+                <p className='font-bold lg:text-[4vw] text-[4vh] text-neutral-700'>{user.username}</p>
+                ) : (
+                  <div className="h-[4vh] w-[40%] bg-neutral-200 animate-pulse rounded" />
+                )}
                 <div className='w-full flex justify-start items-center gap-[4vh] mt-[1vh]'>
                     <button className='px-3 py-1 lg:text-[1vw] text-[1.1vh] text-white bg-neutral-700 rounded-2xl border cursor-pointer'>Home</button>
                     <button className='px-3 py-1 lg:text-[1vw] text-[1.1vh] text-neutral-700 bg-white rounded-2xl border cursor-pointer'>Saved</button>
@@ -66,7 +70,11 @@ export default function Profile(){
                     <div className='bg-neutral-700 rounded-full'>
                     <User2 className="lg:h-[10vh] h-[2vh] w-auto" />
                     </div>
-                    <p className='font-bold text-[1.2vw] text-neutral-700'>- {user?.username || "User"}</p>
+                    {user ? (
+                    <p className='font-bold text-[1.2vw] text-neutral-700'>- {user.username}</p>
+                    ) : (
+                      <div className="h-[2vh] w-[50%] bg-neutral-200 animate-pulse rounded" />
+                    )}
                     <p className='font-medium text-[1vw] text-neutral-500'><span className='text-white'>- </span>1 follower</p>
                 </div>
 

@@ -148,7 +148,11 @@ function Home(){
                     <div className='lg:h-[60%] h-[70%] w-full flex justify-between items-center p-[2vh]'>
                         <div className='h-full w-[60%] flex flex-col justify-center items-start'>
                             <p className='lg:text-[1.3vw] text-[1.6vh] text-neutral-900 font-medium'>What's up,</p>
-                            <p className='lg:text-[2.5vw] text-[3.7vh] text-neutral-900 font-semibold'>{user?.username || "User"}!</p>
+                            {user ? (
+                            <p className='lg:text-[2.5vw] text-[3.7vh] text-neutral-900 font-semibold'>{user.username}!</p>
+                            ) : (
+                              <div className="h-[3.7vh] w-[30%] bg-neutral-300 animate-pulse rounded" />
+                            )}
                         </div>
     
                         <div className='h-full w-[40%] flex justify-end items-center'>
@@ -164,7 +168,7 @@ function Home(){
                     <p className="lg:text-[2vw] sm:text-[2.1vh] text-[2.3vh] text-white font-bold">Account Overview</p>
                     <hr className="lg:w-[35%] sm:w-[50%] w-[70%] border-2 border-white" />
                     </div>
-                    <p className="lg:text-[1.5vw] sm:text-[1.7vh] text-[1.9vh] text-white"><span className="font-semibold">User email: </span>{user?.email || "abc@gmail.com"}</p>
+                    <p className="lg:text-[1.5vw] sm:text-[1.7vh] text-[1.9vh] text-white"><span className="font-semibold">User email: </span>{user ? user.email : <span className="inline-block h-[1.8vh] w-[40%] bg-neutral-300 animate-pulse rounded" />}</p>
 
                     <div className="lg:h-[50%] h-[70%] w-full flex lg:flex-row flex-col justify-between items-center">
                         <div className="lg:h-[80%] h-[30%] lg:w-[30%] sm:w-[60%] w-[80%] flex justify-around items-center gap-[1vh] p-[1vh] bg-neutral-900 rounded-xl text-white">

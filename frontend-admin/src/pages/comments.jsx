@@ -2,10 +2,13 @@ import React, { use, useEffect, useState } from "react";
 
 function Comments(){
     const [comments, setComments] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchComments = async () => {
-
+        setLoading(true);
+          
+          try {
           const userId = localStorage.getItem("userId");
           const token = localStorage.getItem("token");
 
@@ -17,8 +20,12 @@ function Comments(){
           if (!res.ok) throw new Error("Failed to fetch posts");
 
           const data = await res.json();
-          console.log(data);
           setComments(data);
+          } catch (err) {
+             console.error(err);
+           } finally {
+             setLoading(false);
+           }
         };
         fetchComments();
       }, []);
@@ -66,8 +73,14 @@ function Comments(){
             <p className="lg:text-[2.3vw] text-[2.3vh] text-white font-bold">Comments!</p>
             <hr className="lg:w-[30%] w-[50%] border-2 border-white" />
             </div>
-
-            {comments && comments.length > 0 ? (
+            
+            {loading ? (
+              <div className="w-full h-[40vh] flex flex-col justify-center items-center">
+                <div className="h-[10vh] w-[10vh] border-4 border-white border-t-transparent rounded-full animate-spin" />
+                <p className="text-white text-[1.5vh] mt-4">Loading ...</p>
+              </div>
+            ) :
+            comments && comments.length > 0 ? (
                 comments.map((item, index) => <div key={item.id} className="p-[2vh] w-full flex lg:flex-row flex-col lg:justify-between justify-center lg:gap-0 gap-[2vh] items-center bg-neutral-900 rounded-xl text-white">
                     <div className="h-full lg:w-[75%] w-full flex justify-between items-center">
                         <div className="h-full w-[65%] flex justify-start items-center whitespace-normal">
