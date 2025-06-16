@@ -141,7 +141,7 @@ export default function Post(){
               <>
               <div className="max-h-[50%] w-full flex flex-col justify-start items-start lg:mt-[10vh] mt-[5vh] gap-[3vh]">
                 <p className="lg:text-[3vw] text-[3vh] text-neutral-700 font-bold">{post.title}</p>
-                <p className="lg:text-[1.2vw] sm:text-[1.2vh] text-[1.5vh] text-neutral-700 font-medium">By <span className="lg:text-[1.3vw] sm:text-[1.3vh] text-[1.6vh] text-neutral-700 font-semibold">{post.author.username} </span>
+                <p className="lg:text-[1.2vw] sm:text-[1.2vh] text-[1.5vh] text-neutral-700 font-medium">By <span className="lg:text-[1.3vw] sm:text-[1.3vh] text-[1.6vh] text-neutral-700 font-semibold cursor-pointer hover:underline">{post.author.username} </span>
                 • {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',

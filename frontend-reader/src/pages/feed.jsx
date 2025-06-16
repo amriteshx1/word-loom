@@ -155,7 +155,7 @@ export default function Feed(){
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
                   <p className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 cursor-pointer">{post.title}</p>
                   <div className="lg:text-[1vw] text-[1.2vh] text-neutral-600 mb-2">
-                    By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
+                    By <span className='font-medium cursor-pointer hover:underline'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
