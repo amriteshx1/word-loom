@@ -215,7 +215,7 @@ export default function Feed(){
                     <Rocket style={{height: '2.2vh'}} />
                   </div>
                   
-                  <div className='flex h-[83%] justify-between flex-col'>
+                  <div className='flex h-[83%] w-full justify-between flex-col'>
                   {trendingPosts.length > 0 ? 
                    (trendingPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
@@ -241,7 +241,7 @@ export default function Feed(){
                     <Flame style={{height: '2.2vh'}} />
                   </div>
 
-                  <div className='flex h-[83%] justify-between flex-col'>
+                  <div className='flex h-[83%] w-full justify-between flex-col'>
                   {featuredPosts.length > 0 ?
                    (featuredPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
