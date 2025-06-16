@@ -151,9 +151,9 @@ export default function Feed(){
                 <div className='lg:h-[70%] sm:h-[80%] h-[75%] w-full flex flex-col justify-start mt-[3vh] items-center gap-[5vh]  motion-preset-slide-up motion-duration-500'>
                 {displayedPosts.length > 0 ? (
                  displayedPosts.map(post => (
-                <div key={post.id} onClick={() => handlePost(post.id)} className="max-h-[30vh] w-full flex justify-between items-center p-4 rounded-xl bg-white shadow-md">
+                <div key={post.id} onClick={() => handlePost(post.id)} className="max-h-[30vh] w-full flex justify-between items-center cursor-pointer p-4 rounded-xl bg-white shadow-md">
                   <div className='h-full w-[70%] flex flex-col justify-around items-start'>
-                  <p className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 hover:underline cursor-pointer">{post.title}</p>
+                  <p className="lg:text-2xl sm:text-xl text-lg font-bold mb-1 text-neutral-700 cursor-pointer">{post.title}</p>
                   <div className="lg:text-[1vw] text-[1.2vh] text-neutral-600 mb-2">
                     By <span className='font-medium'>{post.author.username} </span> | {new Date(post.createdAt).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -221,7 +221,7 @@ export default function Feed(){
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className="mr-2">➲</span>
-                    <span className="flex-1 hover:underline">{post.title}</span>
+                    <span className="flex-1">{post.title}</span>
                    </p>
                    </div>
                   ))
@@ -247,7 +247,7 @@ export default function Feed(){
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className='mr-2'>➲</span> 
-                    <span className='flex-1 hover:underline'>{post.title}</span>
+                    <span className='flex-1'>{post.title}</span>
                     </p>
                    </div>
                   ))
