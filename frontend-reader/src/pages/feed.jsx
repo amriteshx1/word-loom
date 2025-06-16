@@ -216,14 +216,16 @@ export default function Feed(){
                   </div>
                   
                   <div className='flex h-[83%] justify-between flex-col'>
-                  {trendingPosts.length > 0 ? trendingPosts.map((post) => (
+                  {trendingPosts.length > 0 ? 
+                   (trendingPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className="mr-2">➲</span>
                     <span className="flex-1 hover:underline">{post.title}</span>
                    </p>
                    </div>
-                  )) : (
+                  ))
+                  ) : (
                     Array(4).fill().map((_, i) => (
                       <div key={i} className="h-4 w-[90%] bg-neutral-500 rounded animate-pulse mb-2" />
                     ))
@@ -240,14 +242,16 @@ export default function Feed(){
                   </div>
 
                   <div className='flex h-[83%] justify-between flex-col'>
-                  {featuredPosts.length > 0 ? featuredPosts.map((post) => (
+                  {featuredPosts.length > 0 ?
+                   (featuredPosts.map((post) => (
                    <div key={post.id} onClick={() => handlePost(post.id)} className="cursor-pointer mb-2">
                    <p className="text-white text-[1vw] flex">
                     <span className='mr-2'>➲</span> 
                     <span className='flex-1 hover:underline'>{post.title}</span>
                     </p>
                    </div>
-                  )) : (
+                  ))
+                  ) : (
                     Array(4).fill().map((_, i) => (
                       <div key={i} className="h-4 w-[90%] bg-neutral-500 rounded animate-pulse mb-2" />
                     ))
