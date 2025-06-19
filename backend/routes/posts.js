@@ -11,7 +11,7 @@ const gemini = require('../middlewares/gemini');
 router.post('/tone/gemini/transform', gemini.upgradeTone);
 
 router.get('/', authenticateToken, postController.getAllPosts);
-router.get('/:id', authenticateToken, postController.getPostbyId);
+router.get('/:id', postController.getPostbyId);
 router.post('/', authenticateToken, postController.createPost);
 router.put('/:id', authenticateToken, authorizePostOwner, postController.updatePost);
 router.delete("/:id", authenticateToken, authorizePostOwner, postController.deletePost);
