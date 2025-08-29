@@ -19,7 +19,7 @@ function Homepage(){
     return(
         <div className="main-container flex-col lg:px-[10vh] px-[2vh] overflow-hidden">
 
-            <div className='lg:h-[10vh] h-[9vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl motion-preset-slide-down motion-duration-500'>
+            <div className='lg:h-[10vh] h-[9vh]  w-full flex justify-between items-center bg-neutral-700 text-zinc-100 p-[2vh] rounded-b-4xl'>
                 <div className='lg:w-[60%] w-[40%] flex justify-start items-center'>
                     <p className='lg:text-[2vw] sm:text-[2.4vh] text-[3vh] font-medium'>Wordloom.</p>
                 </div>
@@ -42,7 +42,7 @@ function Homepage(){
 
             </div>
 
-            <div className='h-[60vh] w-full flex lg:justify-between justify-start items-center motion-preset-slide-up motion-duration-500 motion-delay-500'>
+            <div className='h-[60vh] w-full flex lg:justify-between justify-start items-center'>
 
                 <div className='h-full w-full flex flex-col justify-center items-start gap-[25px]'>
                 <p className='lg:text-[6vw] text-[7vh] font-bold bg-gradient-to-tl from-neutral-950 via-zinc-500 to-neutral-700 bg-clip-text text-transparent'>Weave thoughts <br /> into words</p>
@@ -51,14 +51,14 @@ function Homepage(){
                 onClick={() => {
                     setSignupHeading("Join Wordloom.");
                     setShowSignup(true);}}
-                className='lg:text-[1.4vw] text-[1.7vh] font-medium bg-neutral-700 lg:w-[13vw] w-[17vh] p-[1vh] rounded-4xl text-zinc-100 cursor-pointer hover:bg-neutral-800 lg:motion-preset-seesaw-sm lg:motion-delay-2000'>Start reading</button>
+                className='lg:text-[1.4vw] text-[1.7vh] font-medium bg-neutral-700 lg:w-[13vw] w-[17vh] p-[1vh] rounded-4xl text-zinc-100 cursor-pointer hover:bg-neutral-800 motion-preset-seesaw-sm'>Start reading</button>
                 </div>
 
                 <img src={homeimg} alt="home img" className='hidden lg:block h-[60vh] object-cover' />
 
             </div>
 
-            <div className='h-[10vh] sm:w-[40%] w-[50%] flex flex-col justify-end items-center motion-preset-slide-up motion-duration-500 motion-delay-800'>
+            <div className='h-[10vh] sm:w-[40%] w-[50%] flex flex-col justify-end items-center'>
                 <hr className='w-full border-solid border-neutral-700 border' />
                 <div className='h-[50%] w-full flex justify-center items-center gap-[2vw] text-neutral-700 font-normal'>
                     <p className='lg:text-[0.8vw] text-[1.2vh] cursor-pointer hover:text-neutral-500'>Help</p>
