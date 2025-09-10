@@ -1,4 +1,4 @@
-# Wordloom ✨
+# Wordloom
 
 **An end-to-end blog platform with AI in its ink and elegance in every line!**
 
@@ -6,7 +6,7 @@ Wordloom is a full-stack blogging platform that combines seamless content manage
 
 ---
 
-## 🌟 Features
+## Features
 
 - ✍️ **AI-Powered Writing Flow**  
   - Draft posts in **TinyMCE** rich-text editor.  
@@ -137,10 +137,10 @@ npm run dev
 
 ## 🔮 Future Enhancements
 
-- 📊 More advanced Analytics dashboard for writers.
-- 🗂️ Tags & advanced search.
-- 🌓 Dark mode support for both frontends.
-- 🤖 More AI features (SEO suggestions, summary generation).
+- More advanced Analytics dashboard for writers.
+- Tags & advanced search.
+- Dark mode support for both frontends.
+- More AI features (SEO suggestions, summary generation).
 
 ---
 
