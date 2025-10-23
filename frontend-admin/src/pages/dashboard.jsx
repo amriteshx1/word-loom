@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import home from '../assets/home.png';
 import post from '../assets/post.png';
