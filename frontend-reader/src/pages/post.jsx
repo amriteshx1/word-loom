@@ -26,9 +26,12 @@ export default function Post(){
     try {
       const token = localStorage.getItem("token");
       const headers = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      };
+        "Content-Type": "application/json",
+      };
+      
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
 
       const [postRes, commentsRes] = await Promise.all([
         fetch(`https://wordloom.onrender.com/api/posts/${id}`, { headers }),
@@ -51,10 +54,16 @@ export default function Post(){
 
   //increase blog likes
     const increaseLike = async (id) => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+          toast.error("Please log in to like this post.");
+          return; 
+      }
+
       setClickedId(id);
       setTimeout(() => setClickedId(null), 120); 
 
-      const token = localStorage.getItem("token");
       await fetch(`https://wordloom.onrender.com/api/posts/${id}/like`, {
        method: "PATCH",
       headers: {
@@ -70,6 +79,13 @@ export default function Post(){
 
     //post new comment
     const handleAddComment = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+          toast.error("Please log in to comment on this post.");
+          return;
+      }
+
       if (!newComment.trim()) {
         toast.error("Comment can't be empty.");
         return;
@@ -78,7 +94,6 @@ export default function Post(){
       setIsPostingComment(true);
 
       try {
-        const token = localStorage.getItem("token");
         const res = await fetch(`https://wordloom.onrender.com/api/posts/${id}/comments`, {
           method: "POST",
           headers: {
