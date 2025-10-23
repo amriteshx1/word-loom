@@ -14,6 +14,16 @@ function Dashboard(){
     const [isMenuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            console.log("No token found. Redirecting to home page.");
+            navigate("/");
+            toast.error("Access Denied. Please log in with admin credentials.");
+        }
+    }, [navigate]);
+
     const handleLogout = () => {
         const confirmLogout = window.confirm("Are you sure you want to log out?");
         if (confirmLogout) {
