@@ -1,10 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User2 } from '../components/profile2';
 import toast from 'react-hot-toast';
 
 export default function Profile(){
 
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            console.log("No token found. Redirecting to home page.");
+            navigate("/");
+            toast.error("You need to log in to view the profile.");
+            return;
+        }
+    }, [navigate]);
 
     useEffect(() => {
         toast(() => (

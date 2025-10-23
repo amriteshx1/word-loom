@@ -28,6 +28,16 @@ export default function Feed(){
       (name) => `${name}, this is your space.`,
     ];
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            console.log("No token found. Redirecting to home page.");
+            navigate("/");
+            toast.error("You need to log in to view the feed.");
+            return;
+        }
+    }, [navigate]);
+
      // Set greeting when user loads
     useEffect(() => {
         if (user?.username) {
