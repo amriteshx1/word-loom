@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimation } from "framer-motion"; // assuming "motion/react" was meant to be "framer-motion"
+import { motion, useAnimation } from "framer-motion";
 
 const transition = {
   duration: 0.3,

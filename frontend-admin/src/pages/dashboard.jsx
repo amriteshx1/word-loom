@@ -18,9 +18,9 @@ function Dashboard(){
         const token = localStorage.getItem("token");
 
         if (!token) {
-            console.log("No token found. Redirecting to home page.");
-            navigate("/");
-            toast.error("Access Denied. Please log in with admin credentials.");
+          console.log("No token found. Redirecting to home page.");
+          navigate("/");
+          toast.error("Access Denied. Please log in with admin credentials.");
         }
     }, [navigate]);
 

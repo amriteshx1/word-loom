@@ -19,13 +19,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 
-// Home Route
+// Home route
 app.get('/', (req, res) => {
     res.redirect('/api');
 });
 app.use('/api', routes);
 
-// Start Server
+// Start server
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
