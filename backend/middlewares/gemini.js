@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const ai = new GoogleGenAI({});
 exports.upgradeTone = async(req, res) => {
 
     const { content, tone } = req.body;
@@ -22,15 +22,12 @@ exports.upgradeTone = async(req, res) => {
         """`;
 
     try {
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.0-pro"
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
     });
 
-    const result = await model.generateContent(prompt);
-
-    const text = result.response.text();
-
-    res.json({ transformed: text });
+    res.json({ transformed: response.text });
     } catch (err) {
     // console.error("Gemini error:", err);
     // res.status(500).json({ error: "Failed to generate content." });
