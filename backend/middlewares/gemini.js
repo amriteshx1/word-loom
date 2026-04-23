@@ -29,13 +29,7 @@ exports.upgradeTone = async(req, res) => {
 
     res.json({ transformed: response.text });
     } catch (err) {
-    // console.error("Gemini error:", err);
-    // res.status(500).json({ error: "Failed to generate content." });
-    console.error("Gemini FULL error:", err);
-
-    res.status(500).json({ 
-      error: "Failed to generate content.",
-      message: err.message 
-    });
+    console.error("Gemini error:", err);
+    res.status(500).json({ error: "Failed to generate content." });
   }
 }
