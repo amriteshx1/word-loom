@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 exports.upgradeTone = async(req, res) => {
 
     const { content, tone } = req.body;
@@ -21,17 +21,24 @@ exports.upgradeTone = async(req, res) => {
         ${content}
         """`;
 
-    
     try {
-    const model = genAI.getGenerativeModel({  model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash"
+    });
 
     const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+
+    const text = result.response.text();
 
     res.json({ transformed: text });
     } catch (err) {
-    console.error("Gemini error:", err);
-    res.status(500).json({ error: "Failed to generate content." });
+    // console.error("Gemini error:", err);
+    // res.status(500).json({ error: "Failed to generate content." });
+    console.error("Gemini FULL error:", err);
+
+    res.status(500).json({ 
+      error: "Failed to generate content.",
+      message: err.message 
+    });
   }
 }
